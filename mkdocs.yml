@@ -39,6 +39,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Animations: architecture.md
   - About: about.md
   - Pronunciation: pronunciation.md
   - Standards:
