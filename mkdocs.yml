@@ -1,7 +1,6 @@
 site_name: YesDR Standard
-
 site_url: https://yesdr-standard.org
-site_description: Your Extensible Software Defined Radio – A modular cellular wireless standard
+site_description: Your Extensible Software Defined Radio – Modular Cellular Wireless Standard
 
 repo_url: https://github.com/ChandharLabs/yesdr-standard
 repo_name: YesDR on GitHub
@@ -11,25 +10,21 @@ theme:
   logo: images/YesDR_Logo_S.png
   favicon: images/YesDR_Logo_S.png
 
-site_description: Your Extensible Software Defined Radio – Modular Cellular Wireless Standard
-site_url: https://yesdr-standard.org
-
   font:
     text: Inter
     code: JetBrains Mono
+
   palette:
-
     scheme: default
-
     primary: blue grey
     accent: indigo
+
   features:
     - navigation.tabs
     - navigation.sections
     - navigation.top
     - toc.integrate
     - content.code.copy
-
     - search.highlight
 
 nav:
@@ -37,29 +32,28 @@ nav:
   - Animations: architecture.md
   - About: about.md
   - Pronunciation: pronunciation.md
+
   - Standards:
       - TS 00.001 – Overall Description: standards/ts-00-001-overall.md
       - TS 00.004 – Architecture: standards/ts-00-004-architecture.md
       - TS 23.501 Mapping: standards/ts-23-501-mapping.md
-      #- YACP (Control Plane): standards/ts-24-001-yacp.md
-      #- YSMP (Spectrum): standards/ts-24-002-ysmp.md
-      #- YUPF (User Plane): standards/ts-29-001-yupf.md
-      #- YCore (Core): standards/ts-29-002-ycore.md
-      - TS_02_002—YSMF: standards/YesDR_TS_02_002—YSMF.md
-      - TS_02_003—YUPF: standards/YesDR_TS_02_003—YUPF.md
-      - TS_02_004—YUDM: standards/YesDR_TS_02_004—YUDM.md
-      - TS_02_006—YPCF: standards/YesDR_TS_02_006—YPCF.md
-      - TS_02_007—YRMF: standards/YesDR_TS_02_007—YRMF.md
-      - TS_02_008—YCRF: standards/YesDR_TS_02_008—YCRF.md
-      - TS_02_009—YNRF: standards/YesDR_TS_02_009—YNRF.md
-      - TS_02_010—YSM: standards/YesDR_TS_02_010—YSM.md
-      - TS_02_020—YBS: standards/YesDR_TS_02_020—YBS.md
-      - TS_02_021—YUE: standards/YesDR_TS_02_021—YUE.md
-      - TS_02_0050—YAUSF: standards/YesDR_TS_02_0050—YAUSF.md
-      - TS_04_001—YACP: standards/YesDR_TS_04_001—YACP.md
-      - TS_04_002—YSMP: standards/YesDR_TS_04_002—YSMP.md
-  - Reference Implementations: 
+      - TS 02.002 — YSMF: standards/YesDR_TS_02_002—YSMF.md
+      - TS 02.003 — YUPF: standards/YesDR_TS_02_003—YUPF.md
+      - TS 02.004 — YUDM: standards/YesDR_TS_02_004—YUDM.md
+      - TS 02.006 — YPCF: standards/YesDR_TS_02_006—YPCF.md
+      - TS 02.007 — YRMF: standards/YesDR_TS_02_007—YRMF.md
+      - TS 02.008 — YCRF: standards/YesDR_TS_02_008—YCRF.md
+      - TS 02.009 — YNRF: standards/YesDR_TS_02_009—YNRF.md
+      - TS 02.010 — YSM: standards/YesDR_TS_02_010—YSM.md
+      - TS 02.020 — YBS: standards/YesDR_TS_02_020—YBS.md
+      - TS 02.021 — YUE: standards/YesDR_TS_02_021—YUE.md
+      - TS 02.050 — YAUSF: standards/YesDR_TS_02_0050—YAUSF.md
+      - TS 04.001 — YACP: standards/YesDR_TS_04_001—YACP.md
+      - TS 04.002 — YSMP: standards/YesDR_TS_04_002—YSMP.md
+
+  - Reference Implementations:
       - Wireshark Dissectors: reference/wireshark.md
+
   - Tools:
       - Validation & Debugging: tools/validation.md
 
@@ -69,27 +63,19 @@ nav:
 
 plugins:
   - search
+  # Uncomment ONLY if installed
+  # - git-revision-date-localized
 
 extra_css:
   - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
-  - toc:
-      permalink: true
   - tables
   - footnotes
   - def_list
   - attr_list
-  - pymdownx.superfences
-  - pymdownx.tabbed
-  - git-revision-date-localized
-
-markdown_extensions:
-  - admonition
-  - tables
   - toc:
       permalink: true
-  - footnotes
-  - attr_list
   - pymdownx.superfences
+  - pymdownx.tabbed
