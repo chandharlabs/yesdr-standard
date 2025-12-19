@@ -8,16 +8,11 @@ repo_name: YesDR on GitHub
 
 theme:
   name: material
-  logo: images/YesDR_Logo.png
-  favicon: images/YesDR_Logo.png
+  logo: images/YesDR_Logo_S.png
+  favicon: images/YesDR_Logo_S.png
 
 site_description: Your Extensible Software Defined Radio – Modular Cellular Wireless Standard
 site_url: https://yesdr-standard.org
-
-theme:
-  name: material
-  logo: images/YesDR_Logo.png
-  favicon: images/YesDR_Logo.png
 
   font:
     text: Inter
