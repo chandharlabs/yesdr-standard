@@ -1,4 +1,5 @@
 site_name: YesDR Standard
+
 site_url: https://yesdr-standard.org
 site_description: Your Extensible Software Defined Radio – A modular cellular wireless standard
 
@@ -9,11 +10,22 @@ theme:
   name: material
   logo: images/yesdr-logo.png
   favicon: images/yesdr-logo.png
+
+site_description: Your Extensible Software Defined Radio – Modular Cellular Wireless Standard
+site_url: https://yesdr-standard.org
+
+theme:
+  name: material
+  logo: images/yesdr-logo.svg
+  favicon: images/yesdr-logo.svg
+
   font:
     text: Inter
     code: JetBrains Mono
   palette:
+
     scheme: default
+
     primary: blue grey
     accent: indigo
   features:
@@ -22,6 +34,7 @@ theme:
     - navigation.top
     - toc.integrate
     - content.code.copy
+
     - search.highlight
 
 nav:
@@ -33,12 +46,27 @@ nav:
       - TS 00.005 – YACP: standards/ts-0005-yacp.md
       - TS 00.006 – YSMP: standards/ts-0006-ysmp.md
       - TS 00.007 – YCore: standards/ts-0007-ycore.md
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Pronunciation: pronunciation.md
+  - Standards:
+      - TS 00.001 – Overall Description: standards/ts-00-001-overall.md
+      - TS 00.004 – Architecture: standards/ts-00-004-architecture.md
+      - TS 23.501 Mapping: standards/ts-23-501-mapping.md
+      - YACP (Control Plane): standards/ts-24-001-yacp.md
+      - YSMP (Spectrum): standards/ts-24-002-ysmp.md
+      - YUPF (User Plane): standards/ts-29-001-yupf.md
+      - YCore (Core): standards/ts-29-002-ycore.md
+
   - Consortium: consortium.md
   - Roadmap: roadmap.md
   - Contact: contact.md
 
 plugins:
   - search
+
 
 markdown_extensions:
   - admonition
@@ -50,3 +78,13 @@ markdown_extensions:
   - attr_list
   - pymdownx.superfences
   - pymdownx.tabbed
+  - git-revision-date-localized
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - footnotes
+  - attr_list
+  - pymdownx.superfences
