@@ -39,16 +39,6 @@ theme:
 
 nav:
   - Home: index.md
-  - About YesDR: about.md
-  - Standards:
-      - TS 00.001 – Overview: standards/ts-0001-overview.md
-      - TS 00.004 – Architecture: standards/ts-0004-architecture.md
-      - TS 00.005 – YACP: standards/ts-0005-yacp.md
-      - TS 00.006 – YSMP: standards/ts-0006-ysmp.md
-      - TS 00.007 – YCore: standards/ts-0007-ycore.md
-
-nav:
-  - Home: index.md
   - About: about.md
   - Pronunciation: pronunciation.md
   - Standards:
