@@ -62,6 +62,10 @@ nav:
       - TS_02_0050—YAUSF: standards/YesDR_TS_02_0050—YAUSF.md
       - TS_04_001—YACP: standards/YesDR_TS_04_001—YACP.md
       - TS_04_002—YSMP: standards/YesDR_TS_04_002—YSMP.md
+  - Reference Implementations: 
+      - Wireshark Dissectors: reference/wireshark.md
+  - Tools:
+      - Validation & Debugging: tools/validation.md
 
   - Consortium: consortium.md
   - Roadmap: roadmap.md
