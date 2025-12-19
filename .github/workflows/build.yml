@@ -23,4 +23,3 @@ jobs:
         with:
           name: yesdr-site
           path: site/
-
