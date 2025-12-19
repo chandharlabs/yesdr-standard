@@ -3,11 +3,13 @@
 The following animation illustrates the end-to-end YesDR architecture,
 including YUE, YBS, and YCore interactions.
 
-<iframe
-  src="../assets/animations/index.html"
-  width="100%"
-  height="100%"
-  style="border: none;"
-  loading="lazy">
-</iframe>
+
+<div style="width:100vw; height:100vh; margin:0; padding:0;">
+  <iframe
+    src="../assets/animations/index.html"
+    style="width:100vw; height:100vh; border:none;"
+    loading="lazy"
+    allowfullscreen>
+  </iframe>
+</div>
 
