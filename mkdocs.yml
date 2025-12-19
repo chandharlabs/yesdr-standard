@@ -7,8 +7,8 @@ repo_name: YesDR on GitHub
 
 theme:
   name: material
-  logo: images/YesDR_Logo_S.png
-  favicon: images/YesDR_Logo_S.png
+  logo: images/YesDRLogo_S.png
+  favicon: images/YesDRLogo_S.png
 
   font:
     text: Inter
