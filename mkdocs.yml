@@ -45,23 +45,23 @@ nav:
       - TS 00.001 – Overall Description: standards/ts-00-001-overall.md
       - TS 00.004 – Architecture: standards/ts-00-004-architecture.md
       - TS 23.501 Mapping: standards/ts-23-501-mapping.md
-      - YACP (Control Plane): standards/ts-24-001-yacp.md
-      - YSMP (Spectrum): standards/ts-24-002-ysmp.md
-      - YUPF (User Plane): standards/ts-29-001-yupf.md
-      - YCore (Core): standards/ts-29-002-ycore.md
-      - YSMF: standards/YesDR_TS_02_002—YSMF.md
-      - YUPF: standards/YesDR_TS_02_003—YUPF.md
-      - YUDM: standards/YesDR_TS_02_004—YUDM.md
-      - YPCF: standards/YesDR_TS_02_006—YPCF.md
-      - YRMF: standards/YesDR_TS_02_007—YRMF.md
-      - YCRF: standards/YesDR_TS_02_008—YCRF.md
-      - YNRF: standards/YesDR_TS_02_009—YNRF.md
-      - YSM: standards/YesDR_TS_02_010—YSM.md
-      - YBS: standards/YesDR_TS_02_020—YBS.md
-      - YUE: standards/YesDR_TS_02_021—YUE.md
-      - YAUSF: standards/YesDR_TS_02_0050—YAUSF.md
-      - YACP: standards/YesDR_TS_04_001—YACP.md
-      - YSMP: standards/YesDR_TS_04_002—YSMP.md
+      #- YACP (Control Plane): standards/ts-24-001-yacp.md
+      #- YSMP (Spectrum): standards/ts-24-002-ysmp.md
+      #- YUPF (User Plane): standards/ts-29-001-yupf.md
+      #- YCore (Core): standards/ts-29-002-ycore.md
+      - TS_02_002—YSMF: standards/YesDR_TS_02_002—YSMF.md
+      - TS_02_003—YUPF: standards/YesDR_TS_02_003—YUPF.md
+      - TS_02_004—YUDM: standards/YesDR_TS_02_004—YUDM.md
+      - TS_02_006—YPCF: standards/YesDR_TS_02_006—YPCF.md
+      - TS_02_007—YRMF: standards/YesDR_TS_02_007—YRMF.md
+      - TS_02_008—YCRF: standards/YesDR_TS_02_008—YCRF.md
+      - TS_02_009—YNRF: standards/YesDR_TS_02_009—YNRF.md
+      - TS_02_010—YSM: standards/YesDR_TS_02_010—YSM.md
+      - TS_02_020—YBS: standards/YesDR_TS_02_020—YBS.md
+      - TS_02_021—YUE: standards/YesDR_TS_02_021—YUE.md
+      - TS_02_0050—YAUSF: standards/YesDR_TS_02_0050—YAUSF.md
+      - TS_04_001—YACP: standards/YesDR_TS_04_001—YACP.md
+      - TS_04_002—YSMP: standards/YesDR_TS_04_002—YSMP.md
 
   - Consortium: consortium.md
   - Roadmap: roadmap.md
