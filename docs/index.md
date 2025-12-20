@@ -28,22 +28,7 @@ with native support for AI-driven radio intelligence.
 - Consortium and roadmap information
 - Reference implementations and products
 
-
-
-# YESDR Standard
-
-**YESDR** (pronounced *Yes Dee Are*)  
-**Your Extensible Software Defined Radio**
-
-YESDR is a modular, extensible cellular wireless standard designed for
-research, teaching, and innovation across the PHY, RAN, and Core Network.
-
-
-## Key Principles
-- End-to-end cellular experimentation using SDRs
-- AI-native radio intelligence
-- Lightweight, extensible protocol stack
-- Academic and industry collaboration
+---
 
 ## Scope
 YESDR covers:
