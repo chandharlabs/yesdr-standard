@@ -58,9 +58,9 @@ nav:
       - Validation & Debugging: tools/validation.md
 
   - Consortium: 
-      - Consortium: consortium.md
-      - Membership Fee Policy: membership-fee-policy.md
-      - Membership Application Policy: membership-application-policy.md
+      - Consortium: consortium/consortium.md
+      - Membership Fee Policy: consortium/membership-fee-policy.md
+      - Membership Application Policy: consortium/membership-application-policy.md
 
 
   - Roadmap: roadmap.md
