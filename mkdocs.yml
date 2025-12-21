@@ -27,9 +27,8 @@ theme:
 
 nav:
   - Home: index.md
-  - Animations: architecture.md
+  - Architecture: architecture.md
   - About: about.md
-  - Pronunciation: pronunciation.md
 
   - Standards:
       - TS 00.001 – Overall Description: standards/ts-00-001-overall.md
