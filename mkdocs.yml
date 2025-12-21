@@ -2,8 +2,6 @@ site_name: YesDR Standard
 site_url: https://yesdr-standard.org
 site_description: Your Extensible Software Defined Radio – Modular Cellular Wireless Standard
 
-repo_url: https://github.com/ChandharLabs/yesdr-standard
-repo_name: YesDR on GitHub
 
 theme:
   name: material
