@@ -82,3 +82,7 @@ markdown_extensions:
       permalink: true
   - pymdownx.superfences
   - pymdownx.tabbed
+
+
+extra:
+  generator: false
