@@ -28,3 +28,15 @@ The YACP dissector enables decoding of:
 - Information Elements (IEs)
 - Procedure and cause codes
 - Transaction identifiers
+
+---
+
+## YSMP Dissector
+
+**Protocol Name:** YesDR Spectrum Management Protocol  
+**Specification:** TS 04.002  
+
+The YSMP dissector enables decoding of:
+- Spectrum sensing reports
+- Allocation and control messages
+- Interference and occupancy fields

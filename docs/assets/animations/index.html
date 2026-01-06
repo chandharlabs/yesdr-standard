@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>YesDR Full Architecture</title>
+  <title>YeSDR Full Architecture</title>
   <style>
   
+body {
+  background: linear-gradient(180deg, #f8fafc, #eef2ff);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+/* SVG container like a card */
+#mySvg {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08),
+    0 2px 6px rgba(0,0,0,0.05);
+  margin: 12px auto;
+  padding: 8px;
+}
+
 .block {
   fill: transparent; /* show box without color */
   stroke: #333;
@@ -70,9 +86,10 @@
 }
 
 /* New keyframe for moving dash effect */
-@keyframes dashMove {
-  0%   { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: -15; } /* should match total of dash + gap */
+@keyframes neonFlow {
+  0%   { stroke-dashoffset: 0; opacity: 0.2; }
+  50%  { opacity: 1; }
+  100% { stroke-dashoffset: -40; opacity: 0.2; }
 }
 
 @keyframes blinkArrow {
@@ -311,17 +328,19 @@
   position: fixed;
   bottom: 20px;
   left: 50%;
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
   transform: translateX(-50%);
   z-index: 2000;
   background: rgba(255, 255, 255, 0.95);
   padding: 10px 15px;
-  border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   font-family: sans-serif;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,0.08);
+  width: 400px;
 }
 
 .playback-controls .row {
@@ -332,17 +351,17 @@
 }
 
 .playback-controls button {
-  font-size: 14px;
+  font-weight: 600;
   padding: 5px 10px;
   border: 1px solid #999;
-  background: #f9f9f9;
+  background: linear-gradient(180deg, #ffffff, #f1f5f9);
   border-radius: 4px;
   cursor: pointer;
   min-width: 40px;
 }
 
 .playback-controls button:hover {
-  background: #e0e0e0;
+  background: #e0e7ff;
 }
 
 .speed-row {
@@ -354,10 +373,74 @@
   margin-right: 5px;
 }
 
+/* YouTube Style Progress Slider */
+#progressSlider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #ddd;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+#progressSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #ff0000;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+#timeDisplay {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  font-family: monospace;
+}
+
   </style>
 <link rel="stylesheet" href="/index.css">
 </head>
 <body>
+<!-- ===== Header (INLINE ONLY) ===== -->
+<div
+  style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    height: 64px;
+    padding: 6px 16px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    overflow: hidden;
+  "
+>
+  <img
+    src="logo.png"
+    alt="Chandhar Research Labs Logo"
+    style="
+      height: 80px;
+      width: auto;
+      max-height: 80px;
+      object-fit: contain;
+      display: block;
+    "
+  />
+
+  <div style="text-align: center; line-height: 1.1;">
+    <div style="font-size: 15px; font-weight: 800; letter-spacing: 1px;">
+      INTERACTIVE YeSDR CALL FLOW VISUALIZER
+    </div>
+    <div style="font-size: 12px; font-weight: 800; letter-spacing: 2px;">
+      CHANDHAR RESEARCH LABS PVT. LTD.
+    </div>
+  </div>
+</div>
 
 <!-- Top-left: Zoom X -->
 <div class="zoom-x-control">
@@ -377,6 +460,13 @@
 
 <!-- New Playback Controls -->
 <div class="playback-controls">
+  <!-- Progress Slider Row -->
+  <div class="row" style="justify-content: flex-start; margin-bottom: -6px; padding: 0 4px;">
+    <span id="timeDisplay">00:00 / 04:20</span>
+  </div>
+  <div class="row">
+    <input type="range" id="progressSlider" min="0" max="260000" value="0">
+  </div>
   <div class="row">
     <button onclick="seek(-10000)">⏪ -10s</button>
     <button onclick="seek(-5000)">-5s</button>
@@ -400,7 +490,7 @@
   <rect width="100%" height="100%" fill="transparent"/>
     
     <rect x="80" y="30" width="900" height="120" class="coreBox" />
-    <text x="85" y="45" font-size="14" >YesDR Core Network</text>
+    <text x="85" y="45" font-size="14" >YeSDR Core Network</text>
 
     <text x="295" y="230" class="labelPath" transform="rotate(270,295,230)">YACP</text>
     <text x="565" y="220" class="labelPath" transform="rotate(400,565,220)">PFCP</text>
@@ -412,6 +502,8 @@
   const svg         = document.getElementById('mySvg');
   const widthSlider = document.getElementById('widthSlider');
   const heightSlider= document.getElementById('heightSlider');
+  const progressSlider = document.getElementById('progressSlider');
+  const timeDisplay = document.getElementById('timeDisplay');
 
   /* --- helper that (re)initialises sliders to current viewport --- */
   function initSlidersToScreen() {
@@ -448,6 +540,7 @@
   initSlidersToScreen();
   
   let currentPlaybackRate = 1;
+  let isDraggingSlider = false;
 
   function getAllAnimations() {
     return document.getAnimations();
@@ -457,6 +550,9 @@
     const svg = document.querySelector('svg');
     const clone = svg.cloneNode(true);
     svg.parentNode.replaceChild(clone, svg);
+    
+    progressSlider.value = 0;
+    timeDisplay.innerText = "00:00 / 04:20";
     
     // Ensure play button is reset
     const btn = document.getElementById('playPauseBtn');
@@ -488,8 +584,6 @@
   function seek(deltaMs) {
     const anims = getAllAnimations();
     anims.forEach(a => {
-      // If animation hasn't started or is idle, currentTime might be null.
-      // Default to 0 so we can seek from start.
       if (a.currentTime === null) a.currentTime = 0;
       a.currentTime += deltaMs;
     });
@@ -500,97 +594,198 @@
     const anims = getAllAnimations();
     anims.forEach(a => a.playbackRate = rate);
   }
+
+  function formatTime(ms) {
+    const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  }
+
+  /* --- Progress Slider Integration --- */
+  progressSlider.addEventListener('input', () => {
+    isDraggingSlider = true;
+    const val = parseFloat(progressSlider.value);
+    const anims = getAllAnimations();
+    anims.forEach(a => a.currentTime = val);
+    timeDisplay.innerText = formatTime(val) + " / 04:20";
+  });
+
+  progressSlider.addEventListener('change', () => {
+    isDraggingSlider = false;
+  });
+
+  // Keep slider in sync with animation time
+  setInterval(() => {
+    if (!isDraggingSlider) {
+      const anims = getAllAnimations();
+      if (anims.length > 0) {
+        // We find the animation with the largest currentTime among all candidates 
+        // to ensure the timer doesn't stop when specific early animations finish.
+        let maxCurrentTime = 0;
+        anims.forEach(a => {
+          if (a.currentTime !== null && a.currentTime > maxCurrentTime) {
+            maxCurrentTime = a.currentTime;
+          }
+        });
+        
+        // Final sequence duration is 4:20 (260,000ms)
+        const displayTime = Math.min(maxCurrentTime, 260000);
+        progressSlider.value = displayTime;
+        timeDisplay.innerText = formatTime(displayTime) + " / 04:20";
+      }
+    }
+  }, 100);
    
   </script>
 
-<rect class="block highlight" style="animation-delay: 0.5s;"   x="350" y="50" width="100" height="25" /><text x="400" y="67" text-anchor="middle">YNRF</text>
-<rect class="block highlight" style="animation-delay: 3.5s;"   x="250" y="100" width="100" height="25" /><text x="300" y="117" text-anchor="middle">YAMF</text>
-<rect class="block highlight" style="animation-delay: 8.5s;"   x="550" y="100" width="100" height="25" /><text x="600" y="117" text-anchor="middle">YRMF</text>
-<rect class="block highlight" style="animation-delay: 13.5s;"  x="500" y="50" width="100" height="25" /><text x="550" y="67" text-anchor="middle">YCRF</text>
-<rect class="block highlight" style="animation-delay: 18.5s;"  x="850" y="100" width="100" height="25" /><text x="900" y="117" text-anchor="middle">YNEF</text>
-<rect class="block highlight" style="animation-delay: 23.5s;"  x="100" y="100" width="100" height="25" /><text x="150" y="117" text-anchor="middle">YAUSF</text>
-<rect class="block highlight" style="animation-delay: 28.5s;"  x="200" y="50" width="100" height="25" /><text x="250" y="67" text-anchor="middle">YNSSF</text>
-<rect class="block highlight" style="animation-delay: 33.5s;"  x="700" y="100" width="100" height="25" /><text x="750" y="117" text-anchor="middle">YUDM</text>
-<rect class="block highlight" style="animation-delay: 38.5s;"  x="650" y="50" width="100" height="25" /><text x="700" y="67" text-anchor="middle">YPCF</text>
-<rect class="block highlight" style="animation-delay: 43.5s;"  x="400" y="100" width="100" height="25" /><text x="450" y="117" text-anchor="middle">YSMF</text>
-<rect class="block highlight" style="animation-delay: 48.5s;"  x="600" y="300" width="100" height="30" rx="5" /><text x="650" y="320" text-anchor="middle">YUPF</text>
-<rect class="block highlight" style="animation-delay: 50.5s;"  x="80"  y="300" width="100" height="30" rx="5" /><text x="130" y="320" text-anchor="middle">YSM</text>
-<rect class="block highlight" style="animation-delay: 79.5s;"  x="250" y="300" width="100" height="30" rx="5" /><text x="300" y="320" text-anchor="middle">YBS</text>
-<rect class="block highlight" style="animation-delay: 109.5s;" x="250" y="580" width="100" height="30" rx="5" /><text x="300" y="600" text-anchor="middle">YUE</text>
-<circle cx="860" cy="315" r="20" class="block" /><text x="860" y="320" text-anchor="middle">DN</text>
+<g onclick="openPDF('../YesDR_TS_02_009_YNRF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 0.5s;" x="350" y="50" width="100" height="25" />
+  <text x="400" y="67" text-anchor="middle">YNRF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_001_YAMF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" x="250" y="100" width="100" height="25" />
+  <text x="300" y="117" text-anchor="middle">YAMF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_007_YRMF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 8.5s;" x="550" y="100" width="100" height="25" />
+  <text x="600" y="117" text-anchor="middle">YRMF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_008_YCRF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 13.5s;" x="500" y="50" width="100" height="25" />
+  <text x="550" y="67" text-anchor="middle">YCRF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_010_YNEF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 18.5s;" x="850" y="100" width="100" height="25" />
+  <text x="900" y="117" text-anchor="middle">YNEF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_005_YAUSF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 23.5s;" x="100" y="100" width="100" height="25" />
+  <text x="150" y="117" text-anchor="middle">YAUSF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_006_YNSSF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 28.5s;" x="200" y="50" width="100" height="25" />
+  <text x="250" y="67" text-anchor="middle">YNSSF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_004_YUDM.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 33.5s;" x="700" y="100" width="100" height="25" />
+  <text x="750" y="117" text-anchor="middle">YUDM</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_006_YPCF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 38.5s;" x="650" y="50" width="100" height="25" />
+  <text x="700" y="67" text-anchor="middle">YPCF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_002_YSMF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 43.5s;" x="400" y="100" width="100" height="25" />
+  <text x="450" y="117" text-anchor="middle">YSMF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_003_YUPF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 48.5s;" x="600" y="300" width="100" height="30" rx="5" />
+  <text x="650" y="320" text-anchor="middle">YUPF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_010_YSM.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 50.5s;" x="80" y="300" width="100" height="30" rx="5" />
+  <text x="130" y="320" text-anchor="middle">YSM</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_020_YBS.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 79.5s;" x="250" y="300" width="100" height="30" rx="5" />
+  <text x="300" y="320" text-anchor="middle">YBS</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_021_YUE.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 109.5s;" x="250" y="580" width="100" height="30" rx="5" />
+  <text x="300" y="600" text-anchor="middle">YUE</text>
+</g>
+
+<g onclick="openPDF('../YesDR_01_0011.pdf')" style="cursor:pointer">
+  <circle cx="860" cy="315" r="20" class="block" />
+  <text x="860" y="320" text-anchor="middle">DN</text>
+</g>
+
 
 <!----------------------------------------------------------------------------------------------------------------------------------------------->
 
-    <text x="80"  y="900"   font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 0s;" >Start YNRF</text>
-    <text x="80"  y="920"   font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 3s;" >Start YAMF</text>
-    <text x="80"  y="940"   font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 5s;" >YAMF is registering in YNRF</text>
-    <text x="80"  y="960"   font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 8s;" >Start YRMF</text>
-    <text x="80"  y="980"   font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 10s;" >YRMF is registering in YNRF</text>
-    <text x="80"  y="1000"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 13s;" >Start YCRF</text>
-    <text x="80"  y="1020"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 15s;" >YCRF is registering in YNRF</text>
-    <text x="80"  y="1040"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 18s;" >Start YNEF</text>
-    <text x="80"  y="1060"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 20s;" >YNEF is registering in YNRF</text>
-    <text x="80"  y="1080"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 23s;" >Start YAUSF</text>
-    <text x="80"  y="1100"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 25s;" >YAUSF is registering in YNRF</text>
-    <text x="80"  y="1120"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 28s;" >Start YNSSF</text>
-    <text x="80"  y="1140"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 30s;" >YNSSF is registering in YNRF</text>
-    <text x="80"  y="1160"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 33s;" >Start YUDM</text>
-    <text x="80"  y="1180"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 35s;" >YUDM is registering in YNRF</text>
-    <text x="80"  y="1200"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 38s;" >Start YPCF</text>
-    <text x="80"  y="1220"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 40s;" >YPCF is registering in YNRF</text>
-    <text x="80"  y="1240"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 43s;" >Start YSMF</text>
-    <text x="80"  y="1260"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 45s;" >YSMF is registering in YNRF</text>
-    <text x="80"  y="1280"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 48s;" >Start YUPF</text>
-    <text x="80"  y="1300"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 50s;" >Start YSM</text>
-    <text x="80"  y="1320"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 79s;" >Start YBS</text>
-    <text x="80"  y="1340"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 109s;">Start YUE</text>
+    <text x="1000"  y="60"   font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 0s;" >Start YNRF</text>
+    <text x="1000"  y="80"   font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 3s;" >Start YAMF</text>
+    <text x="1000"  y="100"   font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 5s;" >YAMF is registering in YNRF</text>
+    <text x="1000"  y="120"   font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 8s;" >Start YRMF</text>
+    <text x="1000"  y="140"   font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 10s;" >YRMF is registering in YNRF</text>
+    <text x="1000"  y="160"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 13s;" >Start YCRF</text>
+    <text x="1000"  y="180"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 15s;" >YCRF is registering in YNRF</text>
+    <text x="1000"  y="200"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 18s;" >Start YNEF</text>
+    <text x="1000"  y="220"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 20s;" >YNEF is registering in YNRF</text>
+    <text x="1000"  y="240"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 23s;" >Start YAUSF</text>
+    <text x="1000"  y="260"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 25s;" >YAUSF is registering in YNRF</text>
+    <text x="1000"  y="280"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 28s;" >Start YNSSF</text>
+    <text x="1000"  y="300"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 30s;" >YNSSF is registering in YNRF</text>
+    <text x="1000"  y="320"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 33s;" >Start YUDM</text>
+    <text x="1000"  y="340"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 35s;" >YUDM is registering in YNRF</text>
+    <text x="1000"  y="360"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 38s;" >Start YPCF</text>
+    <text x="1000"  y="380"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 40s;" >YPCF is registering in YNRF</text>
+    <text x="1000"  y="400"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 43s;" >Start YSMF</text>
+    <text x="1000"  y="420"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 45s;" >YSMF is registering in YNRF</text>
+    <text x="1000"  y="440"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 48s;" >Start YUPF</text>
+    <text x="1000"  y="460"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 50s;" >Start YSM</text>
+    <text x="1000"  y="480"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 79s;" >Start YBS</text>
+    <text x="1000"  y="500"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 109s;">Start YUE</text>
     
     <!--------------------------------------------------------------------------------------------------------------------------------------------------->
     
-    <text x="560"  y="900"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 53s;"  >1. YSM sends Setup Request to YAMF.</text>
-    <text x="560"  y="920"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 58s;"  >2. YAMF sends Setup Response to YSM.</text>
-    <text x="560"  y="940"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 67s;"  >3. YSM sends Spectrum Report to YCRF.</text>
-    <text x="560"  y="960"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 72s;"  >4. YCRF sends Spectrum availability to YRMF.</text>
-    <text x="560"  y="980"  font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 84s;"  >5. YBS sends Setup Request to YAMF.</text>
-    <text x="560"  y="1000" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 89s;"  >6. YAMF sends Setup Response to YBS.</text>
-    <text x="560"  y="1020" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 94s;"  >7. YBS sends Radio Parameter Request to YRMF.</text>
-    <text x="560"  y="1040" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 99s;"  >8. YRMF sends Radio Parameter Assignment to YBS.</text>
-    <text x="560"  y="1060" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 105s;" >9. YRMF sends allocated spectrum to YBS.</text>
-    <text x="560"  y="1080" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 112s;" >10. YUE finds and synchronizes with the cell.</text>
-    <text x="560"  y="1100" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 117s;" >11. Connection-based or dedicated RACH.</text>
-    <text x="560"  y="1120" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 122s;" >12. Initiates RRC setup.</text>
-    <text x="560"  y="1140" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 127s;" >13. Sends parameters for RRC.</text>
-    <text x="560"  y="1160" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 132s;" >14. Completes RRC; starts YNAS.</text>
-    <text x="560"  y="1180" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 137s;" >15. YUE Sends Registration Request to YAMF.</text>
-    <text x="560"  y="1200" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 142s;" >16. YAMF Forwards YNAS Authentication Request.</text>
-    <text x="560"  y="1220" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 147s;" >17. YAUSF Requests Authentication Vector to YUDM.</text>
-    <text x="560"  y="1240" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 152s;" >18. YUDM Responds Authentication Vector (e.g., RAND, AUTN, XRES, Kausf) to YAUSF.</text>
-    <text x="560"  y="1260" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 157s;" >19. YAUSF computes the expected response (HXRES*) and forwards the Authentication Challenge to the YAMF.</text>
-    <text x="560"  y="1280" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 162s;" >20. YAMF sends the authentication challenge (RAND and AUTN) to the YUE.</text>
-    <text x="560"  y="1300" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 167s;" >21. YUE responds with RES. YAMF forwards it to YAUSF.</text>
-    <text x="560"  y="1320" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 172s;" >22. YAUSF compares RES with XRES* or HXRES*. 
-    If RES matches, then send authentication successful to YAMF.</text>
+    <text x="1200"  y="60"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 53s;"  >1. YSM sends Setup Request to YAMF.</text>
+    <text x="1200"  y="80"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 58s;"  >2. YAMF sends Setup Response to YSM.</text>
+    <text x="1200"  y="100"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 67s;"  >3. YSM sends Spectrum Report to YCRF.</text>
+    <text x="1200"  y="120"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 72s;"  >4. YCRF sends Spectrum availability to YRMF.</text>
+    <text x="1200"  y="140"  font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 84s;"  >5. YBS sends Setup Request to YAMF.</text>
+    <text x="1200"  y="160" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 89s;"  >6. YAMF sends Setup Response to YBS.</text>
+    <text x="1200"  y="180" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 94s;"  >7. YBS sends Radio Parameter Request to YRMF.</text>
+    <text x="1200"  y="200" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 99s;"  >8. YRMF sends Radio Parameter Assignment to YBS.</text>
+    <text x="1200"  y="220" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 105s;" >9. YRMF sends allocated spectrum to YBS.</text>
+    <text x="1200"  y="240" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 112s;" >10. YUE finds and synchronizes with the cell.</text>
+    <text x="1200"  y="260" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 117s;" >11. Connection-based or dedicated RACH.</text>
+    <text x="1200"  y="280" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 122s;" >12. Initiates RRC setup.</text>
+    <text x="1200"  y="300" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 127s;" >13. Sends parameters for RRC.</text>
+    <text x="1200"  y="320" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 132s;" >14. Completes RRC; starts YNAS.</text>
+    <text x="1200"  y="340" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 137s;" >15. YUE Sends Registration Request to YAMF.</text>
+    <text x="1200"  y="360" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 142s;" >16. YAMF Forwards YNAS Authentication Request.</text>
+    <text x="1200"  y="380" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 147s;" >17. YAUSF Requests Authentication Vector to YUDM.</text>
+    <text x="1200"  y="400" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 152s;" >18. YUDM Responds Authentication Vector to YAUSF.</text>
+    <text x="1200"  y="420" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 157s;" >19. YAUSF forwards the Authentication Challenge to the YAMF.</text>
+    <text x="1200"  y="440" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 162s;" >20. YAMF sends the authentication challenge to the YUE.</text>
+    <text x="1200"  y="460" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 167s;" >21. YUE responds with RES. YAMF forwards it to YAUSF.</text>
+    <text x="1200"  y="480" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 172s;" >22. YAUSF compares RES with XRES* If RES matches, then send authentication successful to YAMF.</text>
     
     <!-- New Security Mode Steps -->
-    <text x="560"  y="1340" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 177s;">23. YAMF sends Security Mode Command to YUE. 🔐</text>
-    <text x="560"  y="1360" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 182s;">24. YUE sends Security Mode Complete to YAMF. 🔐</text>
+    <text x="1200"  y="500" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 177s;">23. YAMF sends Security Mode Command to YUE.</text>
+    <text x="1200"  y="520" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 182s;">24. YUE sends Security Mode Complete to YAMF.</text>
 
     <!-- Shifted Steps (+10s) -->
-    <text x="560"  y="1380" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 187s;">25. YAMF sends Registration Accept to YUE.</text>
-    <text x="560"  y="1400" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 192s;" >26. YUE sends PDU Session Establishment Request to YAMF.</text>
-    <text x="560"  y="1420" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 197s;" >27. YAMF NSMF PDU Session Create SM Context to YSMF.</text>
-    <text x="560"  y="1440" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 202s;" >28. YSMF sends Npcf_SMPolicyControl_Create to YPCF.</text>
-    <text x="560"  y="1460" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 207s;" >29. YPCF sends Policy Decision to YSMF.</text>
-    <text x="560"  y="1480" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 212s;" >30. YSMF N4 Session Establishment (PFCP) to YUPF.</text>
-    <text x="560"  y="1500" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 217s;" >31. YUPF Session Setup Response to YSMF.</text>
-    <text x="560"  y="1520" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 222s;" >32. YSMF PDU Session Accept to YAMF.</text>
-    <text x="560"  y="1540" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 227s;" >33. YAMF PDU Session Accept (YNAS) to YUE.</text>
-    <text x="560"  y="1560" font-size="14" fill="navy"       style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 232s;" >34. DN via YUPF, YBS sends Downlink Data Transfer to YUE.</text>
+    <text x="1200"  y="540" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 187s;">25. YAMF sends Registration Accept to YUE.</text>
+    <text x="1200"  y="560" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 192s;" >26. YUE sends PDU Session Establishment Request to YAMF.</text>
+    <text x="1200"  y="580" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 197s;" >27. YAMF NSMF PDU Session Create SM Context to YSMF.</text>
+    <text x="1200"  y="600" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 202s;" >28. YSMF sends Npcf_SMPolicyControl_Create to YPCF.</text>
+    <text x="1200"  y="620" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 207s;" >29. YPCF sends Policy Decision to YSMF.</text>
+    <text x="1200"  y="640" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 212s;" >30. YSMF N4 Session Establishment (PFCP) to YUPF.</text>
+    <text x="1200"  y="660" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 217s;" >31. YUPF Session Setup Response to YSMF.</text>
+    <text x="1200"  y="680" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 222s;" >32. YSMF PDU Session Accept to YAMF.</text>
+    <text x="1200"  y="700" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 227s;" >33. YAMF PDU Session Accept (YNAS) to YUE.</text>
+    <text x="1200"  y="720" font-size="14" fill="navy"       style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 232s;" >34. DN via YUPF, YBS sends Downlink Data Transfer to YUE.</text>
     
     
     <!--------------------------------------------------------------------------------------------------------------------------------------------------->
     
-    <text x="880"  y="300" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 236s;">Message: 'A'(1 byte)</text>
+    <text x="820"  y="290" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 236s;">Message: 'A'(1 byte)</text>
     <text x="730"  y="340" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 236.5s;">UDP: +~8 bytes</text>
     <text x="734"  y="355" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 237s;">IP: +~20 bytes</text>
     <text x="720"  y="365" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 237.5s;">--------------------------</text>
@@ -1736,6 +1931,13 @@
   Start YUE.
 </text>
 
+.polyline,
+.line {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+
+
 <!--------------------------------------------------------------------------------------------------------------------------------------->
 
 <!-- YAMF -> YNRF -->
@@ -1989,7 +2191,7 @@
 </text>
 
 <!-- RRC Connection Request: YUE -> YBS -->
-<polyline points="305,580 305,330" class="RRCReq" />
+<polyline points="305,580 305,330" class="RanAccPro" />
 <text x="320" y="560" class="YUE blink"
   style="opacity: 0;
          animation-name: blinkingText2;
@@ -2281,6 +2483,7 @@
          animation-timing-function: linear;
          animation-fill-mode: forwards;">
   DN via YUPF, YBS sends Downlink Data Transfer to YUE.
+
 </text>
 
     <!-- Bus -->
@@ -2300,31 +2503,78 @@
     <line x1="700" y1="75"  x2="700" y2="85" class="line" />  <!-- YPCF -->
 
     <!-- Stacks -->
-    <g>
-            
-      <rect class="block flash-ynas-ue"  x="300" y="660" width="45"  height="20" /><text x="325" y="676" text-anchor="middle">YNAS</text>
-      <rect class="block flash-ysdap-ue" x="345" y="660" width="55"  height="20" /><text x="370" y="676" text-anchor="middle">YSDAP</text>
-      <rect class="block flash-ypdcp-ue" x="300" y="680" width="100" height="20" /><text x="350" y="696" text-anchor="middle">YPDCP</text>
-      <rect class="block flash-yrlc-ue"  x="300" y="700" width="100" height="20" /><text x="350" y="716" text-anchor="middle">YRLC</text>
-      <rect class="block flash-ymac-ue"  x="300" y="720" width="100" height="20" /><text x="350" y="736" text-anchor="middle">YMAC</text>
-      <rect class="block flash-yphy-ue"  x="300" y="740" width="100" height="20" /><text x="350" y="756" text-anchor="middle">YPHY</text>
+    <g>     
+      <g onclick="openPDF('assets/pdfs/pdf16.pdf')" style="cursor:pointer">
+        <rect class="block flash-ynas-ue" x="300" y="660" width="45" height="20" />
+        <text x="325" y="676" text-anchor="middle">YNAS</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf17.pdf')" style="cursor:pointer">
+        <rect class="block flash-ysdap-ue" x="345" y="660" width="55" height="20" />
+        <text x="370" y="676" text-anchor="middle">YSDAP</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf18.pdf')" style="cursor:pointer">
+        <rect class="block flash-ypdcp-ue" x="300" y="680" width="100" height="20" />
+        <text x="350" y="696" text-anchor="middle">YPDCP</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf19.pdf')" style="cursor:pointer">
+        <rect class="block flash-yrlc-ue" x="300" y="700" width="100" height="20" />
+        <text x="350" y="716" text-anchor="middle">YRLC</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf20.pdf')" style="cursor:pointer">
+        <rect class="block flash-ymac-ue" x="300" y="720" width="100" height="20" />
+        <text x="350" y="736" text-anchor="middle">YMAC</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf21.pdf')" style="cursor:pointer">
+        <rect class="block flash-yphy-ue" x="300" y="740" width="100" height="20" />
+        <text x="350" y="756" text-anchor="middle">YPHY</text>
+      </g>
    </g>
 
-    <g>
-            
-      <rect class="block flash-ynas"   x="350" y="390" width="45"  height="20" /><text x="375" y="405" text-anchor="middle">YNAS</text>
-      <rect class="block flash-ysdap"  x="395" y="390" width="55"  height="20" /><text x="420" y="405" text-anchor="middle">YSDAP</text>
-      <rect class="block flash-ypdcp"  x="350" y="410" width="100" height="20" /><text x="400" y="425" text-anchor="middle">YPDCP</text>
-      <rect class="block flash-yrlc"   x="350" y="430" width="100" height="20" /><text x="400" y="445" text-anchor="middle">YRLC</text>
-      <rect class="block flash-ymac"   x="350" y="450" width="100" height="20" /><text x="400" y="465" text-anchor="middle">YMAC</text>
-      <rect class="block flash-yphy"   x="350" y="470" width="100" height="20" /><text x="400" y="485" text-anchor="middle">YPHY</text>
+    <g>      
+      <g onclick="openPDF('assets/pdfs/pdf22.pdf')" style="cursor:pointer">
+        <rect class="block flash-ynas" x="350" y="390" width="45" height="20" />
+        <text x="375" y="405" text-anchor="middle">YNAS</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf23.pdf')" style="cursor:pointer">
+        <rect class="block flash-ysdap" x="395" y="390" width="55" height="20" />
+        <text x="420" y="405" text-anchor="middle">YSDAP</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf24.pdf')" style="cursor:pointer">
+        <rect class="block flash-ypdcp" x="350" y="410" width="100" height="20" />
+        <text x="400" y="425" text-anchor="middle">YPDCP</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf25.pdf')" style="cursor:pointer">
+        <rect class="block flash-yrlc" x="350" y="430" width="100" height="20" />
+        <text x="400" y="445" text-anchor="middle">YRLC</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf26.pdf')" style="cursor:pointer">
+        <rect class="block flash-ymac" x="350" y="450" width="100" height="20" />
+        <text x="400" y="465" text-anchor="middle">YMAC</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf27.pdf')" style="cursor:pointer">
+        <rect class="block flash-yphy" x="350" y="470" width="100" height="20" />
+        <text x="400" y="485" text-anchor="middle">YPHY</text>
+      </g>
     </g>
+
     <g>
     
-      <rect class="block fill-yap" x="120" y="357" width="60" height="20" /><text x="150" y="372" text-anchor="middle">YAP</text>
-      <rect class="block fill-yaif" x="120" y="377" width="60" height="20" /><text x="150" y="392" text-anchor="middle">YAIF</text>
-      <rect class="block fill-yss" x="120" y="397" width="60" height="20" /><text x="150" y="412" text-anchor="middle">YSS</text>
-      <rect class="block highlight" style="animation-delay: 63s;" x="120" y="417" width="60" height="20" /><text x="150" y="432" text-anchor="middle">YPHY</text>  
+      <g onclick="openPDF('assets/pdfs/pdf28.pdf')" style="cursor:pointer">
+        <rect class="block fill-yap" x="120" y="357" width="60" height="20" />
+        <text x="150" y="372" text-anchor="middle">YAP</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf29.pdf')" style="cursor:pointer">
+        <rect class="block fill-yaif" x="120" y="377" width="60" height="20" />
+        <text x="150" y="392" text-anchor="middle">YAIF</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf30.pdf')" style="cursor:pointer">
+        <rect class="block fill-yss" x="120" y="397" width="60" height="20" />
+        <text x="150" y="412" text-anchor="middle">YSS</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf31.pdf')" style="cursor:pointer">
+        <rect class="block highlight" style="animation-delay: 63s;" x="120" y="417" width="60" height="20" />
+        <text x="150" y="432" text-anchor="middle">YPHY</text>
+      </g>  
     </g>
 
     <!-- Connections -->
@@ -2387,5 +2637,33 @@
     
   </svg>
 <script type="module" src="/index.tsx"></script>
+<script>
+/* List ONLY the PDFs that actually exist */
+const availablePDFs = new Set([
+  "../YesDR_TS_02_009_YNRF.pdf",
+  "../YesDR_TS_02_001_YAMF.pdf",
+  "../YesDR_TS_02_007_YRMF.pdf",
+  "../YesDR_TS_02_008_YCRF.pdf",
+  "../YesDR_TS_02_005_YAUSF.pdf",
+  "../YesDR_TS_02_004_YUDM.pdf",
+  "../YesDR_TS_02_006_YPCF.pdf",
+  "../YesDR_TS_02_002_YSMF.pdf",
+  "../YesDR_TS_02_003_YUPF.pdf",
+  "../YesDR_TS_02_010_YSM.pdf",
+  "../YesDR_TS_02_020_YBS.pdf",
+  "../YesDR_TS_02_021_YUE.pdf",
+  "../YesDR_01_001.pdf"
+]);
+
+function openPDF(path) {
+  if (availablePDFs.has(path)) {
+    window.open(path, "_blank");
+  }
+  // else: do absolutely nothing
+}
+</script>
+
+
+
 </body>
 </html>
