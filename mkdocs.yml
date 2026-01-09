@@ -70,6 +70,9 @@ extra_css:
   - stylesheets/extra.css
 plugins: []
 
+extra_javascript:
+  - javascripts/disable-right-click.js
+
 
 markdown_extensions:
   - admonition

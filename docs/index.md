@@ -1,18 +1,18 @@
 <div style="text-align:center; margin-top:40px;">
-  <img src="images/YesDR_Logo.png"
+  <img src="images/YESDR_Logo.png"
        style="width:420px; max-width:90%;">
 </div>
 
-# YesDR Standard
-**YesDR (pronounced “Yes Dee Are”)**  
+# YESDR Standard
+**YESDR (pronounced “Yes Dee Are”)**  
 **Your Extensible Software Defined Radio**
 <!--
-YesDR is a modular, extensible cellular wireless standard designed for
+YESDR is a modular, extensible cellular wireless standard designed for
 research, education, and innovation across the PHY, RAN, and Core Network,
 with native support for AI-driven radio intelligence.
 -->
 
-YesDR is an open, modular, and extensible cellular wireless standard that empowers research, education, and innovation across the PHY, RAN, and Core Network, with built‑in support for AI‑driven radio intelligence.
+YESDR is an open, modular, and extensible cellular wireless standard that empowers research, education, and innovation across the PHY, RAN, and Core Network, with built‑in support for AI‑driven radio intelligence.
 
 ---
 
@@ -27,7 +27,7 @@ YesDR is an open, modular, and extensible cellular wireless standard that empowe
 
 ## What You’ll Find Here
 
-- Official YesDR Technical Specifications (TS) and standards documents  
+- Official YESDR Technical Specifications (TS) and standards documents  
 - Architecture and protocol definitions across the PHY, RAN, and Core Network  
 - Consortium structure, governance, and roadmap information  
 - Reference implementations, tools, and validation resources  
@@ -37,7 +37,7 @@ YesDR is an open, modular, and extensible cellular wireless standard that empowe
 
 ## Scope
 
-YesDR covers the following technical domains:
+YESDR covers the following technical domains:
 
 - Physical‑layer (PHY) waveforms, channel coding, and signal processing  
 - Radio Access Network (RAN) protocols, scheduling, and resource management  
