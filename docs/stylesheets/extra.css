@@ -1,10 +1,34 @@
+
+
 .md-header__button.md-logo img {
-  height: 64px;   /* default ~24px */
+  height: 30px;   /* default ~24px */
   width: auto;
+  opacity: 20;
+}
+/* Hide original title */
+.md-header__topic .md-ellipsis {
+  font-size: 0 !important;
+}
+
+/* Show only 'Standard' */
+.md-header__topic .md-ellipsis::after {
+  content: "Standard";
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-left: 4px;
+  display: inline-block;
+  opacity: 20;
+}
+
+
+.md-header__title {
+  margin-left: -10px !important;   /* Reduce space between logo and text */
+  font-size: 1.6rem;             /* Adjust if needed */
+  font-weight: 600;
 }
 .md-header,
 .md-tabs {
-  background-color: #1f3a5f !important;
+  background-color: #00357a !important;
 }
 
 
