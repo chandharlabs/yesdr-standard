@@ -4,7 +4,6 @@
 </div>
 
 # YesDR Standard
-
 **YesDR (pronounced “Yes Dee Are”)**  
 **Your Extensible Software Defined Radio**
 
@@ -26,7 +25,7 @@ with native support for AI-driven radio intelligence.
 - Official YesDR Technical Specifications (TS)
 - Architecture and protocol definitions
 - Consortium and roadmap information
-- Reference implementations and products
+- Reference implementations
 
 ---
 

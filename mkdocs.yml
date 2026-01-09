@@ -14,7 +14,7 @@ theme:
 
   palette:
     scheme: default
-    primary: blue grey
+    primary: teal
     accent: indigo
 
   features:
@@ -23,12 +23,11 @@ theme:
     - navigation.top
     - toc.integrate
     - content.code.copy
-    - search.highlight
 
 nav:
   - Home: index.md
   - Architecture: architecture.md
-  - About: about.md
+#  - About: about.md
 
   - Standards:
       - TS 00.001 – Overall Description: standards/ts-00-001-overall.md
@@ -63,13 +62,14 @@ nav:
   - Roadmap: roadmap.md
   - Contact: contact.md
 
-plugins:
-  - search
+
   # Uncomment ONLY if installed
   # - git-revision-date-localized
 
 extra_css:
   - stylesheets/extra.css
+plugins: []
+
 
 markdown_extensions:
   - admonition
