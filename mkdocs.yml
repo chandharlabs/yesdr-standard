@@ -6,7 +6,7 @@ site_description: Your Extensible Software Defined Radio – Modular Cellular Wi
 theme:
   name: material
   logo: images/YesDRLogo_S.png
-  favicon: images/YesDRLogo_S.png
+  favicon: images/YesDRLogo_Hex.png
 
   font:
     text: Inter
@@ -47,11 +47,11 @@ nav:
       - TS 04.001 — YACP: standards/YesDR_TS_04_001—YACP.md
       - TS 04.002 — YSMP: standards/YesDR_TS_04_002—YSMP.md
 
-  - Reference Implementations:
-      - Wireshark Dissectors: reference/wireshark.md
+#  - Reference Implementations:
+#      - Wireshark Dissectors: reference/wireshark.md
 
-  - Tools:
-      - Validation & Debugging: tools/validation.md
+#  - Tools:
+#      - Validation & Debugging: tools/validation.md
 
   - Consortium: 
       - Consortium: consortium/consortium.md
@@ -60,9 +60,13 @@ nav:
 
 
   - Roadmap: roadmap.md
+  
+  - Implementations & Tools:
+      - Protocol Tools:
+          - Wireshark Analysis: implementations/protocol-tools.md
+
+
   - Contact: contact.md
-
-
   # Uncomment ONLY if installed
   # - git-revision-date-localized
 

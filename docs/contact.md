@@ -2,9 +2,9 @@
 
 **YesDR Consortium Secretariat**
 
-Chandhar Research Labs Pvt Ltd  
-BaSig Wireless Laboratories Pvt Ltd  
+1/302, Main Road, Arupathy (P.O)  
+Tharangambadi Taluk, Mayiladuthurai District,  
+Tamil Nadu – 609309  
 
-Tamil Nadu, India
-
-Email: info@yesdr-standard.org
+Email: **info@yesdr.com**   
+Website: [**https://www.chandhar-labs.com**](https://www.chandhar-labs.com)
