@@ -1,5 +1,5 @@
 <div style="text-align:center; margin-top:40px;">
-  <img src="images/YESDR_Logo.png"
+  <img src="images/YesDR_Logo.png"
        style="width:420px; max-width:90%;">
 </div>
 
