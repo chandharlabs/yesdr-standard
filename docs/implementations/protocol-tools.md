@@ -61,8 +61,8 @@ Additional protocol dissectors may be added in future releases.
 2. Copy the following dissector files into the plugins directory:
 
     
-    `yacp.lua`  ([Download](../assets/dissectors/yacp.lua))  
-    `ysmp.lua`  ([Download](../assets/dissectors/yacp.lua))
+    `yacp.lua` — <a href="../assets/dissectors/yacp.lua" download>Download</a>  
+    `ysmp.lua` — <a href="../assets/dissectors/ysmp.lua" download>Download</a>
     
 
 3. Restart Wireshark
@@ -77,7 +77,11 @@ Additional protocol dissectors may be added in future releases.
 
 ### Using Example PCAP Files
 
-Example packet capture files are provided for learning and validation.
+Example packet capture files are provided for learning and validation.   
+  **Sample PCAP File:** <a href="../assets/dissectors/yesdr.pcapng" download>Download</a>
+
+
+  
 
 #### Steps
 
@@ -85,9 +89,11 @@ Example packet capture files are provided for learning and validation.
 2. Load a capture file:  
    `yacp_example.pcap`  
    `ysmp_example.pcap`
-3. Apply display filters:  
+3. Apply display filters:
+   `GoTo Preferences -> Enabled Protocols -> HTTP --> Add Port "29525" in TCP Ports`  
    `yacp`  
    `ysmp`
+   `http`
 4. Expand protocol fields in the packet details pane to inspect:
    `Message types`  
    `Information Elements (IEs)`  
