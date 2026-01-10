@@ -61,8 +61,8 @@ Additional protocol dissectors may be added in future releases.
 2. Copy the following dissector files into the plugins directory:
 
     
-    `yacp.lua` — <a href="../assets/dissectors/yacp.lua" download>Download</a>  
-    `ysmp.lua` — <a href="../assets/dissectors/ysmp.lua" download>Download</a>
+    `yacp.lua` — <a href="../../assets/dissectors/yacp.lua" download>Download</a>  
+    `ysmp.lua` — <a href="../../assets/dissectors/ysmp.lua" download>Download</a>
     
 
 3. Restart Wireshark
@@ -78,7 +78,7 @@ Additional protocol dissectors may be added in future releases.
 ### Using Example PCAP Files
 
 Example packet capture files are provided for learning and validation.   
-  **Sample PCAP File:** <a href="../assets/dissectors/yesdr.pcapng" download>Download</a>
+  **Sample PCAP File:** <a href="../../assets/dissectors/yesdr.pcapng" download>Download</a>
 
 
   
