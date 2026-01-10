@@ -1,9 +1,9 @@
-# YesDR Consortium  
+# YESDR Consortium  
 ## Membership Application Policy
 
 **Document Status:** Informative  
 **Effective From:** [To be announced]  
-**Approved By:** YesDR Consortium Steering Committee  
+**Approved By:** YESDR Consortium Steering Committee  
 
 ---
 
@@ -11,14 +11,14 @@
 
 This Membership Application Policy defines the procedures, requirements, and
 evaluation process for organizations and individuals seeking membership in the
-**YesDR Consortium**. The policy ensures a transparent, fair, and structured
+**YESDR Consortium**. The policy ensures a transparent, fair, and structured
 approach to consortium participation.
 
 ---
 
 ## 2. Scope
 
-This policy applies to all applicants requesting membership in the YesDR
+This policy applies to all applicants requesting membership in the YESDR
 Consortium, including academic institutions, startups, industry participants,
 and individual contributors.
 
@@ -29,7 +29,7 @@ and individual contributors.
 ### 3.1 General Eligibility
 
 Applicants must:
-- Support the objectives and mission of the YesDR Consortium
+- Support the objectives and mission of the YESDR Consortium
 - Agree to comply with consortium policies, including governance, contribution,
   and intellectual property rules
 - Demonstrate a legitimate interest in cellular wireless systems, SDR, 5G/6G,
@@ -51,7 +51,7 @@ Applicants must:
 #### Industry Members
 - Established companies in telecom, networking, hardware, software, or related
   domains
-- Interest in evaluation, deployment, or contribution to YesDR technologies
+- Interest in evaluation, deployment, or contribution to YESDR technologies
 
 #### Individual Members
 - Independent researchers, faculty, students, or professionals
@@ -59,7 +59,7 @@ Applicants must:
 
 #### Strategic / Founding Members
 - Organizations providing significant technical, infrastructure, or financial
-  contributions to the YesDR ecosystem
+  contributions to the YESDR ecosystem
 
 ---
 
@@ -70,18 +70,18 @@ Applicants must:
 Applicants shall submit a membership application containing:
 - Applicant name and legal status
 - Membership category requested
-- Brief description of technical background and interest in YesDR
+- Brief description of technical background and interest in YESDR
 - Intended level of participation (research, development, review, deployment)
 - Primary contact details
 
-Applications shall be submitted through the official YesDR Consortium channel
+Applications shall be submitted through the official YESDR Consortium channel
 (e.g., website form or designated email address).
 
 ---
 
 ### 4.2 Review
 
-- Applications are reviewed by the YesDR Consortium Steering Committee or a
+- Applications are reviewed by the YESDR Consortium Steering Committee or a
   delegated review panel.
 - The review process evaluates alignment with consortium objectives and
   eligibility criteria.
@@ -142,14 +142,14 @@ application. Such requests are subject to review and approval.
 
 This policy may be updated periodically to reflect changes in consortium
 structure or operational requirements. Updated versions will be published on
-the YesDR Consortium website.
+the YESDR Consortium website.
 
 ---
 
 ## 10. Disclaimer
 
 Submission of a membership application does not guarantee acceptance.  
-Membership does not confer ownership or exclusive rights over the YesDR standard
+Membership does not confer ownership or exclusive rights over the YESDR standard
 or its specifications.
 
 ---

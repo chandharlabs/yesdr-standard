@@ -1,6 +1,6 @@
-# YesDR System Architecture
+# YESDR System Architecture
 
-The following animation illustrates the end-to-end YesDR architecture,
+The following animation illustrates the end-to-end YESDR architecture,
 including YUE, YBS, and YCore interactions.
 
 

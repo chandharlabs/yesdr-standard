@@ -1,4 +1,4 @@
-# About YesDR
+# About YESDR
 
 YESDR is a standards-oriented framework for designing, implementing,
 and validating cellular wireless protocols using Software Defined Radios.

@@ -1,4 +1,4 @@
-# YesDR Roadmap
+# YESDR Roadmap
 
 ## 2025
 - Release-1 specifications

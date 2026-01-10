@@ -1,9 +1,9 @@
 # Protocol Analysis with Wireshark
 
-This section explains how YesDR control-plane protocols can be viewed and analyzed
+This section explains how YESDR control-plane protocols can be viewed and analyzed
 using **Wireshark**. To support debugging, validation, and education, official
 Wireshark dissectors and example packet capture files are provided for selected
-YesDR protocols.
+YESDR protocols.
 
 !!! note
     The tools described here are **reference implementations** and are
@@ -14,10 +14,10 @@ YesDR protocols.
 
 ## Supported Protocols
 
-Wireshark dissectors are currently available for the following YesDR protocols:
+Wireshark dissectors are currently available for the following YESDR protocols:
 
-- **YACP** — YesDR Access Control Protocol  
-- **YSMP** — YesDR Session Management Protocol  
+- **YACP** — YESDR Access Control Protocol  
+- **YSMP** — YESDR Session Management Protocol  
 
 Additional protocol dissectors may be added in future releases.
 
@@ -73,7 +73,7 @@ Additional protocol dissectors may be added in future releases.
 
 ---
 
-## Viewing YesDR Protocol Messages
+## Viewing YESDR Protocol Messages
 
 ### Using Example PCAP Files
 

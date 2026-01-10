@@ -1,6 +1,6 @@
-# YesDR Consortium
+# YESDR Consortium
 
-The YesDR Consortium governs the evolution of the YesDR Standard.
+The YESDR Consortium governs the evolution of the YESDR Standard.
 
 ## Founding Organizations
 - Chandhar Research Labs Pvt Ltd

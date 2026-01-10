@@ -1,12 +1,12 @@
-# YesDR Wireshark Dissectors, Validation, and Tools
+# YESDR Wireshark Dissectors, Validation, and Tools
 
-YesDR provides reference Wireshark dissectors and validation tools for its control‑plane protocols to support protocol inspection, debugging, conformance checking, and educational use. These implementations are aligned with the corresponding YesDR Technical Specifications (TS) and are intended as **reference implementations** for researchers, developers, and implementers.
+YESDR provides reference Wireshark dissectors and validation tools for its control‑plane protocols to support protocol inspection, debugging, conformance checking, and educational use. These implementations are aligned with the corresponding YESDR Technical Specifications (TS) and are intended as **reference implementations** for researchers, developers, and implementers.
 
 ---
 
 ## Supported Protocols
 
-| Protocol | YesDR Specification | Dissector Language | Purpose |
+| Protocol | YESDR Specification | Dissector Language | Purpose |
 |--------|---------------------|--------------------|---------|
 | YACP | TS 04.001 | Lua | Access control and registration |
 | YSMP | TS 04.002 | Lua | Spectrum management and control |
@@ -15,7 +15,7 @@ YesDR provides reference Wireshark dissectors and validation tools for its contr
 
 ## YACP Dissector
 
-**Protocol Name:** YesDR Access Control Protocol  
+**Protocol Name:** YESDR Access Control Protocol  
 **Specification:** TS 04.001  
 
 The YACP Wireshark dissector enables decoding and analysis of:
@@ -31,7 +31,7 @@ This dissector is primarily used to validate control‑plane signaling between u
 
 ## YSMP Dissector
 
-**Protocol Name:** YesDR Spectrum Management Protocol  
+**Protocol Name:** YESDR Spectrum Management Protocol  
 **Specification:** TS 04.002  
 
 The YSMP Wireshark dissector enables decoding and analysis of:
@@ -46,7 +46,7 @@ This dissector supports spectrum‑aware experimentation, dynamic allocation, an
 
 ## Validation and Debugging
 
-YesDR protocols can be validated using standard packet capture tools in conjunction with the provided Wireshark dissectors. This enables systematic inspection of message formats, protocol behavior, and compliance with YesDR Technical Specifications.
+YESDR protocols can be validated using standard packet capture tools in conjunction with the provided Wireshark dissectors. This enables systematic inspection of message formats, protocol behavior, and compliance with YESDR Technical Specifications.
 
 ---
 
@@ -56,7 +56,7 @@ YesDR protocols can be validated using standard packet capture tools in conjunct
 2. Save captured packets in **PCAP** format  
 3. Enable the **YACP** and **YSMP** dissectors by keeping wireshark files in /lib/x86_64-linux-gnu/wireshark/plugins directory  
 4. Load the PCAP file into **Wireshark**
-5. Verify message sequences, field values, and procedures against the relevant **YesDR TS documents**  
+5. Verify message sequences, field values, and procedures against the relevant **YESDR TS documents**  
 
 This workflow supports protocol debugging, conformance testing, and reproducible experimentation.
 
@@ -64,11 +64,11 @@ This workflow supports protocol debugging, conformance testing, and reproducible
 
 ## Reference Implementations
 
-The Wireshark dissectors provided by YesDR serve as:
+The Wireshark dissectors provided by YESDR serve as:
 
-- Executable interpretations of YesDR Technical Specifications  
+- Executable interpretations of YESDR Technical Specifications  
 - Tools for validating protocol correctness and interoperability  
-- Educational resources for understanding YesDR control‑plane behavior  
+- Educational resources for understanding YESDR control‑plane behavior  
 
 They are not intended as production implementations, but as transparent and extensible references for research, development, and standard evolution.
 
@@ -78,6 +78,6 @@ They are not intended as production implementations, but as transparent and exte
 
 - **Wireshark Dissector Framework:** Protocol decoding and visualization  
 - **PCAP‑Based Analysis:** Offline inspection and reproducible validation  
-- **Specification‑Driven Verification:** Direct mapping to YesDR TS documents  
+- **Specification‑Driven Verification:** Direct mapping to YESDR TS documents  
 - **SDR and AI Integration:** Supports spectrum‑aware and AI‑driven experimentation  
 

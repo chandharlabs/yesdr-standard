@@ -1,16 +1,16 @@
-# YesDR Consortium  
+# YESDR Consortium  
 ## Membership Fee Policy
 
 **Document Status:** Informative  
 **Effective From:** [To be announced]  
-**Approved By:** YesDR Consortium Steering Committee  
+**Approved By:** YESDR Consortium Steering Committee  
 
 ---
 
 ## 1. Purpose
 
 This Membership Fee Policy defines the fee structure, payment terms, and
-financial principles governing participation in the **YesDR Consortium**.
+financial principles governing participation in the **YESDR Consortium**.
 The policy aims to ensure sustainable consortium operations while preserving
 accessibility for academic institutions, researchers, and innovation-driven
 organizations.
@@ -20,14 +20,14 @@ organizations.
 ## 2. Scope
 
 This policy applies to all organizations and individuals seeking membership
-in the YesDR Consortium, including academic institutions, startups, industry
+in the YESDR Consortium, including academic institutions, startups, industry
 partners, and individual contributors.
 
 ---
 
 ## 3. Membership Categories
 
-The YesDR Consortium recognizes the following membership categories:
+The YESDR Consortium recognizes the following membership categories:
 
 ### 3.1 Academic Member
 - Universities
@@ -54,7 +54,7 @@ The YesDR Consortium recognizes the following membership categories:
 
 ### 3.5 Strategic / Founding Member
 - Organizations providing significant technical, financial, or infrastructure
-  contributions to the YesDR ecosystem
+  contributions to the YESDR ecosystem
 
 ---
 
@@ -81,16 +81,16 @@ The following principles govern membership fees:
 - Fees are **non-refundable** once membership is activated.
 - Fee waivers or reductions may be granted to academic or non-profit entities.
 - Membership fees are reviewed periodically by the Steering Committee.
-- Public access to released YesDR specifications does not require membership.
+- Public access to released YESDR specifications does not require membership.
 
 ---
 
 ## 6. Use of Membership Fees
 
-Membership fees are used exclusively to support YesDR Consortium activities,
+Membership fees are used exclusively to support YESDR Consortium activities,
 including but not limited to:
 
-- Development and maintenance of YesDR specifications
+- Development and maintenance of YESDR specifications
 - Documentation, website, and hosting infrastructure
 - Reference implementations and tooling support
 - Workshops, tutorials, and outreach programs
@@ -105,7 +105,7 @@ Depending on the membership category, benefits may include:
 - Participation in technical working groups
 - Early access to draft specifications
 - Voting rights in consortium decisions (where applicable)
-- Recognition on the YesDR Consortium website
+- Recognition on the YESDR Consortium website
 - Access to member-only discussions and reviews
 
 Specific benefits are defined separately for each membership category.
@@ -130,7 +130,7 @@ Specific benefits are defined separately for each membership category.
 
 ## 10. Transparency
 
-The YesDR Consortium is committed to transparent financial governance.
+The YESDR Consortium is committed to transparent financial governance.
 High-level summaries of membership fee utilization may be shared with members
 periodically.
 
@@ -139,7 +139,7 @@ periodically.
 ## 11. Disclaimer
 
 Payment of membership fees does not imply ownership or exclusive control of
-the YesDR standard. All specifications remain governed by the consortium under
+the YESDR standard. All specifications remain governed by the consortium under
 applicable licensing, contribution, and governance policies.
 
 ---

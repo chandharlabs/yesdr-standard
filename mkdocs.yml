@@ -1,4 +1,4 @@
-site_name: YesDR Standard
+site_name: YESDR Standard
 site_url: https://yesdr-standard.org
 site_description: Your Extensible Software Defined Radio – Modular Cellular Wireless Standard
 
@@ -29,7 +29,7 @@ nav:
   - Architecture: architecture.md
 #  - About: about.md
 
-  - Standards:
+  - Specifications:
       - TS 00.001 – Overall Description: standards/ts-00-001-overall.md
       - TS 00.004 – Architecture: standards/ts-00-004-architecture.md
       - TS 23.501 Mapping: standards/ts-23-501-mapping.md
@@ -52,7 +52,16 @@ nav:
 
 #  - Tools:
 #      - Validation & Debugging: tools/validation.md
-
+  - Yesdr Groups: 
+      - Study Group: group/study.md
+      - Working Group:
+          - Core Network Group: group/core.md
+          - Radio Access Network Group: group/ran.md
+          - Spectrum Sensing Group: group/spectrum-sensing.md
+          - Spectrum Coordination Group: group/spectrum-coordination.md
+      
+      
+      
   - Consortium: 
       - Consortium: consortium/consortium.md
       - Membership Fee Policy: consortium/membership-fee-policy.md
@@ -74,8 +83,8 @@ extra_css:
   - stylesheets/extra.css
 plugins: []
 
-extra_javascript:
-  - javascripts/disable-right-click.js
+#extra_javascript:
+#  - javascripts/disable-right-click.js
 
 
 markdown_extensions:

@@ -167,7 +167,7 @@ udp_table:add(9090, ysmp_proto)
 
 
 --[[
-    YSMP Wireshark Dissector (YesDR Setup and Monitoring Protocol)
+    YSMP Wireshark Dissector (YESDR Setup and Monitoring Protocol)
     ---------------------------------------------------------------
 
     Author: [Your Name]
@@ -177,8 +177,8 @@ udp_table:add(9090, ysmp_proto)
 
     Description:
     ------------
-    This Lua script is a custom Wireshark dissector for the YesDR Setup and Monitoring Protocol (YSMP),
-    used in YesDR-based wireless systems. It supports multiple message types including setup requests,
+    This Lua script is a custom Wireshark dissector for the YESDR Setup and Monitoring Protocol (YSMP),
+    used in YESDR-based wireless systems. It supports multiple message types including setup requests,
     responses, and spectrum occupancy reports.
 
     Message Types Supported:

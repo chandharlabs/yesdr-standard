@@ -1,6 +1,6 @@
 # Validation and Debugging
 
-YesDR protocols can be validated using standard packet capture tools
+YESDR protocols can be validated using standard packet capture tools
 together with the provided Wireshark dissectors.
 
 ---
@@ -11,7 +11,7 @@ together with the provided Wireshark dissectors.
 2. Save packets as PCAP
 3. Load PCAP in Wireshark
 4. Enable YACP / YSMP dissectors
-5. Verify message sequences against YesDR TS documents
+5. Verify message sequences against YESDR TS documents
 
 ---
 
