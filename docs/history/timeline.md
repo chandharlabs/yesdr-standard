@@ -1,12 +1,12 @@
-# YesDR Evolution Timeline
+# YESDR
 
-YesDR (Your Embedded Software-Defined Radio) has evolved from a software-first SDR concept
+YESDR (Your Embedded Software-Defined Radio) has evolved from a software-first SDR concept
 into a protocol-aware, AI-integrated academic and product ecosystem.
 The timeline below captures the key milestones in its development.
 
 ```mermaid
 timeline
-    title YesDR Evolution Timeline
+    title YESDR Evolution Timeline
 
     2018–2020 : Concept & Vision
                : Software-first SDR philosophy
@@ -38,7 +38,7 @@ timeline
                : Pre-built experiments and demos
 
     2026–2027 : Standardization & Ecosystem
-               : YesDR specification documents
+               : YESDR specification documents
                : Reference implementations
                : Study Groups and Working Groups
                : Compliance and conformance testing

@@ -63,9 +63,12 @@ nav:
       
       
   - Consortium: 
-      - Consortium: consortium/consortium.md
-      - Membership Fee Policy: consortium/membership-fee-policy.md
-      - Membership Application Policy: consortium/membership-application-policy.md
+      - Overview: consortium/overview.md
+      - Membership: consortium/membership.md
+      - Policies: consortium/policies.md
+      - Working Groups: consortium/groups/working-groups.md
+      - Study Groups: consortium/groups/studygroups.md
+      - Governance: consortium/governance.md
 
 
   - Roadmap: roadmap.md
