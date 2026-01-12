@@ -27,7 +27,6 @@ theme:
 nav:
   - Home: index.md
   - Architecture: architecture.md
-#  - About: about.md
 
   - Specifications:
       - TS 00.001 – Overall Description: standards/ts-00-001-overall.md
@@ -47,12 +46,7 @@ nav:
       - TS 04.001 — YACP: standards/YesDR_TS_04_001—YACP.md
       - TS 04.002 — YSMP: standards/YesDR_TS_04_002—YSMP.md
 
-#  - Reference Implementations:
-#      - Wireshark Dissectors: reference/wireshark.md
 
-#  - Tools:
-#      - Validation & Debugging: tools/validation.md
-      
       
 
   - Consortium: 
@@ -75,8 +69,6 @@ nav:
 
 
   - Contact: contact.md
-  # Uncomment ONLY if installed
-  # - git-revision-date-localized
 
 extra_css:
   - stylesheets/extra.css
