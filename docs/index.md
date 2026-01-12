@@ -65,6 +65,25 @@ To offer a transparent, modular wireless standard stack for research, teaching, 
 
 ---
 
+## Key Features of YesDR
+
+- **Open Academic Standard:** YesDR is a fully open, academic‑friendly alternative to complex 3GPP stacks, enabling students and researchers to develop, test, and teach wireless protocols with ease.  
+
+- **Full‑Stack Customization:** Provides complete visibility and control across **PDCP → RLC → MAC → PHY** layers, including GTP tunneling—ideal for protocol experimentation and innovation.  
+
+- **Python/C++ Dual Availability:** Developed initially in Python for rapid prototyping and research, with seamless migration to high‑performance C++ for deployment.  
+
+- **Named Subsystems:** Modular components such as **YUE, YBS, YCore**, and others mirror 3GPP functions in a simplified structure, making the system intuitive for teaching and rapid iteration.  
+
+- **Hardware Agnostic:** Designed to operate across diverse SDR platforms, including Deep Radio, without vendor lock‑in.  
+
+- **Community‑Driven Framework:** Built as a collaborative, open‑source project with an extensible architecture and contributor‑friendly design.  
+
+- **Interoperability Ready:** Designed to integrate with existing tools such as **OpenAirInterface, Free5GC, Open5GS, UERANSIM**, and potential **ORAN‑based components**, bridging experimentation with real‑world 5G/6G deployments.  
+
+
+---
+
 ## Scope
 
 YESDR covers the following technical domains:
