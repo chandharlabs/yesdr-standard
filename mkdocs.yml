@@ -54,14 +54,17 @@ nav:
 #      - Validation & Debugging: tools/validation.md
       
       
-      
+
   - Consortium: 
       - Overview: consortium/overview.md
       - Membership: consortium/membership.md
       - Policies: consortium/policies.md
-      - Study Groups: consortium/groups/studygroups.md
-      - Working Groups: consortium/groups/working-groups.md
       - Governance: consortium/governance.md
+      
+  - YESDR Groups:
+      - Overview: consortium/groups/index.md
+      - Study Groups: consortium/groups/studygroups.md
+      - Working Groups: consortium/groups/working-groups.md   
 
   - Timeline: history/timeline.md
   - Roadmap: roadmap.md
