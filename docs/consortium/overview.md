@@ -46,12 +46,11 @@ The Consortium operates through a structured governance model:
   Provides strategic direction and oversight of technical activities.
 
 - **Groups**  
-  Technical work is organized through Study Groups (SGs) and Working Groups (WGs),
+  Technical work is organized through [Study Groups (SGs)](groups/studygroups.md) and [Working Groups (WGs)](groups/working-groups.md),
   each focusing on specific domains of the YESDR architecture.
 
 - **Members**  
-  Organizations and individuals participate as members under defined membership
-  categories and policies.
+  Organizations and individuals participate as members under defined [membership categories](membership.md#membership-categories) and policies.
 
 ---
 
@@ -60,8 +59,8 @@ The Consortium operates through a structured governance model:
 Organizations and individuals interested in contributing to the YESDR standard
 are encouraged to:
 
-1. Review the Consortium structure and policies  
-2. Apply for membership  
+1. Review the Consortium structure and [policies](policies.md)  
+2. Apply for [membership](membership.md)  
 3. Join relevant Study Groups or Working Groups  
 4. Participate in discussions, reviews, and technical contributions  
 
