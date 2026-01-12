@@ -1,6 +1,6 @@
-# YesDR Consortium Policies
+# YESDR Consortium Policies
 
-The YesDR Consortium operates under a set of published policies to ensure
+The YESDR Consortium operates under a set of published policies to ensure
 transparency, technical integrity, and professional collaboration.
 
 ---
@@ -15,7 +15,7 @@ transparency, technical integrity, and professional collaboration.
 
 ## Intellectual Property
 
-- Contributions must comply with YesDR intellectual property guidelines
+- Contributions must comply with YESDR intellectual property guidelines
 - Members retain ownership of their original work, subject to licensing rules
 - Specifications are published under Consortium-approved terms
 
@@ -23,7 +23,7 @@ transparency, technical integrity, and professional collaboration.
 
 ## Release and Versioning
 
-- YesDR specifications follow a release-based model
+- YESDR specifications follow a release-based model
 - Each release includes change logs and documented updates
 - Backward compatibility is maintained where feasible
 
@@ -42,8 +42,4 @@ transparency, technical integrity, and professional collaboration.
 - Policies are reviewed periodically
 - Updates are approved by the Steering Committee
 - Members are notified of significant policy changes
-
----
-
-**End of Document**
 

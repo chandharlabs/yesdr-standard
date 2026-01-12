@@ -1,6 +1,6 @@
-# YesDR Study Groups
+# YESDR Study Groups
 
-Study Groups (SGs) are exploratory bodies established within the YesDR Consortium
+Study Groups (SGs) are exploratory bodies established within the YESDR Consortium
 to investigate emerging technologies, architectural concepts, and new technical
 directions before formal standardization.
 
@@ -79,14 +79,10 @@ Study Groups do **not**:
 
 ## Participation
 
-Participation in Study Groups is open to eligible YesDR Consortium members.
+Participation in Study Groups is open to eligible YESDR Consortium members.
 
 Members may:
 - Join discussions and meetings
 - Contribute research material and proposals
 - Participate in feasibility studies
-
----
-
-**End of Document**
 

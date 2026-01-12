@@ -1,8 +1,8 @@
-# YesDR Consortium
+# YESDR Consortium
 
-The **YesDR Consortium** is the organizational body responsible for the
+The **YESDR Consortium** is the organizational body responsible for the
 coordination, governance, and long-term evolution of the
-**YesDR (Your Extensible Software-Defined Radio)** standard.
+**YESDR** standard.
 
 The Consortium provides a neutral, collaborative platform for academia,
 research institutions, startups, and industry to jointly develop an
@@ -10,7 +10,7 @@ open, modular, and extensible framework for end-to-end cellular wireless
 systems.
 
 ---
-
+<!--
 ## Mission
 
 The mission of the YesDR Consortium is to:
@@ -20,11 +20,11 @@ The mission of the YesDR Consortium is to:
 - Promote transparent and collaborative standardization practices
 - Support interoperability, experimentation, and reference implementations
 
----
+---   -->
 
 ## Scope of the Consortium
 
-The YesDR Consortium oversees activities related to:
+The YESDR Consortium oversees activities related to:
 
 - Architecture and system design
 - Protocol and interface specifications
@@ -47,7 +47,7 @@ The Consortium operates through a structured governance model:
 
 - **Groups**  
   Technical work is organized through Study Groups (SGs) and Working Groups (WGs),
-  each focusing on specific domains of the YesDR architecture.
+  each focusing on specific domains of the YESDR architecture.
 
 - **Members**  
   Organizations and individuals participate as members under defined membership
@@ -57,15 +57,11 @@ The Consortium operates through a structured governance model:
 
 ## Getting Involved
 
-Organizations and individuals interested in contributing to the YesDR standard
+Organizations and individuals interested in contributing to the YESDR standard
 are encouraged to:
 
 1. Review the Consortium structure and policies  
 2. Apply for membership  
 3. Join relevant Study Groups or Working Groups  
 4. Participate in discussions, reviews, and technical contributions  
-
----
-
-**End of Document**
 

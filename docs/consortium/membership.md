@@ -46,7 +46,3 @@ Members must:
 2. Submit a membership application
 3. Upon approval, join relevant groups and mailing lists
 
----
-
-**End of Document**
-

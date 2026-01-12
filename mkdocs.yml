@@ -52,13 +52,13 @@ nav:
 
 #  - Tools:
 #      - Validation & Debugging: tools/validation.md
-  - Yesdr Groups: 
+'''  - Yesdr Groups: 
       - Study Group: group/study.md
       - Working Group:
           - Core Network Group: group/core.md
           - Radio Access Network Group: group/ran.md
           - Spectrum Sensing Group: group/spectrum-sensing.md
-          - Spectrum Coordination Group: group/spectrum-coordination.md
+          - Spectrum Coordination Group: group/spectrum-coordination.md  '''
       
       
       
@@ -66,13 +66,12 @@ nav:
       - Overview: consortium/overview.md
       - Membership: consortium/membership.md
       - Policies: consortium/policies.md
-      - Working Groups: consortium/groups/working-groups.md
       - Study Groups: consortium/groups/studygroups.md
+      - Working Groups: consortium/groups/working-groups.md
       - Governance: consortium/governance.md
 
-
-  - Roadmap: roadmap.md
   - Timeline: history/timeline.md
+  - Roadmap: roadmap.md
   
   - Implementations & Tools:
       - Protocol Tools:

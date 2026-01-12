@@ -1,8 +1,8 @@
-# YesDR Governance
+# YESDR Governance
 
-The YesDR Consortium operates under a structured governance model designed to
+The YESDR Consortium operates under a structured governance model designed to
 ensure transparency, technical integrity, and long-term sustainability of the
-YesDR standard.
+YESDR standard.
 
 Governance responsibilities are clearly separated from technical development
 activities carried out by Study Groups and Working Groups.
@@ -11,12 +11,12 @@ activities carried out by Study Groups and Working Groups.
 
 ## Steering Committee (SC)
 
-The Steering Committee is the highest decision-making body of the YesDR Consortium.
+The Steering Committee is the highest decision-making body of the YESDR Consortium.
 
 **Responsibilities:**
-- Define the strategic direction of the YesDR standard
+- Define the strategic direction of the YESDR standard
 - Approve the creation, modification, and closure of Study Groups and Working Groups
-- Approve publication of YesDR Technical Specifications (TS)
+- Approve publication of YESDR Technical Specifications (TS)
 - Oversee consortium policies, membership, and compliance
 - Resolve escalated technical or procedural issues
 
@@ -34,7 +34,7 @@ Working Groups and ensures architectural consistency.
 
 **Responsibilities:**
 - Review technical outputs from Working Groups
-- Ensure alignment with the YesDR architecture and roadmap
+- Ensure alignment with the YESDR architecture and roadmap
 - Coordinate cross–Working Group dependencies
 - Supervise the Change Request (CR) process
 
@@ -73,8 +73,4 @@ Administration | Secretariat |
 - Governance processes are documented and auditable
 - Decisions are recorded and published where appropriate
 - Policies are reviewed periodically by the Steering Committee
-
----
-
-**End of Document**
 

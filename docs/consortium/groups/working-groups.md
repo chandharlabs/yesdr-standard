@@ -1,7 +1,7 @@
-# YesDR Working Groups
+# YESDR Working Groups
 
 Working Groups (WGs) are responsible for the development, maintenance, and
-evolution of **YesDR Technical Specifications (TS)**.
+evolution of **YESDR Technical Specifications (TS)**.
 
 All normative technical work is conducted within Working Groups under the
 oversight of the Technical Steering Committee.
@@ -13,7 +13,7 @@ oversight of the Technical Steering Committee.
 Working Groups are responsible for:
 
 - Defining protocol behavior, procedures, and interfaces
-- Maintaining architectural consistency across the YesDR system
+- Maintaining architectural consistency across the YESDR system
 - Reviewing, approving, and integrating technical contributions
 - Producing normative Technical Specifications and related documentation
 
@@ -57,7 +57,7 @@ Each Working Group consists of:
 
 ---
 
-### WG-RAN — YesDR Radio Access Network
+### WG-RAN — YESDR Radio Access Network
 **Scope:**
 - YBS architecture and procedures
 - Scheduling and radio resource management
@@ -67,7 +67,7 @@ Each Working Group consists of:
 
 ---
 
-### WG-CORE — YesDR Core Network
+### WG-CORE — YESDR Core Network
 **Scope:**
 - Core network architecture
 - Session, authentication, policy, and data management
@@ -76,7 +76,7 @@ Each Working Group consists of:
 
 ---
 
-### WG-YSM — YesDR Spectrum Monitoring
+### WG-YSM — YESDR Spectrum Monitoring
 **Scope:**
 - Spectrum sensing and monitoring
 - Interference detection and reporting
@@ -95,15 +95,11 @@ Each Working Group consists of:
 
 ## Participation
 
-Participation in Working Groups is open to eligible YesDR Consortium members.
+Participation in Working Groups is open to eligible YESDR Consortium members.
 
 To participate:
 1. Apply for consortium membership
 2. Join the relevant Working Group
 3. Attend meetings and contribute technical content
-4. Follow YesDR contribution and conduct policies
-
----
-
-**End of Document**
+4. Follow YESDR contribution and conduct policies
 
