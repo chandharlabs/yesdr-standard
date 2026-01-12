@@ -45,6 +45,10 @@ nav:
       - TS 02.050 — YAUSF: standards/YesDR_TS_02_0050—YAUSF.md
       - TS 04.001 — YACP: standards/YesDR_TS_04_001—YACP.md
       - TS 04.002 — YSMP: standards/YesDR_TS_04_002—YSMP.md
+      
+  - Releases:
+      - Overview: releases/index.md
+      - Release 1.0.0: releases/release1.md
 
 
       
