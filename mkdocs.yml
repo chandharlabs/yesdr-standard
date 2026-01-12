@@ -52,13 +52,6 @@ nav:
 
 #  - Tools:
 #      - Validation & Debugging: tools/validation.md
-'''  - Yesdr Groups: 
-      - Study Group: group/study.md
-      - Working Group:
-          - Core Network Group: group/core.md
-          - Radio Access Network Group: group/ran.md
-          - Spectrum Sensing Group: group/spectrum-sensing.md
-          - Spectrum Coordination Group: group/spectrum-coordination.md  '''
       
       
       
