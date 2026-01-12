@@ -54,19 +54,19 @@ To offer a transparent, modular wireless standard stack for research, teaching, 
 
 ## What You’ll Find Here
 
-- **[System Architecture](architecture.md):** A structured view of the YesDR end-to-end architecture, including functional descriptions of the system components.
+- **System Architecture:** A structured view of the [YesDR end-to-end architecture](architecture.md), including functional descriptions of the system components.
 
-- **[Technical Specifications (TS)](standards/ts-00-001-overall.md):** The authoritative YesDR specification documents defining system architecture, interfaces, protocols, and functional behavior across the RAN, Core Network, and Spectrum Management domains.
+- **Technical Specifications (TS):** The authoritative [YesDR specification](standards/ts-00-001-overall.md) documents defining system architecture, interfaces, protocols, and functional behavior across the RAN, Core Network, and Spectrum Management domains.
 
-- **[Consortium](consortium/overview.md), [Groups](consortium/groups/index.md):** Information about the YesDR Consortium, including its organizational structure, technical Study Groups and Working Groups, and the governance model under which the standard is developed and maintained.
+- **Consortium, Groups and Governance:** Information about the [YesDR Consortium](consortium/overview.md), including its organizational structure, technical [groups](consortium/groups/index.md), and the [governance model](consortium/governance.md) under which the standard is developed and maintained.
 
-- **[Membership](consortium/membership.md), [Policies](consortium/policies.md):** Details on consortium membership categories, application procedures, and the policies that govern participation, contributions, intellectual property, and standards development processes.
+- **Membership and Policies:** Details on [consortium membership](consortium/membership.md) categories, application procedures, and the [policies](consortium/policies.md) that govern participation, contributions, intellectual property, and standards development processes.
 
-- **[Timeline](history/timeline.md), [Roadmap](roadmap.md):** Historical milestones, current status, and the planned evolution of the YesDR standard.
+- **Timeline and Roadmap:** [Historical milestones](history/timeline.md), current status, and the [planned evolution](roadmap.md) of the YesDR standard.
 
-- **[Implementations & Tools](implementations/protocol-tools.md):** Reference implementations, protocol tooling, and validation resources, including Wireshark dissectors for YACP and YSMP, example PCAP files, and supporting utilities for experimentation and protocol analysis.
+- **Implementations & Tools:** Reference [implementations](implementations/protocol-tools.md), protocol tooling, and validation resources, including Wireshark dissectors for YACP and YSMP, example PCAP files, and supporting utilities for experimentation and protocol analysis.
 
-- **[Contact](contact.md):** How to reach the YesDR Consortium, join technical groups, and contribute to the ongoing development of the standard.
+- **Contact:** How to [contact](contact.md) the YesDR Consortium, join technical groups, and contribute to the ongoing development of the standard.
 
 
 ---
