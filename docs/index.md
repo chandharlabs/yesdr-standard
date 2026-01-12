@@ -6,22 +6,11 @@
 # YESDR Standard
 **YESDR (pronounced “Yes Dee Are”)**  is a modular, and extensible cellular wireless standard that empowers research, education, and innovation across the RAN, and Core Network, with built‑in support for AI‑driven radio intelligence.
 
+---
 
 ## YesDR Overview
 
-**YesDR (Your Extensible Software‑Defined Radio)** is an open, modular standard framework for the development, instruction, and experimentation of end‑to‑end cellular wireless protocols—spanning from the physical layer to the core network—utilizing Software‑Defined Radios (SDRs).
-
-Engineered for flexibility and extensibility, YesDR facilitates the integration of AI‑driven features, including:
-
-- Channel prediction  
-- Protocol optimization  
-- Dynamic spectrum access  
-- Traffic forecasting  
-- Spectrum sensing  
-- Signal classification  
-- Network automation  
-
-The YesDR standard framework empowers academic researchers, educators, and startups to advance 5G/6G testbeds, develop AI‑enhanced wireless solutions, and foster innovation in future communication technologies.
+**YesDR (Your Extensible Software‑Defined Radio)** is an open, modular standard framework for the development, instruction, and experimentation of end‑to‑end cellular wireless protocols—spanning from the physical layer to the core network—utilizing Software‑Defined Radios (SDRs).Engineered for flexibility and extensibility, YesDR facilitates the integration of AI‑driven features, including Channel prediction, Protocol optimization, Dynamic spectrum access, Traffic forecasting, Spectrum sensing, Signal classification, Network automation.YesDR standard framework empowers academic researchers, educators, and startups to advance 5G/6G testbeds, develop AI‑enhanced wireless solutions, and foster innovation in future communication technologies.
 
 ---
 
