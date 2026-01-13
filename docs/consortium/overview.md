@@ -33,6 +33,7 @@ The YESDR Consortium oversees activities related to:
 The **Steering Committee** is the highest decision-making body of the YESDR Consortium.
 
 **Responsibilities:**
+
 - Define the strategic direction of the YESDR standard
 - Approve the creation, modification, and closure of Study Groups and Working Groups
 - Approve publication of YESDR Technical Specifications (TS)
@@ -40,6 +41,7 @@ The **Steering Committee** is the highest decision-making body of the YESDR Cons
 - Resolve escalated technical or procedural issues
 
 **Authority:**
+
 - Final approval of releases and major architectural changes
 - Appointment or confirmation of Working Group Chairs
 - Adoption and amendment of governance policies 
@@ -52,6 +54,7 @@ The **Technical Steering Committee (TSC)** provides technical oversight across
 all Working Groups and ensures architectural consistency.
 
 **Responsibilities:**
+
 - Review technical outputs from Working Groups
 - Ensure alignment with the YESDR architecture and roadmap
 - Coordinate cross–Working Group dependencies
@@ -70,8 +73,6 @@ Technical work within the YESDR Consortium is carried out through:
 - **Study Groups (SGs)** – Exploratory and pre-standardization research
 - **Working Groups (WGs)** – Formal specification and standard development
 
-Each group focuses on a defined domain of the YESDR architecture and operates
-under approved charters.
 
 ---
 
@@ -80,10 +81,12 @@ under approved charters.
 The **Secretariat** provides administrative and operational support to the Consortium.
 
 **Responsibilities:**
+
 - Maintain official records, meeting minutes, and publications
 - Manage consortium communications and mailing lists
 - Coordinate membership applications and onboarding
-- Support compliance and governance processes 
+- Support compliance and governance processes
+- 
 ---
 
 ## Decision Authority
