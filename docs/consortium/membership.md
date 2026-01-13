@@ -18,11 +18,8 @@ Membership is open to:
 
 ## Membership Categories
 
-### Organizational Members
-- Universities, research centers, companies, and startups
-
-### Individual Members
-- Faculty, students, researchers, and independent contributors
+- Organizational Members: Universities, research centers, companies, and startups
+- Individual Members: Faculty, students, researchers, and independent contributors
 
 ---
 
