@@ -34,13 +34,8 @@ activities carried out by Study Groups and Working Groups.
 
 ## Organizational Structure
 
-<p align="center">
-  <img
-    src="../images/YESDR_Org_Structure.png"
-    alt="YESDR Organizational Structure"
-    style="width:80%; height:auto;"
-    loading="lazy">
-</p>
+
+![YESDR Organizational Structure](../images/YESDR_Org_Structure.png)
 
 
 
