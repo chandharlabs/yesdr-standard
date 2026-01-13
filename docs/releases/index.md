@@ -1,14 +1,14 @@
-# YesDR Releases
+# YESDR Releases
 
 
 ## Latest Release
 
-### YesDR v1.0.0 — Initial Public Standard  
+### YESDR v1.0.0 — Initial Public Standard  
 **Release Date:** 2 January 2026  
 **Status:** Stable  
 
 **Highlights**
-- First official release of the YesDR standard framework  
+- First official release of the YESDR standard framework  
 - End‑to‑end modular cellular architecture from **PHY to Core**  
 - Native support for **AI‑driven radio intelligence**  
 - Reference control protocols: **YACP** and **YSMP**  
@@ -17,7 +17,7 @@
 - YBS & YUE comunicate via UDP 
 
 **Included Components**
-- YesDR architecture specification  
+- YESDR architecture specification  
 - Control‑plane and spectrum‑management protocols  
 - Core function definitions  
 - Reference tooling and documentation  
