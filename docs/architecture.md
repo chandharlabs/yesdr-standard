@@ -1,16 +1,5 @@
 # YESDR System Architecture
 
-The following architecture illustrates the end-to-end YESDR, including YUE, YBS, and YCore interactions.
-
-<div style="width:100%; margin:0; padding:0;">
-  <img 
-    src="../assets/architecture/YesDR_Architecture.png"
-    style="width:80%; height:85%; display:block; margin-bottom:0.5rem;"
-    loading="lazy">
-</div>
-
-
----
 
 ## YesDR Components
 
@@ -44,6 +33,15 @@ The following architecture illustrates the end-to-end YESDR, including YUE, YBS,
 | YACP    | YesDR Access Control Protocol          | Manages access control, authentication, and registration procedures. |
 | YSMP    | YesDR Spectrum Management Protocol     | Coordinates spectrum sensing, allocation, and dynamic spectrum management. |
 
+## End-to-End Architecture
 
+The following figure illustrates the end-to-end YESDR architecture, including YUE, YBS, and YCore interactions.
+
+<div style="width:100%; margin:0; padding:0;">
+  <img 
+    src="../assets/architecture/YesDR_Architecture.png"
+    style="width:80%; height:85%; display:block; margin-bottom:0.5rem;"
+    loading="lazy">
+</div>
 
 
