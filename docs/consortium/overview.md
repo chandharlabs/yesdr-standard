@@ -86,7 +86,7 @@ The **Secretariat** provides administrative and operational support to the Conso
 - Manage consortium communications and mailing lists
 - Coordinate membership applications and onboarding
 - Support compliance and governance processes
-- 
+  
 ---
 
 ## Decision Authority
