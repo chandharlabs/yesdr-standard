@@ -4,6 +4,10 @@ YESDR has evolved from a software-first SDR concept
 into a protocol-aware, AI-integrated academic and product ecosystem.
 The timeline below captures the key milestones in its development.
 
+![YESDR Timeline](../images/YESDR_Timeline.png)
+
+
+<!--
 ```mermaid
 timeline
     title YESDR Evolution Timeline
@@ -48,9 +52,6 @@ timeline
                : Reference implementations
                : Formation of Study Groups and Working Groups
                : Compliance and conformance testing
-               
-               
-
-               
-               
+                          
 ```
+-->
