@@ -34,6 +34,30 @@ activities carried out by Study Groups and Working Groups. :contentReference[oai
 
 ## Organizational Structure
 
+```mermaid
+flowchart TD
+    A[YESDR Consortium]
+
+    A --> SC[Steering Committee]
+    SC --> SEC[Secretariat]
+
+    A --> TSC[Technical Steering Committee]
+
+    TSC --> SG[Study Groups]
+    SG --> SG1[Exploratory Research]
+    SG --> SG2[Emerging Technologies]
+    SG --> SG3[Pre-Standardization Studies]
+
+    TSC --> WG[Working Groups]
+    WG --> WG1[Architecture & Interfaces]
+    WG --> WG2[PHY & RF]
+    WG --> WG3[MAC & Scheduling]
+    WG --> WG4[Core Network & Transport]
+    WG --> WG5[AI/ML & Automation]
+    WG --> WG6[Tools & Reference Implementations]
+
+
+
 ### Steering Committee (SC)
 
 The **Steering Committee** is the highest decision-making body of the YESDR Consortium.
