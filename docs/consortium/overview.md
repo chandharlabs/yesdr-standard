@@ -21,17 +21,6 @@ The YESDR Consortium oversees activities related to:
 
 ---
 
-## Governance Model
-
-The YESDR Consortium operates under a structured governance model designed to
-ensure transparency, technical integrity, and long-term sustainability of the
-YESDR standard.
-
-Governance responsibilities are clearly separated from technical development
-activities carried out by Study Groups and Working Groups.
-
----
-
 ## Organizational Structure
 
 
