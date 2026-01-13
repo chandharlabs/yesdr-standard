@@ -4,10 +4,11 @@ YESDR has evolved from a software-first SDR concept
 into a protocol-aware, AI-integrated academic and product ecosystem.
 The timeline below captures the key milestones in its development.
 
+<img src="../images/YESDR-Timeline.png" class="yesdr-timeline">
 
-<img src="../images/YESDR-Timeline.png" alt="YESDR Timeline" style="width:100%; max-width:1600px;">
 
 <!--
+<img src="../images/YESDR-Timeline.png" alt="YESDR Timeline" style="width:100%; max-width:1600px;">
 
 ![YESDR Timeline](../images/YESDR-Timeline.png)
 
