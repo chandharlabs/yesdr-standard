@@ -115,4 +115,10 @@ table tbody tr:hover {
   text-align: left !important;
 }
 
+.yesdr-timeline {
+    width: 100%;
+    max-width: 1800px;
+    display: block;
+    margin: auto;
+}
 
