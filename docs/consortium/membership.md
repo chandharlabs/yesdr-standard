@@ -1,6 +1,6 @@
-# YesDR Consortium Membership
+# YESDR Consortium Membership
 
-The YesDR Consortium welcomes participation from organizations and individuals
+The YESDR Consortium welcomes participation from organizations and individuals
 interested in contributing to the development and adoption of the YesDR standard.
 
 ---
