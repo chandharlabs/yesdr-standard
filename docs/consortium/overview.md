@@ -2,25 +2,11 @@
 
 The **YESDR Consortium** is the organizational body responsible for the
 coordination, governance, and long-term evolution of the
-**YESDR** standard.
-
-The Consortium provides a neutral, collaborative platform for academia,
-research institutions, startups, and industry to jointly develop an
-open, modular, and extensible framework for end-to-end cellular wireless
+**YESDR** standard. The Consortium provides a neutral, collaborative platform for academia,
+research institutions, startups, and industry to jointly develop a modular, and extensible framework for end-to-end cellular wireless
 systems.
 
 ---
-<!--
-## Mission
-
-The mission of the YesDR Consortium is to:
-
-- Develop and maintain the YesDR standard as a coherent technical framework
-- Enable research, education, and innovation in 5G/6G and beyond-5G systems
-- Promote transparent and collaborative standardization practices
-- Support interoperability, experimentation, and reference implementations
-
----   -->
 
 ## Scope of the Consortium
 
@@ -28,13 +14,10 @@ The YESDR Consortium oversees activities related to:
 
 - Architecture and system design
 - Protocol and interface specifications
-- Reference implementations and tooling
 - Spectrum monitoring and cognitive radio integration
 - AI-driven optimization and automation in wireless systems
 - Educational and research deployments
-
-The Consortium does not engage in commercial product development. All activities
-are focused on standardization, research enablement, and technical coordination.
+- Reference implementations and tooling
 
 ---
 
