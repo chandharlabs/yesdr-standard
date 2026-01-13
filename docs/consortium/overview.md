@@ -36,7 +36,7 @@ activities carried out by Study Groups and Working Groups.
 
 <div style="width:100%; margin:0; padding:0;">
   <img 
-    src="../assets/architecture/YESDR_Org_Structure.png"
+    src="../images/YESDR_Org_Structure.png"
     style="width:80%; height:85%; display:block; margin-bottom:0.5rem;"
     loading="lazy">
 </div>
