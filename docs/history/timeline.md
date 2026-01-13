@@ -12,36 +12,45 @@ timeline
                : Software-first SDR philosophy
                : Python-based signal processing
                : Focus on education and research
+               : Spectrum sensing using SDRs (RTL-SDR, HACKRF, LimeSDR, USRP)
+               : 2G & 4G spectrum activity analysis
 
-    2021–2022 : Core Framework Development
+    2021–2022 : DL/ML-based algorithm development
+               : Live CNN-based modulation classification (BPSK, QPSK, GMSK, 16-QAM, 64-QAM)
+               : LSTM-based 4G spectrum activity prediction
+               : SDR Hardware based testbed development 
+
+    2023–2024 : RAN & Core Framework Development
                : Modular TX/RX architecture
                : PHY layer implementation
-               : BPSK, QPSK, QAM support
-               : Hardware abstraction (RTL-SDR, LimeSDR, USRP)
+               : Channel coding for over-the-air transmisssion/reception
+               : Over-the-air data transmission/reception using BPSK and QPSK
+               : Python based core network modules development (YAMF, YUPF, YSMF, etc.)
+               : RAN protocol development (PDCP → RLC → MAC → PHY pipeline)
+               : SBI integration - REST API implementation
 
-    2023–2024 : Protocol Stack & Intelligence
-               : YSMP and YACP protocols
-               : PDCP → RLC → MAC → PHY pipeline
+    2024–2025 : Protocol Stack & RAN Intelligence
+               : YACP and YSMP protocols decelopment
                : PCAP generation and Wireshark visibility
-               : AI-assisted signal processing (Deep Radio)
-
-    2024–2025 : Testbeds & Academic Deployment
-               : University-scale SDR testbeds
-               : 5G Core and MEC integration
-               : Spectrum sensing and channel estimation
-               : Offline-first experimentation
+               : ML-based Channel Prediction 
+               : ML-based modulation classification (RF, NB, SVM, DT)
+               : Implementation of authendication procedures as per 5G
 
     2025–2026 : Productization
                : Binary-only distribution
-               : Debian packaging (apt install yesdr)
+               : Debian packaging 
                : CLI and GUI tools
                : Pre-built experiments and demos
 
     2026–2027 : Standardization & Ecosystem
+               : Consortium formation
                : YESDR specification documents
                : Reference implementations
-               : Study Groups and Working Groups
+               : Formation of Study Groups and Working Groups
                : Compliance and conformance testing
+               
+               
+
                
                
 ```
