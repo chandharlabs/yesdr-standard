@@ -30,29 +30,6 @@
 - Foster open collaboration between academia and industry  
 - Provide a lightweight alternative to full 3GPP protocol stacks  
 
----
-<!--
-## What You’ll Find Here
-
-- Official YESDR Technical Specifications (TS) and standards documents  
-- Architecture and protocol definitions across the RAN, and Core Network  
-- Consortium structure, governance, and roadmap information  
-- Implementations, tools, and validation resources  
--->
-
-## What You’ll Find Here
-
-- **System Architecture:** A structured view of the [YESDR end-to-end architecture](architecture.md), including functional descriptions of the system components.
-
-- **Technical Specifications (TS):** The [YESDR technical specification](standards/ts-00-001-overall.md) documents defining system architecture, interfaces, protocols, and functional behavior across the RAN, Core Network, and Spectrum Management domains.
-
-- **Consortium, Groups and Governance:** Information about the [YESDR Consortium](consortium/overview.md), including its organizational structure, technical [groups](consortium/groups/index.md), and the [governance model](consortium/governance.md) under which the standard is developed and maintained.
-
-- **Membership and Policies:** Details on [consortium membership](consortium/membership.md) categories, application procedures, and the [policies](consortium/policies.md) that govern participation, contributions, intellectual property, and standard development processe.
-
-- **Timeline and Roadmap:** [Milestones](history/timeline.md), current status, and the [planned evolution](roadmap.md) of the YESDR standard.
-
-- **Implementations & Tools:** Reference [implementations](implementations/protocol-tools.md), protocol tooling, and validation resources, including Wireshark dissectors for YACP and YSMP, example PCAP files, and supporting utilities for experimentation and protocol analysis.
 
 ---
 
@@ -71,4 +48,21 @@
 - **Community‑Driven Framework:** Built as a collaborative, open‑source project with an extensible architecture and contributor‑friendly design.  
 
 - **Interoperability Ready**: Designed to integrate with existing tools such as **OpenAirInterface, Free5GC, Open5GS, UERANSIM**, and potential **ORAN‑based components**, bridging experimentation with real‑world 5G/6G deployments.  
+
+
+---
+
+## Site Overview
+
+- **System Architecture:** A structured view of the [YESDR end-to-end architecture](architecture.md), including functional descriptions of the system components.
+
+- **Technical Specifications (TS):** The [YESDR technical specification](standards/ts-00-001-overall.md) documents defining system architecture, interfaces, protocols, and functional behavior across the RAN, Core Network, and Spectrum Management domains.
+
+- **Consortium, Groups and Governance:** Information about the [YESDR Consortium](consortium/overview.md), including its organizational structure, technical [groups](consortium/groups/index.md), and the [governance model](consortium/governance.md) under which the standard is developed and maintained.
+
+- **Membership and Policies:** Details on [consortium membership](consortium/membership.md) categories, application procedures, and the [policies](consortium/policies.md) that govern participation, contributions, intellectual property, and standard development processe.
+
+- **Timeline and Roadmap:** [Milestones](history/timeline.md), current status, and the [planned evolution](roadmap.md) of the YESDR standard.
+
+- **Implementations & Tools:** Reference [implementations](implementations/protocol-tools.md), protocol tooling, and validation resources, including Wireshark dissectors for YACP and YSMP, example PCAP files, and supporting utilities for experimentation and protocol analysis.
 
