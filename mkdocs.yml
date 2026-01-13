@@ -58,10 +58,11 @@ nav:
       - Membership: consortium/membership.md
       - Policies: consortium/policies.md
       
-  - YESDR Groups:
+<!--  - YESDR Groups:
       - Overview: consortium/groups/index.md
       - Study Groups: consortium/groups/studygroups.md
       - Working Groups: consortium/groups/working-groups.md   
+      -->
 
   - Timeline: history/timeline.md
   - Roadmap: roadmap.md
