@@ -2,7 +2,7 @@
 
 The **YESDR Consortium** is the organizational body responsible for the
 coordination, governance, and long-term evolution of the
-**YESDR** standard. The Consortium provides a neutral, collaborative platform for academia,
+YESDR standard. The Consortium provides a neutral, collaborative platform for academia,
 research institutions, startups, and industry to jointly develop a modular, and extensible framework for end-to-end cellular wireless
 systems.
 
