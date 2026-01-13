@@ -4,7 +4,7 @@ The **YESDR Consortium** is the organizational body responsible for the
 coordination, governance, and long-term evolution of the YESDR standard.
 The Consortium provides a neutral, collaborative platform for academia,
 research institutions, startups, and industry to jointly develop a modular
-and extensible framework for end-to-end cellular wireless systems. :contentReference[oaicite:0]{index=0}
+and extensible framework for end-to-end cellular wireless systems.
 
 ---
 
@@ -17,7 +17,7 @@ The YESDR Consortium oversees activities related to:
 - Spectrum monitoring and cognitive radio integration
 - AI-driven optimization and automation in wireless systems
 - Educational and research deployments
-- Reference implementations and tooling :contentReference[oaicite:1]{index=1}
+- Reference implementations and tooling
 
 ---
 
@@ -28,7 +28,7 @@ ensure transparency, technical integrity, and long-term sustainability of the
 YESDR standard.
 
 Governance responsibilities are clearly separated from technical development
-activities carried out by Study Groups and Working Groups. :contentReference[oaicite:2]{index=2}
+activities carried out by Study Groups and Working Groups.
 
 ---
 
@@ -49,7 +49,7 @@ The **Steering Committee** is the highest decision-making body of the YESDR Cons
 **Authority:**
 - Final approval of releases and major architectural changes
 - Appointment or confirmation of Working Group Chairs
-- Adoption and amendment of governance policies :contentReference[oaicite:3]{index=3}
+- Adoption and amendment of governance policies 
 
 ---
 
@@ -66,7 +66,7 @@ all Working Groups and ensures architectural consistency.
 
 **Scope:**
 - The TSC does not write specifications
-- The TSC validates technical coherence and integration :contentReference[oaicite:4]{index=4}
+- The TSC validates technical coherence and integration 
 
 ---
 
@@ -90,8 +90,7 @@ The **Secretariat** provides administrative and operational support to the Conso
 - Maintain official records, meeting minutes, and publications
 - Manage consortium communications and mailing lists
 - Coordinate membership applications and onboarding
-- Support compliance and governance processes :contentReference[oaicite:5]{index=5}
-
+- Support compliance and governance processes 
 ---
 
 ## Decision Authority
@@ -102,7 +101,7 @@ The **Secretariat** provides administrative and operational support to the Conso
 | Technical coordination | Technical Steering Committee |
 | Specification development | Working Groups |
 | Exploratory research | Study Groups |
-| Administration | Secretariat | :contentReference[oaicite:6]{index=6}
+| Administration | Secretariat |
 
 ---
 
@@ -110,7 +109,7 @@ The **Secretariat** provides administrative and operational support to the Conso
 
 - Governance processes are documented and auditable
 - Decisions are recorded and published where appropriate
-- Policies are reviewed periodically by the Steering Committee :contentReference[oaicite:7]{index=7}
+- Policies are reviewed periodically by the Steering Committee 
 
 ---
 
@@ -122,4 +121,4 @@ are encouraged to:
 1. Review the Consortium structure and policies  
 2. Apply for membership  
 3. Join relevant Study Groups or Working Groups  
-4. Participate in discussions, reviews, and technical contributions :contentReference[oaicite:8]{index=8}
+4. Participate in discussions, reviews, and technical contributions 
