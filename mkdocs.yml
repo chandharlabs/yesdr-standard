@@ -60,6 +60,7 @@ nav:
   
   - Implementations & Tools:
       - Protocol Tools:
+          - Installation: implementations/Installation.md
           - Wireshark Analysis: implementations/protocol-tools.md
 
   - Contact: contact.md
