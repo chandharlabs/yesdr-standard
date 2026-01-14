@@ -1,6 +1,6 @@
 # YESDR Installation and Service Management
 
-This document describes how to install, use, manage, and remove **YESDR** using
+This describes how to install, use, manage, and remove **YESDR** using
 the official APT package repository. YESDR follows standard Debian/Ubuntu package
 and service management conventions.
 
@@ -30,6 +30,7 @@ sudo systemctl start mongod
 ```
 sudo systemctl status mongod
 ```
+Note: It should be active.
 
 ## Getting YESDR Repository
 
@@ -144,7 +145,7 @@ journalctl -u yesdr-web -f
 Connect to http://127.0.0.1:5050 and login with admin account.
 
 Username : admin  
-Password : 1423
+Password : admin
 
 ## UNINSTALL / CLEAN REMOVE
 
