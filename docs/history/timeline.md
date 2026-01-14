@@ -8,7 +8,7 @@ The timeline below captures the key milestones in its development.
 <a href="../images/YESDR-Timeline.png" target="_blank">
   <img src="../images/YESDR-Timeline.png" style="width:100%; max-width:1600px;">
 </a>
-
+ 
  
 <!--
 <img src="../images/YESDR-Timeline.png" alt="YESDR Timeline" style="width:100%; max-width:1600px;">
