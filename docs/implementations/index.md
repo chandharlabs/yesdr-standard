@@ -1,9 +1,8 @@
 
 ### [YESDR Installation](Installation.md)
 
-This describes how to install, use, manage, and remove **YESDR** using
-the official APT package repository. YESDR follows standard Debian/Ubuntu package
-and service management conventions.
+This section describes how to install, use, and manage **YESDR** using
+the official APT package repository. 
 
 ### [Protocol Analysis with Wireshark](protocol-tools.md)
 
