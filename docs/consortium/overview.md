@@ -8,6 +8,12 @@ and extensible framework for end-to-end cellular wireless systems.
 
 ---
 
+
+## Organizational Structure
+
+
+![YESDR Organizational Structure](../images/YESDR_Org_Structure.png)
+
 ## Scope of the Consortium
 
 The YESDR Consortium oversees activities related to:
@@ -20,12 +26,6 @@ The YESDR Consortium oversees activities related to:
 - Reference implementations and tooling
 
 ---
-
-## Organizational Structure
-
-
-![YESDR Organizational Structure](../images/YESDR_Org_Structure.png)
-
 
 
 ### Steering Committee (SC)
