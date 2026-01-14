@@ -8,6 +8,7 @@
 **Status:** Stable  
 
 **Highlights**
+
 - First official release of the YESDR standard framework  
 - End‑to‑end modular cellular architecture from **PHY to Core**  
 - Native support for **AI‑driven radio intelligence**  
@@ -17,6 +18,7 @@
 - YBS & YUE comunicate via UDP 
 
 **Included Components**
+
 - YESDR architecture specification  
 - Control‑plane and spectrum‑management protocols  
 - Core function definitions  
