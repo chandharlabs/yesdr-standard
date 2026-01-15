@@ -1,6 +1,6 @@
 # YESDR Consortium and Governance
 
-The **YESDR Consortium** is the organizational body responsible for the
+The YESDR Consortium is the organizational body responsible for the
 coordination, governance, and long-term evolution of the YESDR standard.
 The Consortium provides a neutral, collaborative platform for academia,
 research institutions, startups, and industry to jointly develop a modular
@@ -30,7 +30,7 @@ The YESDR Consortium oversees activities related to:
 
 ### Steering Committee (SC)
 
-The **Steering Committee** is the highest decision-making body of the YESDR Consortium.
+The SC is the highest decision-making body of the YESDR Consortium.
 
 **Responsibilities:**
 
@@ -50,7 +50,7 @@ The **Steering Committee** is the highest decision-making body of the YESDR Cons
 
 ### Technical Steering Committee (TSC)
 
-The **Technical Steering Committee (TSC)** provides technical oversight across
+The TSC provides technical oversight across
 all Working Groups and ensures architectural consistency.
 
 **Responsibilities:**
@@ -98,14 +98,6 @@ The **Secretariat** provides administrative and operational support to the Conso
 | Specification development | Working Groups |
 | Exploratory research | Study Groups |
 | Administration | Secretariat |
-
----
-
-## Transparency and Compliance
-
-- Governance processes are documented and auditable
-- Decisions are recorded and published where appropriate
-- Policies are reviewed periodically by the Steering Committee 
 
 ---
 
