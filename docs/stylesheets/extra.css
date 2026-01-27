@@ -1,0 +1,134 @@
+.md-header__button.md-logo img {
+  height: 30px;   /* default ~24px */
+  width: auto;
+  opacity: 20;
+}
+/* Hide original title */
+.md-header__topic .md-ellipsis {
+  font-size: 0 !important;
+}
+
+/* YESDR Standard */
+.md-header__topic .md-ellipsis::before {
+  content: "Standard";
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-left: 4px;
+  display: inline-block;
+  color: #ffffff;
+}
+
+/* framework (small, secondary) */
+.md-header__topic .md-ellipsis::after {
+  content: " framework";
+  font-size: 1.05rem;     /* smaller */
+  font-weight: 400;
+  display: inline-block;
+  color: rgba(255,255,255,0.7);
+  margin-left: 5px; 
+}
+
+
+.md-header__title {
+  margin-left: -10px !important;   /* Reduce space between logo and text */
+  font-size: 1.6rem;             /* Adjust if needed */
+  font-weight: 600;
+}
+.md-header,
+.md-tabs {
+  background-color: #00357a !important;
+}
+
+/* Remove excessive spacing above tables */
+.md-content h2,
+.md-content h3,
+.md-content h4 {
+  margin-bottom: 0.5rem !important;
+}
+
+/* Reduce space before tables */
+.md-content table {
+  margin-top: 0.5rem !important;
+}
+/* Reduce spacing after images / diagrams */
+.md-content img,
+.md-content figure {
+  margin-bottom: 0.5rem !important;
+}
+
+/* Professional technical table style (standards look) */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+  border: 1px solid #cfd8dc;
+}
+
+/* Header row */
+table thead th {
+  background-color: #0b4aa2;   /* Technical blue */
+  color: #ffffff;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid #0b4aa2;
+}
+
+/* Body cells */
+table tbody td {
+  padding: 10px 12px;
+  border: 1px solid #cfd8dc;
+  vertical-align: top;
+}
+
+/* Light zebra striping */
+table tbody tr:nth-child(even) {
+  background-color: #f5f8fc;
+}
+
+/* First column emphasis */
+table tbody td:first-child {
+  font-weight: 600;
+  color: #0b3c49;
+}
+
+/* Hover (subtle) */
+table tbody tr:hover {
+  background-color: #eef4ff;
+}
+/* Force all tables to span the same width regardless of container */
+.md-content table,
+.md-content .md-typeset table,
+.md-content .md-typeset .md-typeset table {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  table-layout: fixed !important;
+  display: table !important;
+}
+/* Center first two columns */
+.md-content table th:nth-child(1),
+.md-content table td:nth-child(1),
+.md-content table th:nth-child(2),
+.md-content table td:nth-child(2) {
+  text-align: center !important;
+}
+
+/* Keep description readable */
+.md-content table th:nth-child(3),
+.md-content table td:nth-child(3) {
+  text-align: left !important;
+}
+
+.yesdr-timeline {
+    width: 100%;
+    max-width: 1800px;
+    display: block;
+    margin: auto;
+}
+

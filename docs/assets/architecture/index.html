@@ -1,0 +1,2650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YESDR Full Architecture</title>
+  <style>
+  
+body {
+  background: linear-gradient(180deg, #f8fafc, #eef2ff);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+/* SVG container like a card */
+#mySvg {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08),
+    0 2px 6px rgba(0,0,0,0.05);
+  margin: 12px auto;
+  padding: 8px;
+}
+
+.block {
+  fill: transparent; /* show box without color */
+  stroke: #333;
+  stroke-width: 2;
+}
+
+.highlight {
+  animation: fadeInGreen 2s forwards;
+  animation-delay: 0s; /* you can adjust per box */
+}
+
+    .blink {
+      animation: fadeIn 1s forwards, pulse 2s infinite;
+    }
+    .line {
+      stroke: #666;
+      stroke-width: 2;
+      opacity: 0;
+      animation: drawLine 1s forwards;
+    }
+    .bus {
+      stroke: #000;
+      stroke-width: 2;
+    }
+    text {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes pulse {
+      0%,100% { stroke-width: 2; }
+      50% { stroke-width: 6; }
+    }
+    @keyframes drawLine {
+      to { opacity: 1; }
+    }
+@keyframes fadeInGreen {
+  0% { fill: transparent; }
+  100% { fill: #a3e4a3; }
+}
+
+    .labelPath {
+      font-size: 12px;
+      opacity: 1;
+    }
+
+    .coreBox {
+      fill: none;
+      stroke: #2c3e50;
+      stroke-width: .5;
+      stroke-dasharray: 10 5;
+    }
+
+/* Opacity control: 4s visible, 10s invisible */
+@keyframes fadeInOut {
+  0%   { opacity: 0; }
+  2%   { opacity: 1; }   /* Fade in quickly */
+  28%  { opacity: 1; }   /* Stay visible */
+  30%  { opacity: 0; }   /* Fade out */
+  100% { opacity: 0; }   /* Remain invisible for rest of cycle */
+}
+
+/* New keyframe for moving dash effect */
+@keyframes neonFlow {
+  0%   { stroke-dashoffset: 0; opacity: 0.2; }
+  50%  { opacity: 1; }
+  100% { stroke-dashoffset: -40; opacity: 0.2; }
+}
+
+@keyframes blinkArrow {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fillOn-yss {
+  0%     { fill: white; }
+  0.01%  { fill: lightgreen; }
+  50%    { fill: lightgreen; }   /* Ends at 8s */
+  50.01% { fill: white; }
+  100%   { fill: white; }
+}
+
+@keyframes fillOn-yaif {
+  0%      { fill: white; }
+  0.01%   { fill: lightgreen; }
+  43.75%  { fill: lightgreen; }  /* Ends at 7s */
+  43.76%  { fill: white; }
+  100%    { fill: white; }
+}
+
+@keyframes fillOn-yap {
+  0%      { fill: white; }
+  0.01%   { fill: lightgreen; }
+  37.5%   { fill: lightgreen; }  /* Ends at 6s */
+  37.51%  { fill: white; }
+  100%    { fill: white; }
+}
+
+/* Each box will use this with different delay */
+.fill-yap {
+  animation: fillOn-yap 14s linear infinite;
+  animation-delay: 66s;
+}
+
+.fill-yaif {
+  animation: fillOn-yaif 14s linear infinite;
+  animation-delay: 65s;
+}
+
+.fill-yss {
+  animation: fillOn-yss 14s linear infinite;
+  animation-delay: 64s;
+}
+
+@keyframes flashGreen {
+  0%   { fill: white; }
+  50%  { fill: lightgreen; }
+  100% { fill: white; }
+}
+
+
+@keyframes flashGreenSegment {
+  0%    { fill: lightgreen; }  /* Green ON at slot start */
+  4.17% { fill: white; }       /* Off after 1s */
+  100%  { fill: white; }
+}
+
+/* Animations per block */
+/* ==== ybs ==== */
+.flash-ynas {
+  animation:
+    flashGreen 1s linear 1 112s,
+    flashGreen 1s linear 1 127s,
+    flashGreen 1s linear 1 162s,
+    flashGreen 1s linear 1 177s,    /* Sec Mode Cmd */
+    flashGreen 1s linear 1 186.5s,  /* Sec Mode Comp */
+    flashGreen 1s linear 1 187s,    /* Reg Accept (Shifted) */
+    flashGreen 1s linear 1 196.5s,  /* PDU Req (Shifted) */
+    flashGreen 1s linear 1 217s,    /* PDU Accept (Shifted) */
+    flashGreen 1s linear 1 121.5s,
+    flashGreen 1s linear 1 126.5s,
+    flashGreen 1s linear 1 136.5s,
+    flashGreen 1s linear 1 141.5s,
+    flashGreen 1s linear 1 171.5s;
+}
+
+.flash-ysdap {
+  animation: flashGreenSegment 6s linear infinite calc(232s + 1s);
+}
+
+.flash-ypdcp {
+  animation:
+    flashGreen 1s linear 1 112.5s,
+    flashGreen 1s linear 1 127.5s,
+    flashGreen 1s linear 1 162.5s,
+    flashGreen 1s linear 1 177.5s,
+    flashGreen 1s linear 1 217.5s,
+    flashGreen 1s linear 1 121s,
+    flashGreen 1s linear 1 126s,
+    flashGreen 1s linear 1 136s,
+    flashGreen 1s linear 1 141s,
+    flashGreen 1s linear 1 171s,
+    flashGreen 1s linear 1 186s,
+    flashGreenSegment 6s linear infinite calc(232s + 1.5s);
+}
+
+.flash-yrlc {
+  animation:
+    flashGreen 1s linear 1 113s,
+    flashGreen 1s linear 1 128s,
+    flashGreen 1s linear 1 163s,
+    flashGreen 1s linear 1 178s,
+    flashGreen 1s linear 1 218s,
+    flashGreen 1s linear 1 120.5s,
+    flashGreen 1s linear 1 125.5s,
+    flashGreen 1s linear 1 135.5s,
+    flashGreen 1s linear 1 140.5s,
+    flashGreen 1s linear 1 170.5s,
+    flashGreen 1s linear 1 185.5s,
+    flashGreenSegment 6s linear infinite calc(232s + 2s);
+}
+
+.flash-ymac {
+  animation:
+    flashGreen 1s linear 1 113.5s,
+    flashGreen 1s linear 1 128.5s,
+    flashGreen 1s linear 1 163.5s,
+    flashGreen 1s linear 1 178.5s,
+    flashGreen 1s linear 1 218.5s,
+    flashGreen 1s linear 1 120s,
+    flashGreen 1s linear 1 125s,
+    flashGreen 1s linear 1 135s,
+    flashGreen 1s linear 1 140s,
+    flashGreen 1s linear 1 170s,
+    flashGreen 1s linear 1 185s,
+    flashGreenSegment 6s linear infinite calc(232s + 2.5s);
+}
+
+.flash-yphy {
+  animation:
+    flashGreen 1s linear 1 114s,
+    flashGreen 1s linear 1 129s,
+    flashGreen 1s linear 1 164s,
+    flashGreen 1s linear 1 179s,
+    flashGreen 1s linear 1 219s,
+    flashGreen 1s linear 1 119.5s,
+    flashGreen 1s linear 1 124.5s,
+    flashGreen 1s linear 1 134.5s,
+    flashGreen 1s linear 1 139.5s,
+    flashGreen 1s linear 1 169.5s,
+    flashGreen 1s linear 1 184.5s,
+    flashGreenSegment 6s linear infinite calc(232s + 3s);
+}
+
+/* ==== YUE ==== */
+.flash-yphy-ue {
+  animation:
+    flashGreen 1s linear 1 114.5s,
+    flashGreen 1s linear 1 129.5s,
+    flashGreen 1s linear 1 164.5s,
+    flashGreen 1s linear 1 179.5s,
+    flashGreen 1s linear 1 219.5s,
+    flashGreen 1s linear 1 119s,
+    flashGreen 1s linear 1 124s,
+    flashGreen 1s linear 1 134s,
+    flashGreen 1s linear 1 139s,
+    flashGreen 1s linear 1 169s,
+    flashGreen 1s linear 1 184s,
+    flashGreenSegment 6s linear infinite calc(232s + 3.5s);
+}
+
+.flash-ymac-ue {
+  animation:
+    flashGreen 1s linear 1 115s,
+    flashGreen 1s linear 1 130s,
+    flashGreen 1s linear 1 165s,
+    flashGreen 1s linear 1 180s,
+    flashGreen 1s linear 1 220s,
+    flashGreen 1s linear 1 118.5s,
+    flashGreen 1s linear 1 123.5s,
+    flashGreen 1s linear 1 133.5s,
+    flashGreen 1s linear 1 138.5s,
+    flashGreen 1s linear 1 168.5s,
+    flashGreen 1s linear 1 183.5s,
+    flashGreenSegment 6s linear infinite calc(232s + 4.5s);
+}
+
+.flash-yrlc-ue {
+  animation:
+    flashGreen 1s linear 1 115.5s,
+    flashGreen 1s linear 1 130.5s,
+    flashGreen 1s linear 1 165.5s,
+    flashGreen 1s linear 1 180.5s,
+    flashGreen 1s linear 1 220.5s,
+    flashGreen 1s linear 1 118s,
+    flashGreen 1s linear 1 123s,
+    flashGreen 1s linear 1 133s,
+    flashGreen 1s linear 1 138s,
+    flashGreen 1s linear 1 168s,
+    flashGreen 1s linear 1 183s,
+    flashGreenSegment 6s linear infinite calc(232s + 5s);
+}
+
+.flash-ypdcp-ue {
+  animation:
+    flashGreen 1s linear 1 116s,
+    flashGreen 1s linear 1 131s,
+    flashGreen 1s linear 1 166s,
+    flashGreen 1s linear 1 181s,
+    flashGreen 1s linear 1 221s,
+    flashGreen 1s linear 1 117.5s,
+    flashGreen 1s linear 1 122.5s,
+    flashGreen 1s linear 1 132.5s,
+    flashGreen 1s linear 1 137.5s,
+    flashGreen 1s linear 1 167.5s,
+    flashGreen 1s linear 1 182.5s,
+    flashGreenSegment 6s linear infinite calc(232s + 5.5s);
+}
+
+.flash-ysdap-ue {
+  animation:  flashGreenSegment 6s linear infinite calc(232s + 6s);
+}
+
+.flash-ynas-ue {
+  animation:
+    flashGreen 1s linear 1 116.5s,
+    flashGreen 1s linear 1 131.5s,
+    flashGreen 1s linear 1 166.5s,
+    flashGreen 1s linear 1 181.5s,  /* Sec Mode Cmd */
+    flashGreen 1s linear 1 182s,    /* Sec Mode Comp */
+    flashGreen 1s linear 1 191.5s,  /* Reg Accept (Shifted) */
+    flashGreen 1s linear 1 192s,    /* PDU Req (Shifted) */
+    flashGreen 1s linear 1 221.5s,  /* PDU Accept (Shifted) */
+    flashGreen 1s linear 1 117s,
+    flashGreen 1s linear 1 122s,
+    flashGreen 1s linear 1 132s,
+    flashGreen 1s linear 1 137s,
+    flashGreen 1s linear 1 167s;
+}
+
+/* Playback Control Panel Styles */
+.playback-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-60%) translateY(-100px);  /* more upwards */
+  z-index: 2000;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px 15px;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: sans-serif;
+  border: 1px solid rgba(0,0,0,0.08);
+  width: 400px;
+}
+
+
+.playback-controls .row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+}
+
+.playback-controls button {
+  font-weight: 600;
+  padding: 5px 10px;
+  border: 1px solid #999;
+  background: linear-gradient(180deg, #ffffff, #f1f5f9);
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 40px;
+}
+
+.playback-controls button:hover {
+  background: #e0e7ff;
+}
+
+.speed-row {
+  font-size: 12px;
+}
+
+.speed-row span {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+/* YouTube Style Progress Slider */
+#progressSlider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #ddd;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+#progressSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #ff0000;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+#timeDisplay {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  font-family: monospace;
+}
+
+  </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+<!-- ===== Header (INLINE ONLY) ===== -->
+<div
+  style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    height: 64px;
+    padding: 6px 16px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    overflow: hidden;
+  "
+>
+
+</div>
+
+<!-- Top-left: Zoom X -->
+<div class="zoom-x-control">
+  <div class="control-group">
+    <label for="widthSlider">Width</label>
+    <input type="range" id="widthSlider" min="100" max="3000" value="800" step="10">
+  </div>
+</div>
+
+<!-- Bottom-right: Zoom Y -->
+<div class="zoom-y-control">
+  <div class="control-group">
+    <label for="heightSlider">height</label>
+    <input type="range" id="heightSlider" min="100" max="3000" value="600" step="10" orient="vertical">
+  </div>
+</div>
+
+<!-- New Playback Controls -->
+<div class="playback-controls">
+  <!-- Progress Slider Row -->
+  <div class="row" style="justify-content: flex-start; margin-bottom: -6px; padding: 0 4px;">
+    <span id="timeDisplay">00:00 / 04:20</span>
+  </div>
+  <div class="row">
+    <input type="range" id="progressSlider" min="0" max="260000" value="0">
+  </div>
+  <div class="row">
+    <button onclick="seek(-10000)">⏪ -10s</button>
+    <button onclick="seek(-5000)">-5s</button>
+    <button id="playPauseBtn" onclick="togglePlayback()">⏸️ Pause</button>
+    <button onclick="seek(5000)">+5s</button>
+    <button onclick="seek(10000)">+10s ⏩</button>
+  </div>
+  <div class="row speed-row">
+    <span>Speed:</span>
+    <button onclick="setSpeed(0.5)">0.5x</button>
+    <button onclick="setSpeed(1)">1x</button>
+    <button onclick="setSpeed(2)">2x</button>
+    <button onclick="setSpeed(5)">5x</button>
+  </div>
+  <div class="row">
+     <button onclick="restartAnimation()">🔁 Restart Sequence</button>
+  </div>
+</div>
+
+  <svg id="mySvg" viewBox="0 0 800 600" preserveAspectRatio="none">
+  <rect width="100%" height="100%" fill="transparent"/>
+    
+    <rect x="80" y="30" width="900" height="120" class="coreBox" />
+    <text x="85" y="45" font-size="14" >YESDR Core Network</text>
+
+    <text x="295" y="230" class="labelPath" transform="rotate(270,295,230)">YACP</text>
+    <text x="565" y="220" class="labelPath" transform="rotate(400,565,220)">PFCP</text>
+    <text x="475" y="310" class="labelPath" transform="rotate(0,475,310)">GTP-U</text>
+    <text x="200" y="240" class="labelPath" transform="rotate(-45,190,260)">YSMP</text>
+
+  <script>
+  /* --- grab DOM elements --- */
+  const svg         = document.getElementById('mySvg');
+  const widthSlider = document.getElementById('widthSlider');
+  const heightSlider= document.getElementById('heightSlider');
+  const progressSlider = document.getElementById('progressSlider');
+  const timeDisplay = document.getElementById('timeDisplay');
+
+  /* --- helper that (re)initialises sliders to current viewport --- */
+  function initSlidersToScreen() {
+    const screenWidth  = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    widthSlider.min  = screenWidth;
+    heightSlider.min = screenHeight;
+
+    widthSlider.value  = screenWidth;
+    heightSlider.value = screenHeight;
+
+    widthSlider.max  = 3000;
+    heightSlider.max = 3000;
+
+    updateZoom();
+  }
+
+  /* --- update the viewBox whenever either slider moves --- */
+  function updateZoom() {
+    const zoomW = +widthSlider.value;
+    const zoomH = +heightSlider.value;
+
+    svg.setAttribute('viewBox', `0 0 ${zoomW} ${zoomH}`);
+  }
+
+  /* --- event wiring --- */
+  widthSlider.addEventListener('input', updateZoom);
+  heightSlider.addEventListener('input', updateZoom);
+
+  window.addEventListener('resize', initSlidersToScreen);
+
+  /* --- run once on load --- */
+  initSlidersToScreen();
+  
+  let currentPlaybackRate = 1;
+  let isDraggingSlider = false;
+
+  function getAllAnimations() {
+    return document.getAnimations();
+  }
+
+  function restartAnimation() {
+    const svg = document.querySelector('svg');
+    const clone = svg.cloneNode(true);
+    svg.parentNode.replaceChild(clone, svg);
+    
+    progressSlider.value = 0;
+    timeDisplay.innerText = "00:00 / 04:20";
+    
+    // Ensure play button is reset
+    const btn = document.getElementById('playPauseBtn');
+    if(btn) btn.innerText = "⏸️ Pause";
+    
+    // Slight delay to allow animations to re-initialize before applying speed
+    setTimeout(() => {
+      setSpeed(currentPlaybackRate);
+    }, 50);
+  }
+ 
+  function togglePlayback() {
+    const btn = document.getElementById('playPauseBtn');
+    const anims = getAllAnimations();
+    if (anims.length === 0) return;
+
+    // Check state of first one to decide toggle direction
+    const isPaused = anims.some(a => a.playState === 'paused');
+
+    if (isPaused) {
+      anims.forEach(a => a.play());
+      btn.innerText = "⏸️ Pause";
+    } else {
+      anims.forEach(a => a.pause());
+      btn.innerText = "▶️ Play";
+    }
+  }
+
+  function seek(deltaMs) {
+    const anims = getAllAnimations();
+    anims.forEach(a => {
+      if (a.currentTime === null) a.currentTime = 0;
+      a.currentTime += deltaMs;
+    });
+  }
+
+  function setSpeed(rate) {
+    currentPlaybackRate = rate;
+    const anims = getAllAnimations();
+    anims.forEach(a => a.playbackRate = rate);
+  }
+
+  function formatTime(ms) {
+    const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  }
+
+  /* --- Progress Slider Integration --- */
+  progressSlider.addEventListener('input', () => {
+    isDraggingSlider = true;
+    const val = parseFloat(progressSlider.value);
+    const anims = getAllAnimations();
+    anims.forEach(a => a.currentTime = val);
+    timeDisplay.innerText = formatTime(val) + " / 04:20";
+  });
+
+  progressSlider.addEventListener('change', () => {
+    isDraggingSlider = false;
+  });
+
+  // Keep slider in sync with animation time
+  setInterval(() => {
+    if (!isDraggingSlider) {
+      const anims = getAllAnimations();
+      if (anims.length > 0) {
+        // We find the animation with the largest currentTime among all candidates 
+        // to ensure the timer doesn't stop when specific early animations finish.
+        let maxCurrentTime = 0;
+        anims.forEach(a => {
+          if (a.currentTime !== null && a.currentTime > maxCurrentTime) {
+            maxCurrentTime = a.currentTime;
+          }
+        });
+        
+        // Final sequence duration is 4:20 (260,000ms)
+        const displayTime = Math.min(maxCurrentTime, 260000);
+        progressSlider.value = displayTime;
+        timeDisplay.innerText = formatTime(displayTime) + " / 04:20";
+      }
+    }
+  }, 100);
+   
+  </script>
+
+<g onclick="openPDF('../YesDR_TS_02_009_YNRF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 0.5s;" x="350" y="50" width="100" height="25" />
+  <text x="400" y="67" text-anchor="middle">YNRF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_001_YAMF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" x="250" y="100" width="100" height="25" />
+  <text x="300" y="117" text-anchor="middle">YAMF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_007_YRMF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 8.5s;" x="550" y="100" width="100" height="25" />
+  <text x="600" y="117" text-anchor="middle">YRMF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_008_YCRF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 13.5s;" x="500" y="50" width="100" height="25" />
+  <text x="550" y="67" text-anchor="middle">YCRF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_010_YNEF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 18.5s;" x="850" y="100" width="100" height="25" />
+  <text x="900" y="117" text-anchor="middle">YNEF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_005_YAUSF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 23.5s;" x="100" y="100" width="100" height="25" />
+  <text x="150" y="117" text-anchor="middle">YAUSF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_006_YNSSF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 28.5s;" x="200" y="50" width="100" height="25" />
+  <text x="250" y="67" text-anchor="middle">YNSSF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_004_YUDM.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 33.5s;" x="700" y="100" width="100" height="25" />
+  <text x="750" y="117" text-anchor="middle">YUDM</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_006_YPCF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 38.5s;" x="650" y="50" width="100" height="25" />
+  <text x="700" y="67" text-anchor="middle">YPCF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_002_YSMF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 43.5s;" x="400" y="100" width="100" height="25" />
+  <text x="450" y="117" text-anchor="middle">YSMF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_003_YUPF.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 48.5s;" x="600" y="300" width="100" height="30" rx="5" />
+  <text x="650" y="320" text-anchor="middle">YUPF</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_010_YSM.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 50.5s;" x="80" y="300" width="100" height="30" rx="5" />
+  <text x="130" y="320" text-anchor="middle">YSM</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_020_YBS.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 79.5s;" x="250" y="300" width="100" height="30" rx="5" />
+  <text x="300" y="320" text-anchor="middle">YBS</text>
+</g>
+
+<g onclick="openPDF('../YesDR_TS_02_021_YUE.pdf')" style="cursor:pointer">
+  <rect class="block highlight" style="animation-delay: 109.5s;" x="250" y="580" width="100" height="30" rx="5" />
+  <text x="300" y="600" text-anchor="middle">YUE</text>
+</g>
+
+<g onclick="openPDF('../YesDR_01_0011.pdf')" style="cursor:pointer">
+  <circle cx="860" cy="315" r="20" class="block" />
+  <text x="860" y="320" text-anchor="middle">DN</text>
+</g>
+
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------->
+
+    <text x="1000"  y="60"   font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 0s;" >Start YNRF</text>
+    <text x="1000"  y="80"   font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 3s;" >Start YAMF</text>
+    <text x="1000"  y="100"   font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 5s;" >YAMF is registering in YNRF</text>
+    <text x="1000"  y="120"   font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 8s;" >Start YRMF</text>
+    <text x="1000"  y="140"   font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 10s;" >YRMF is registering in YNRF</text>
+    <text x="1000"  y="160"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 13s;" >Start YCRF</text>
+    <text x="1000"  y="180"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 15s;" >YCRF is registering in YNRF</text>
+    <text x="1000"  y="200"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 18s;" >Start YNEF</text>
+    <text x="1000"  y="220"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 20s;" >YNEF is registering in YNRF</text>
+    <text x="1000"  y="240"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 23s;" >Start YAUSF</text>
+    <text x="1000"  y="260"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 25s;" >YAUSF is registering in YNRF</text>
+    <text x="1000"  y="280"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 28s;" >Start YNSSF</text>
+    <text x="1000"  y="300"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 30s;" >YNSSF is registering in YNRF</text>
+    <text x="1000"  y="320"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 33s;" >Start YUDM</text>
+    <text x="1000"  y="340"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 35s;" >YUDM is registering in YNRF</text>
+    <text x="1000"  y="360"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 38s;" >Start YPCF</text>
+    <text x="1000"  y="380"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 40s;" >YPCF is registering in YNRF</text>
+    <text x="1000"  y="400"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 43s;" >Start YSMF</text>
+    <text x="1000"  y="420"  font-size="14" fill="darkgreen" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 45s;" >YSMF is registering in YNRF</text>
+    <text x="1000"  y="440"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 48s;" >Start YUPF</text>
+    <text x="1000"  y="460"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 50s;" >Start YSM</text>
+    <text x="1000"  y="480"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 79s;" >Start YBS</text>
+    <text x="1000"  y="500"  font-size="14" fill="green"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 109s;">Start YUE</text>
+    
+    <!--------------------------------------------------------------------------------------------------------------------------------------------------->
+    
+    <text x="1200"  y="60"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 53s;"  >1. YSM sends Setup Request to YAMF.</text>
+    <text x="1200"  y="80"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 58s;"  >2. YAMF sends Setup Response to YSM.</text>
+    <text x="1200"  y="100"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 67s;"  >3. YSM sends Spectrum Report to YCRF.</text>
+    <text x="1200"  y="120"  font-size="14" fill="magenta"    style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 72s;"  >4. YCRF sends Spectrum availability to YRMF.</text>
+    <text x="1200"  y="140"  font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 84s;"  >5. YBS sends Setup Request to YAMF.</text>
+    <text x="1200"  y="160" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 89s;"  >6. YAMF sends Setup Response to YBS.</text>
+    <text x="1200"  y="180" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 94s;"  >7. YBS sends Radio Parameter Request to YRMF.</text>
+    <text x="1200"  y="200" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 99s;"  >8. YRMF sends Radio Parameter Assignment to YBS.</text>
+    <text x="1200"  y="220" font-size="14" fill="red"        style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 105s;" >9. YRMF sends allocated spectrum to YBS.</text>
+    <text x="1200"  y="240" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 112s;" >10. YUE finds and synchronizes with the cell.</text>
+    <text x="1200"  y="260" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 117s;" >11. Connection-based or dedicated RACH.</text>
+    <text x="1200"  y="280" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 122s;" >12. Initiates RRC setup.</text>
+    <text x="1200"  y="300" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 127s;" >13. Sends parameters for RRC.</text>
+    <text x="1200"  y="320" font-size="14" fill="purple"     style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 132s;" >14. Completes RRC; starts YNAS.</text>
+    <text x="1200"  y="340" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 137s;" >15. YUE Sends Registration Request to YAMF.</text>
+    <text x="1200"  y="360" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 142s;" >16. YAMF Forwards YNAS Authentication Request.</text>
+    <text x="1200"  y="380" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 147s;" >17. YAUSF Requests Authentication Vector to YUDM.</text>
+    <text x="1200"  y="400" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 152s;" >18. YUDM Responds Authentication Vector to YAUSF.</text>
+    <text x="1200"  y="420" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 157s;" >19. YAUSF forwards the Authentication Challenge to the YAMF.</text>
+    <text x="1200"  y="440" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 162s;" >20. YAMF sends the authentication challenge to the YUE.</text>
+    <text x="1200"  y="460" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 167s;" >21. YUE responds with RES. YAMF forwards it to YAUSF.</text>
+    <text x="1200"  y="480" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 172s;" >22. YAUSF compares RES with XRES* If RES matches, then send authentication successful to YAMF.</text>
+    
+    <!-- New Security Mode Steps -->
+    <text x="1200"  y="500" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 177s;">23. YAMF sends Security Mode Command to YUE.</text>
+    <text x="1200"  y="520" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 182s;">24. YUE sends Security Mode Complete to YAMF.</text>
+
+    <!-- Shifted Steps (+10s) -->
+    <text x="1200"  y="540" font-size="14" fill="darkblue"   style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 187s;">25. YAMF sends Registration Accept to YUE.</text>
+    <text x="1200"  y="560" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 192s;" >26. YUE sends PDU Session Establishment Request to YAMF.</text>
+    <text x="1200"  y="580" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 197s;" >27. YAMF NSMF PDU Session Create SM Context to YSMF.</text>
+    <text x="1200"  y="600" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 202s;" >28. YSMF sends Npcf_SMPolicyControl_Create to YPCF.</text>
+    <text x="1200"  y="620" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 207s;" >29. YPCF sends Policy Decision to YSMF.</text>
+    <text x="1200"  y="640" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 212s;" >30. YSMF N4 Session Establishment (PFCP) to YUPF.</text>
+    <text x="1200"  y="660" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 217s;" >31. YUPF Session Setup Response to YSMF.</text>
+    <text x="1200"  y="680" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 222s;" >32. YSMF PDU Session Accept to YAMF.</text>
+    <text x="1200"  y="700" font-size="14" fill="darkorange" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 227s;" >33. YAMF PDU Session Accept (YNAS) to YUE.</text>
+    <text x="1200"  y="720" font-size="14" fill="navy"       style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 232s;" >34. DN via YUPF, YBS sends Downlink Data Transfer to YUE.</text>
+    
+    
+    <!--------------------------------------------------------------------------------------------------------------------------------------------------->
+    
+    <text x="820"  y="290" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 236s;">Message: 'A'(1 byte)</text>
+    <text x="730"  y="340" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 236.5s;">UDP: +~8 bytes</text>
+    <text x="734"  y="355" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 237s;">IP: +~20 bytes</text>
+    <text x="720"  y="365" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 237.5s;">--------------------------</text>
+    <text x="730"  y="375" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 237.5s;">Total: ~29 bytes</text>
+    <text x="485"  y="340" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 238s;">GTP-U: +~8 bytes</text>
+    <text x="485"  y="350" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 238.5s;">--------------------------</text>
+    <text x="495"  y="360" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 238.5s;">Total: ~37 bytes</text>
+    <text x="490"  y="405" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 239s;">+~2 bytes</text>
+    <text x="490"  y="425" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 239.5s;">+~4 bytes</text>
+    <text x="490"  y="445" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 240s;">+~2 bytes</text>
+    <text x="490"  y="465" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 240.5s;">+~4 bytes</text>
+    <text x="490"  y="485" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 241s;">+~45 bytes extra</text>
+    <text x="490"  y="495" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 241.5s;">---------------------------</text>
+    <text x="490"  y="505" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 241.5s;">Total: ~94 bytes (~ 752 bits)</text>
+    <text x="440"  y="776" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 241.5s;">Total: ~94 bytes (~ 752 bits)</text>
+    <text x="440"  y="756" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 242s;">-~45 bytes extra</text>
+    <text x="440"  y="736" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 242.5s;">-~4 bytes</text>
+    <text x="440"  y="716" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 243s;">-~2 bytes</text>
+    <text x="440"  y="696" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 243.5s;">-~4 bytes</text>
+    <text x="440"  y="676" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 244s;">-~2 bytes</text>
+    <text x="427"  y="666" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 244.5s;">-----------------------------</text>
+    <text x="440"  y="656" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 244.5s;">Total: ~37 bytes</text>
+    <text x="410"  y="636" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 245s;">IP/UDP: -~36 bytes</text>
+    <text x="390"  y="616" font-size="12" fill="navy" style="opacity: 0; animation: fadeIn 2s forwards; animation-delay: 245.5s;">App Layer: Receives 'A' = 0x41</text>
+
+<style>
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: white; /* Set body background */
+    font-family: sans-serif;
+  }
+
+  html, body {
+  height: 100%;
+  width: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow: auto;
+  background: white; /* Ensure white everywhere */
+}
+
+  #mySvg {
+    display: block;
+    width: auto;
+    height: auto;
+    background-color: white; /* SVG background */
+  }
+
+  .zoom-x-control {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+.zoom-y-control {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+  .control-group {
+  font-size: 10px;     /* Smaller label text */
+  gap: 2px;
+}
+
+.value-label {
+  font-size: 10px;     /* Smaller number label */
+}
+
+  #widthSlider {
+  width: 100px;        /* Smaller track length */
+  height: 4px;         /* Thinner track */
+}
+
+  #heightSlider {
+  height: 100px;             /* Shorter vertical slider */
+  width: 6px;                /* Thinner width */
+  writing-mode: vertical-lr;
+  -webkit-appearance: slider-vertical;
+}
+
+  input[orient="vertical"] {
+    appearance: auto;
+  }
+
+.timeline-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10000;
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  font-family: sans-serif;
+}
+
+.timeline-controls button {
+  font-size: 14px;
+  padding: 5px 10px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.timeline-controls button:hover {
+  background-color: #e8e8e8;
+}
+
+/* YAMF -> YNRF */
+.YAMF_YNRF {
+  opacity: 0;
+  stroke: darkcyan;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 5.5s,
+    moveDots 1s linear infinite,
+    hidePath 0s 7.5s forwards;
+}
+
+/* YRMF -> YNRF */
+.YRMF_YNRF {
+  opacity: 0;
+  stroke: darkcyan;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 10.5s,
+    moveDots 1s linear infinite,
+    hidePath 0s 12.5s forwards;
+}
+
+/* YCRF -> YNRF */
+.YCRF_YNRF {
+  opacity: 0;
+  stroke: darkcyan;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 15.5s,
+    moveDots 1s linear infinite,
+    hidePath 0s 17.5s forwards;
+}
+
+/* YNEF -> YNRF */
+.YNEF_YNRF {
+  opacity: 0;
+  stroke: darkcyan;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 20.5s,
+    moveDots 1s linear infinite,
+    hidePath 0s 22.5s forwards;
+}
+
+/* YAUSF -> YNRF */
+.YAUSF_YNRF {
+  opacity: 0;
+  stroke: darkcyan;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 25.5s,
+    moveDots 1s linear infinite,
+    hidePath 0s 27.5s forwards;
+}
+
+/* YNSSF -> YNRF */
+.YNSSF_YNRF {
+  opacity: 0;
+  stroke: darkcyan;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 30.5s,
+    moveDots 1s linear infinite,
+    hidePath 0s 32.5s forwards;
+}
+
+/* YUDM -> YNRF */
+.YUDM_YNRF {
+  opacity: 0;
+  stroke: darkcyan;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 35.5s,
+    moveDots 1s linear infinite,
+    hidePath 0s 37.5s forwards;
+}
+
+/* YPCF -> YNRF */
+.YPCF_YNRF {
+  opacity: 0;
+  stroke: darkcyan;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 40.5s,
+    moveDots 1s linear infinite,
+    hidePath 0s 42.5s forwards;
+}
+
+/* YSMF -> YNRF */
+.YSMF_YNRF {
+  opacity: 0;
+  stroke: darkcyan;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 45.5s,
+    moveDots 1s linear infinite,
+    hidePath 0s 47.5s forwards;
+}
+
+/* ------------------------ */
+
+.ysmSetupReq {
+  opacity: 0;
+  stroke: magenta;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 53s,
+    moveDots 1s linear infinite,
+    hidePath 0s 57s forwards;
+}
+
+.ysmSetupRes {
+  opacity: 0;
+  stroke: magenta;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 58s,
+    moveDots 1s linear infinite,
+    hidePath 0s 62s forwards;
+}
+
+.ysmReportPath {
+  stroke: magenta;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  opacity: 0;
+  marker-end: url(#arrowed);
+  animation: 
+    fadeInOut 14s linear infinite,
+    dashMove 1s linear infinite;
+  animation-delay: 
+    67s, /* for fadeInOut */
+    67s; /* for dashMove */
+}
+
+.ycrfToyrmf {
+  stroke: magenta;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  opacity: 0;
+  marker-end: url(#arrowed);
+  animation: 
+    fadeInOut 14s linear infinite,
+    dashMove 1s linear infinite;
+  animation-delay: 
+    72s, /* for fadeInOut */
+    72s; /* for dashMove */
+}
+
+.ybsSetupReq {
+  opacity: 0;
+  stroke: red;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 84s,
+    moveDots 1s linear infinite,
+    hidePath 0s 88s forwards;
+}
+
+.ybsSetupRes {
+  opacity: 0;
+  stroke: red;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 89s,
+    moveDots 1s linear infinite,
+    hidePath 0s 93s forwards;
+}
+
+/* Radio Parameter Request (YBS → YAMF → YRMF) */
+.radioReqPath {
+  opacity: 0;
+  stroke: red;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 94s,
+    moveDots 1s linear infinite,
+    hidePath 0s 98s forwards;
+}
+
+/* Radio Parameter (YRMF → YBS) */
+.radioResPath {
+  opacity: 0;
+  stroke: red;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 99s,
+    moveDots 1s linear infinite,
+    hidePath 0s 103s forwards;
+}
+.yrmfToYbs {
+  stroke: magenta;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  opacity: 0;
+  marker-end: url(#arrowed);
+  animation: 
+    fadeInOut 14s linear infinite,
+    dashMove 1s linear infinite;
+  animation-delay: 
+    105s, /* for fadeInOut */
+    105s; /* for dashMove */
+}
+
+.SSB {
+  opacity: 0;
+  stroke: purple;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 112s,
+    moveDots 1s linear infinite,
+    hidePath 0s 116s forwards;
+}
+
+.RanAccPro {
+  opacity: 0;
+  stroke: purple;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 117s,
+    moveDots 1s linear infinite,
+    hidePath 0s 121s forwards;
+}
+
+.RRCReq {
+  opacity: 0;
+  stroke: purple;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 122s,
+    moveDots 1s linear infinite,
+    hidePath 0s 126s forwards;
+}
+
+.RRCSetup {
+  opacity: 0;
+  stroke: purple;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 127s,
+    moveDots 1s linear infinite,
+    hidePath 0s 131s forwards;
+}
+
+.RRCSetupComp {
+  opacity: 0;
+  stroke: purple;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 132s,
+    moveDots 1s linear infinite,
+    hidePath 0s 136s forwards;
+}
+
+/* Registration Request */
+.regPath {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowred);
+  animation:
+    fadeIn 0.5s forwards 137s,
+    moveDots 1s linear infinite,
+    hidePath 0s 141s forwards;
+}
+
+/* Authentication Request */
+.authReqPath {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowblue);
+  animation:
+    fadeIn 0.5s forwards 142s,
+    moveDots 1s linear infinite,
+    hidePath 0s 146s forwards;
+}  
+
+.authVect {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowblue);
+  animation:
+    fadeIn 0.5s forwards 147s,
+    moveDots 1s linear infinite,
+    hidePath 0s 151s forwards;
+}
+
+.authVectRes {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowblue);
+  animation:
+    fadeIn 0.5s forwards 152s,
+    moveDots 1s linear infinite,
+    hidePath 0s 156s forwards;
+}
+
+.authChal {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowblue);
+  animation:
+    fadeIn 0.5s forwards 157s,
+    moveDots 1s linear infinite,
+    hidePath 0s 161s forwards;
+}
+
+.authChal_YUE {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowblue);
+  animation:
+    fadeIn 0.5s forwards 162s,
+    moveDots 1s linear infinite,
+    hidePath 0s 166s forwards;
+}
+
+.YUE_RES {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowblue);
+  animation:
+    fadeIn 0.5s forwards 167s,
+    moveDots 1s linear infinite,
+    hidePath 0s 171s forwards;
+}
+
+.YAUSFcompRES {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowblue);
+  animation:
+    fadeIn 0.5s forwards 172s,
+    moveDots 1s linear infinite,
+    hidePath 0s 176s forwards;
+}
+
+/* New Security Mode Paths */
+.secModeCmdPath {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowblue);
+  animation:
+    fadeIn 0.5s forwards 177s,
+    moveDots 1s linear infinite,
+    hidePath 0s 181s forwards;
+}
+
+.secModeCompPath {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arrowblue);
+  animation:
+    fadeIn 0.5s forwards 182s,
+    moveDots 1s linear infinite,
+    hidePath 0s 186s forwards;
+}
+
+/* Registration Accept (Shifted +10s) */
+.accPath {
+  opacity: 0;
+  stroke: darkblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 187s,
+    moveDots 1s linear infinite,
+    hidePath 0s 191s forwards;
+}
+
+/* PDU Session (Shifted +10s) */
+.pduSessEstReq {
+  opacity: 0;
+  stroke: darkorange;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 192s,
+    moveDots 1s linear infinite,
+    hidePath 0s 196s forwards;
+}
+
+.NsmfpduSessCon {
+  opacity: 0;
+  stroke: darkorange;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 197s,
+    moveDots 1s linear infinite,
+    hidePath 0s 201s forwards;
+}
+
+.smPolicyCreate {
+  opacity: 0;
+  stroke: darkorange;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 202s,
+    moveDots 1s linear infinite,
+    hidePath 0s 206s forwards;
+}
+
+.smPolicyDec {
+  opacity: 0;
+  stroke: darkorange;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 207s,
+    moveDots 1s linear infinite,
+    hidePath 0s 211s forwards;
+}
+
+.N4SessEst {
+  opacity: 0;
+  stroke: darkorange;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 212s,
+    moveDots 1s linear infinite,
+    hidePath 0s 216s forwards;
+}
+
+.SesSetupRes {
+  opacity: 0;
+  stroke: darkorange;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 217s,
+    moveDots 1s linear infinite,
+    hidePath 0s 221s forwards;
+}
+
+.PDUSesAcc {
+  opacity: 0;
+  stroke: darkorange;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 222s,
+    moveDots 1s linear infinite,
+    hidePath 0s 226s forwards;
+}
+/*  */
+.PDUSesAccYNAS {
+  opacity: 0;
+  stroke: darkorange;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn 0.5s forwards 227s,
+    moveDots 1s linear infinite,
+    hidePath 0s 231s forwards;
+}
+
+.dlPath {
+  opacity: 0;
+  stroke: navy;
+  stroke-width: 4;
+  stroke-dasharray: 10 5;         /* 10px dash, 5px gap */
+  stroke-dashoffset: 0;
+  fill: none;
+  marker-end: url(#arroworange);
+  animation:
+    fadeIn1 0.5s forwards 232s,     /* fades in at 232s */
+    moveDots 1s linear infinite;  /* starts moving at 232.5s */
+}
+
+/*--dl-------------------------------------------------------------------------------------------------------------*/
+  
+.dl_112,
+.dl_127,
+.dl_162,
+.dl_177, /* Reused for Sec Cmd */
+.dl_187, /* New for Reg Accept */
+.dl_217, /* Shifted PDU Accept */
+.dl_222  /* Shifted Data */
+{
+  stroke-width: 2.5;
+  marker-end: url(#arrow);
+  opacity: 0; /* Start fully invisible */
+}
+
+.dl_112 { stroke: purple;     animation: blinkArrow 1s linear 5s 5 forwards;        animation-delay: 112s; }
+.dl_127 { stroke: purple;     animation: blinkArrow 1s linear 5s 5 forwards;        animation-delay: 127s; }
+.dl_162 { stroke: darkblue;   animation: blinkArrow 1s linear 5s 5 forwards;        animation-delay: 162s; }
+.dl_177 { stroke: darkblue;   animation: blinkArrow 1s linear 5s 5 forwards;        animation-delay: 177s; } /* Sec Cmd */
+.dl_187 { stroke: darkblue;   animation: blinkArrow 1s linear 5s 5 forwards;        animation-delay: 187s; } /* Reg Accept */
+.dl_217 { stroke: darkorange; animation: blinkArrow 1s linear 5s 5 forwards;        animation-delay: 227s; } /* PDU Accept */
+.dl_222 { stroke: navy;       animation: blinkArrow 1s linear 5s infinite forwards; animation-delay: 232s; } /* Data */
+
+.dl_112_txt,
+.dl_127_txt,
+.dl_162_txt,
+.dl_177_txt,
+.dl_187_txt,
+.dl_217_txt {
+  font-family: sans-serif;
+  font-size: 10px;
+  opacity: 0;
+  animation-name: blinkingText1;
+  animation-duration: 1s;
+  animation-iteration-count: 5;
+  animation-timing-function: linear;
+  animation-fill-mode: none;
+}
+
+.dl_112_txt { stroke: purple;     animation-delay: 112s; }
+.dl_127_txt { stroke: purple;     animation-delay: 127s; }
+.dl_162_txt { stroke: darkblue;   animation-delay: 162s; }
+.dl_177_txt { stroke: darkblue;   animation-delay: 177s; }
+.dl_187_txt { stroke: darkblue;   animation-delay: 187s; }
+.dl_217_txt { stroke: darkorange; animation-delay: 227s; }
+
+.dl_222_txt {
+  font-family: sans-serif;
+  font-size: 10px;
+  opacity: 0;
+  stroke: navy;
+  animation-name: blinkArrow;
+  animation-duration: 1s;
+  animation-delay: 232s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: none;
+}
+
+/*--ul------------------------------------------------------------------------------------------------------------------------------*/
+
+.ul_117,
+.ul_122,
+.ul_132,
+.ul_137,
+.ul_167,
+.ul_182, /* Reused for Sec Comp */
+.ul_192  /* New for PDU Req */
+{
+  stroke: red;
+  stroke-width: 2.5;
+  marker-end: url(#arrow);
+  opacity: 0; /* Start fully invisible */
+  animation: blinkArrow 1s linear 5s 5 forwards;
+}
+
+.ul_117 { stroke: purple;     animation-delay: 117s; }
+.ul_122 { stroke: purple;     animation-delay: 122s; }
+.ul_132 { stroke: purple;     animation-delay: 132s; }
+.ul_137 { stroke: darkblue;   animation-delay: 137s; }
+.ul_167 { stroke: darkblue;   animation-delay: 167s; }
+.ul_182 { stroke: darkblue;   animation-delay: 182s; } /* Sec Comp */
+.ul_192 { stroke: darkorange; animation-delay: 192s; } /* PDU Req */
+
+.UL_117_txt,
+.UL_122_txt,
+.UL_132_txt,
+.UL_137_txt,
+.UL_167_txt,
+.UL_182_txt,
+.UL_192_txt {
+  font-family: sans-serif;
+  font-size: 10px;
+  opacity: 0;
+  animation-name: blinkingText1;
+  animation-duration: 1s;
+  animation-iteration-count: 5;
+  animation-timing-function: linear;
+  animation-fill-mode: none;
+}
+
+.UL_117_txt { stroke: purple;     animation-delay: 117s; }
+.UL_122_txt { stroke: purple;     animation-delay: 122s; }
+.UL_132_txt { stroke: purple;     animation-delay: 132s; }
+.UL_137_txt { stroke: darkblue;   animation-delay: 137s; }
+.UL_167_txt { stroke: darkblue;   animation-delay: 167s; }
+.UL_182_txt { stroke: darkblue;   animation-delay: 182s; }
+.UL_192_txt { stroke: darkorange; animation-delay: 192s; }
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+
+@keyframes moveDots {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -15;   /* Total of 10 (dash) + 5 (gap) */
+  }
+}
+
+@keyframes fadeIn1 {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hidePath {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.eventText {
+  font-size: 12px;
+  fill: red;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes blinkingText {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
+.eventText.blink {
+  animation: blinkingText 1s linear infinite;
+}
+
+.YSM {
+  font-size: 12px;
+  fill: magenta;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes blinkingText1 {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes blinkingText3 {
+  0%   { opacity: 0; }
+  1%   { opacity: 1; }
+  28.5% { opacity: 1; }  /* 4s of 14s = ~28.57% */
+  28.6% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes blinkingText2 {
+  0%   { opacity: 0; }
+  25%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; } /* Stay hidden after last blink */
+}
+
+.YSM.blink {
+  animation: blinkingText 1s linear infinite;
+}
+
+.YBS {
+  font-size: 12px;
+  fill: red;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.YBS.blink {
+  animation: blinkingText 1s linear infinite;
+}
+
+.YUE {
+  font-size: 12px;
+  fill: purple;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.YUE.blink {
+  animation: blinkingText 1s linear infinite;
+}
+
+.RES {
+  font-size: 12px;
+  fill: darkblue;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.RES.blink {
+  animation: blinkingText 1s linear infinite;
+}
+
+.PDU {
+  font-size: 12px;
+  fill: darkorange;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.PDU.blink {
+  animation: blinkingText 1s linear infinite;
+}
+
+.DL {
+  font-size: 12px;
+  fill: navy;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.eventText.blink {
+  fill: green;
+}
+
+.DL.blink {
+  animation: blinkingText 1s linear infinite;
+}
+
+</style>
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+
+<!---- Start YNRF ------>
+<text x="360" y="25" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 0s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YNRF.
+</text>
+
+<!---- Start YAMF ------>
+<text x="310" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 3.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YAMF.
+</text>
+
+<!-- Start YRMF -->
+<text x="580" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 8.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YRMF.
+</text>
+
+<!-- Start YCRF -->
+<text x="515" y="25" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 13.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YCRF.
+</text>
+
+<!-- Start YNEF -->
+<text x="880" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 18.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YNEF.
+</text>
+
+<!-- Start YAUSF -->
+<text x="115" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 23.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YAUSF.
+</text>
+
+<!-- Start YNSSF -->
+<text x="215" y="25" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 28.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YNSSF.
+</text>
+
+<!-- Start YUDM -->
+<text x="730" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 33.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YUDM.
+</text>
+
+<!-- Start YPCF -->
+<text x="670" y="25" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 38.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YPCF.
+</text>
+
+<!-- Start YSMF -->
+<text x="410" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 43.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YSMF.
+</text>
+
+<!-- Start YUPF -->
+<text x="620" y="348" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 48.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YUPF.
+</text>
+
+<!-- Start YSM -->
+<text x="95" y="348" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 50.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YSM.
+</text>
+
+<!-- Start YBS -->
+<text x="320" y="348" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 79.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YBS.
+</text>
+
+<!-- Start YUE -->
+<text x="270" y="630" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 109.5s;
+         animation-duration: 2s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  Start YUE.
+</text>
+
+.polyline,
+.line {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+
+
+<!--------------------------------------------------------------------------------------------------------------------------------------->
+
+<!-- YAMF -> YNRF -->
+<polyline points="305,100 305,90 395,90 395,75" class="YAMF_YNRF" />
+<text x="310" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 5s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YAMF is registering in YNRF.
+</text>
+
+<!-- YRMF -> YNRF -->
+<polyline points="595,100 595,90 405,90 405,75" class="YRMF_YNRF" />
+<text x="540" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 10s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YRMF is registering in YNRF.
+</text>
+
+<!-- YCRF -> YNRF -->
+<polyline points="545,75 545,90 405,90 405,75" class="YCRF_YNRF" />
+<text x="475" y="25" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 15s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YCRF is registering in YNRF
+</text>
+
+<!-- YNEF -> YNRF -->
+<polyline points="895,100 895,90 405,90 405,75" class="YNEF_YNRF" />
+<text x="830" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 20s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YNEF is registering in YNRF.
+</text>
+
+<!-- YAUSF -> YNRF -->
+<polyline points="155,100 155,90 395,90 395,75" class="YAUSF_YNRF" />
+<text x="78" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 25s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YAUSF is registering in YNRF.
+</text>
+
+<!-- YNSSF -> YNRF -->
+<polyline points="255,75 255,90 395,90 395,75" class="YNSSF_YNRF" />
+<text x="170" y="25" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 30s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YNSSF is registering in YNRF.
+</text>
+
+<!-- YUDM -> YNRF -->
+<polyline points="745,100 745,90 405,90 405,75" class="YUDM_YNRF" />
+<text x="670" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 35s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YUDM is registering in YNRF.
+</text>
+
+<!-- YPCF -> YNRF -->
+<polyline points="695,75 695,90 405,90 405,75" class="YPCF_YNRF" />
+<text x="620" y="25" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 40s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YPCF is registering in YNRF.
+</text>
+
+<!-- YSMF -> YNRF -->
+<polyline points="445,100 445,90 405,90 405,75" class="YSMF_YNRF" />
+<text x="370" y="170" class="eventText blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 45s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YSMF is registering in YNRF.
+</text>
+
+<!------------------------------------------------------------------------------------------------------------
+
+<!-- Setup Request YSM -> YAMF  -->
+<polyline points="135,300 305,125" class="ysmSetupReq" />
+<text x="10" y="348" class="YSM blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 53s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YSM sends Setup Request to YAMF.
+</text>
+
+<!-- Setup Response YAMF -> YSM  -->
+<polyline points="305,125 135,300" class="ysmSetupRes" />
+<text x="10" y="180" class="YSM blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 58s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YAMF sends Setup Response to YSM.
+</text>
+
+<!-- YSM Report to YCRF -->                       <!-- 130,300 300,125 300,100 300,85 550,85 550,75 -->
+<polyline points="135,300 290,140 290,80 545,80 545,75" class="ysmReportPath" />
+<text x="10" y="348" class="YSM blink"
+  style="opacity: 0;
+         animation-name: blinkingText3;
+         animation-delay: 67s;
+         animation-duration: 14s;
+         animation-iteration-count: infinite;
+         animation-fill-mode: none;
+         animation-timing-function: linear;">
+  YSM sends Spectrum Report to YCRF.
+</text>
+
+<!-- YCRF Send data to YRMF -->
+<polyline points="555,75 555,80 605,80 605,100" class="ycrfToyrmf" />
+<text x="420" y="25" class="YSM blink"
+  style="opacity: 0;
+         animation-name: blinkingText3;
+         animation-delay: 72s;
+         animation-duration: 14s;
+         animation-iteration-count: infinite;
+         animation-fill-mode: none;
+         animation-timing-function: linear;">
+  YCRF sends Spectrum availability to YRMF.
+</text>
+
+<!-- Setup Request YBS -> YAMF  -->
+<polyline points="305,300 305,125" class="ybsSetupReq" />
+<text x="320" y="280" class="YBS blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 84s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YBS sends Setup Request to YAMF.
+</text>
+
+<!-- Setup Response YAMF -> YBS  -->
+<polyline points="305,125 305,300" class="ybsSetupRes" />
+<text x="320" y="170" class="YBS blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 89s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YAMF sends Setup Response to YBS.
+</text>
+
+<!-- Radio Parameter Request: YBS → YAMF → YRMF -->
+<polyline points="305,300 305,90 595,90 595,100" class="radioReqPath" />
+<text x="320" y="280" class="YBS blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 94s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YBS sends Radio Parameter Request to YRMF.
+</text>
+
+<!-- Radio Parameter: YRMF → YBS -->
+<polyline points="595,100 595,90 305,90 305,300" class="radioResPath" />
+<text x="520" y="170" class="YBS blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 99s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YRMF sends Radio Parameter Assignment to YBS.
+</text>
+
+<!-- Radio Parameter data: YRMF → YBS -->
+<polyline points="595,100 595,95 310,95 310,300" class="yrmfToYbs" />
+<text x="520" y="142" class="YBS blink"
+  style="opacity: 0;
+         animation-name: blinkingText3;
+         animation-delay: 105s;
+         animation-duration: 14s;
+         animation-iteration-count: infinite;
+         animation-fill-mode: none;
+         animation-timing-function: linear;">
+  YRMF sends allocated spectrum to YBS.
+</text>
+
+<!-- SSB (Synchronization Signal Block):  YBS -> YUE -->
+<polyline points="305,330 305,580" class="SSB" />
+<text x="320" y="360" class="YUE blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 112s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YUE finds and synchronizes with the cell.
+</text>
+
+<!-- Random Access Procedure: YUE -> YBS -->
+<polyline points="305,580 305,330" class="RanAccPro" />
+<text x="320" y="560" class="YUE blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 117s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  Connection-based or dedicated RACH.
+</text>
+
+<!-- RRC Connection Request: YUE -> YBS -->
+<polyline points="305,580 305,330" class="RanAccPro" />
+<text x="320" y="560" class="YUE blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 122s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  Initiates RRC setup.
+</text>
+
+<!-- RRC Connection Setup:  YBS -> YUE -->
+<polyline points="305,330 305,580" class="RRCSetup" />
+<text x="320" y="360" class="YUE blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 127s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  Sends parameters for RRC.
+</text>
+
+<!-- RRC Connection Setup Complete (Include YNAS: Registration Request): YUE -> YBS -->
+<polyline points="305,580 305,330" class="RRCSetupComp" />
+<text x="320" y="560" class="YUE blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 132s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  Completes RRC; starts YNAS.
+</text>
+
+<!-- Registration Request: YUE -> YBS -> YAMF -->
+<polyline points="305,580 305,300 305,125" class="regPath" />
+<text x="320" y="560" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 137s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YUE Sends Registration Request to YAMF.
+</text>
+
+<!-- Authentication Request: YAMF -> YAUSF -->
+<polyline points="295,100 295,90 155,90 155,100" class="authReqPath" />
+<text x="320" y="170" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 142s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YAMF Forwards YNAS Authentication Request.
+</text>   
+
+<!-- YAUSF → YUDM -->
+<polyline points="155,100 155,90 745,90 745,100" class="authVect" />
+<text x="10" y="170" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 147s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YAUSF Requests Authentication Vector to YUDM.
+</text>
+
+<!-- YUDM → YAUSF -->
+<polyline points="745,100 745,90 155,90 155,100" class="authVectRes" />
+<text x="680" y="170" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 152s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YUDM Responds Authentication Vector (e.g., RAND, AUTN, XRES, Kausf) to YAUSF.
+</text>
+
+<!-- YAUSF → YAMF -->
+<polyline points="155,100 155,90 295,90 295,100" class="authChal" />
+<text x="10" y="170" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 157s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YAUSF computes the expected response (HXRES*) and forwards the Authentication Challenge to the YAMF.
+</text>
+
+<!-- YAMF → YUE -->
+<polyline points="305,125 305,580" class="authChal_YUE" />
+<text x="320" y="170" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 162s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YAMF sends the authentication challenge (RAND and AUTN) to the YUE.
+</text> 
+
+<!-- YUE → YAMF → YAUSF -->
+<polyline points="295,580 295,90 155,90 155,100" class="YUE_RES" />
+<text x="320" y="560" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 167s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YUE responds with RES. YAMF forwards it to YAUSF.
+</text>
+
+<!-- YAUSF → YAMF -->
+<polyline points="155,100 155,90 295,90 295,100" class="YAUSFcompRES" />
+<text x="10" y="170" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-delay: 172s;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;">
+  YAUSF compares RES with XRES* or HXRES*. 
+    If RES matches, then send authentication successful to YAMF.
+</text>
+
+<!-- Step 23: Security Mode Command YAMF -> UE -->
+<polyline points="305,125 305,300 305,580" class="secModeCmdPath" />
+<text x="320" y="170" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 177s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YAMF sends Security Mode Command to YUE.
+</text>
+
+<!-- Step 24: Security Mode Complete UE -> YAMF -->
+<polyline points="305,580 305,300 305,125" class="secModeCompPath" />
+<text x="320" y="560" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 182s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YUE sends Security Mode Complete to YAMF.
+</text>
+
+<!-- Registration Accept: YAMF -> YBS -> YUE (Shifted) -->
+<polyline points="305,125 305,300 305,580" class="accPath" />
+<text x="320" y="170" class="RES blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 187s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YAMF sends Registration Accept to YUE.
+</text>
+
+<!-- PDU Session Establishment Request: YUE -> YBS -> YAMF (Shifted) -->
+<polyline points="305,580 305,300 305,125" class="pduSessEstReq" />
+<text x="320" y="560" class="PDU blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 192s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YUE sends PDU Session Establishment Request to YAMF.
+</text>
+
+<!-- Nsmf_PduSession_CreateSMContext: YAMF -> YSMF (Shifted) -->
+<polyline points="305,100 305,90 445,90 445,100" class="NsmfpduSessCon" />
+<text x="320" y="170" class="PDU blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 197s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YAMF NSMF PDU Session Create SM Context to YSMF.
+</text>
+
+<!-- Step 28: YSMF -> YPCF: Npcf_SMPolicyControl_Create (Shifted) -->
+<polyline points="445,100 445,90 695,90 695,75" class="smPolicyCreate" />
+<text x="510" y="170" class="PDU blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 202s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YSMF sends Npcf_SMPolicyControl_Create to YPCF.
+</text>
+
+<!-- Step 29: YPCF -> YSMF: Policy Decision (Shifted) -->
+<polyline points="695,75 695,90 445,90 445,100" class="smPolicyDec" />
+<text x="640" y="25" class="PDU blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 207s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YPCF sends Policy Decision to YSMF.
+</text>
+
+
+<!-- N4 Session Establishment (PFCP): YSMF -> YUPF (Shifted) -->
+<polyline points="445,126 645,299" class="N4SessEst" />
+<text x="510" y="170" class="PDU blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 212s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YSMF N4 Session Establishment (PFCP) to YUPF.
+</text>
+
+<!-- Session Setup Response: YUPF -> YSMF (Shifted) -->
+<polyline points="645,299  445,126" class="SesSetupRes" />
+<text x="640" y="280" class="PDU blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 217s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YUPF Session Setup Response to YSMF.
+</text>
+
+<!-- PDU Session Accept: YSMF -> YAMF (Shifted) -->
+<polyline points="445,100 445,90 305,90 305,100" class="PDUSesAcc" />
+<text x="510" y="170" class="PDU blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 222s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YSMF PDU Session Accept to YAMF.
+</text>
+
+<!-- PDU Session Accept (YNAS): YAMF -> YBS -> YUE (Shifted) -->
+<polyline points="305,125 305,300 305,580" class="PDUSesAccYNAS" />
+<text x="320" y="170" class="PDU blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 4s;
+         animation-delay: 227s;
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  YAMF PDU Session Accept (YNAS) to YUE.
+</text>
+
+<!-- Downlink Data Transfer: DN -> YUPF -> YBS -> YUE (Shifted) -->
+<polyline points="840,322 700,322 650,322 305,322 305,322 305,580" class="dlPath" />
+<text x="520" y="352" class="DL blink"
+  style="opacity: 0;
+         animation-name: blinkingText2;
+         animation-duration: 3.5s;
+         animation-delay: 232s;  
+         animation-iteration-count: 1;
+         animation-timing-function: linear;
+         animation-fill-mode: forwards;">
+  DN via YUPF, YBS sends Downlink Data Transfer to YUE.
+
+</text>
+
+    <!-- Bus -->
+    <line x1="100" y1="85" x2="950" y2="85" class="bus" />
+    <text x="950" y="78" text-anchor="end">SBI</text>
+
+    <!-- Connect all control plane functions to bus -->
+    <line x1="150" y1="100" x2="150" y2="85" class="line" />  <!-- YAUSF-->
+    <line x1="300" y1="100" x2="300" y2="85" class="line" />  <!-- YAMF -->
+    <line x1="450" y1="100" x2="450" y2="85" class="line" />  <!-- YSMF -->
+    <line x1="600" y1="100" x2="600" y2="85" class="line" />  <!-- YRMF -->
+    <line x1="750" y1="100" x2="750" y2="85" class="line" />  <!-- YUDM -->
+    <line x1="900" y1="100" x2="900" y2="85" class="line" />  <!-- YNEF -->
+    <line x1="250" y1="75"  x2="250" y2="85" class="line" />  <!-- YNSSF-->
+    <line x1="400" y1="75"  x2="400" y2="85" class="line" />  <!-- YNRF -->
+    <line x1="550" y1="75"  x2="550" y2="85" class="line" />  <!-- YCRF -->
+    <line x1="700" y1="75"  x2="700" y2="85" class="line" />  <!-- YPCF -->
+
+    <!-- Stacks -->
+    <g>     
+      <g onclick="openPDF('assets/pdfs/pdf16.pdf')" style="cursor:pointer">
+        <rect class="block flash-ynas-ue" x="300" y="660" width="45" height="20" />
+        <text x="325" y="676" text-anchor="middle">YNAS</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf17.pdf')" style="cursor:pointer">
+        <rect class="block flash-ysdap-ue" x="345" y="660" width="55" height="20" />
+        <text x="370" y="676" text-anchor="middle">YSDAP</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf18.pdf')" style="cursor:pointer">
+        <rect class="block flash-ypdcp-ue" x="300" y="680" width="100" height="20" />
+        <text x="350" y="696" text-anchor="middle">YPDCP</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf19.pdf')" style="cursor:pointer">
+        <rect class="block flash-yrlc-ue" x="300" y="700" width="100" height="20" />
+        <text x="350" y="716" text-anchor="middle">YRLC</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf20.pdf')" style="cursor:pointer">
+        <rect class="block flash-ymac-ue" x="300" y="720" width="100" height="20" />
+        <text x="350" y="736" text-anchor="middle">YMAC</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf21.pdf')" style="cursor:pointer">
+        <rect class="block flash-yphy-ue" x="300" y="740" width="100" height="20" />
+        <text x="350" y="756" text-anchor="middle">YPHY</text>
+      </g>
+   </g>
+
+    <g>      
+      <g onclick="openPDF('assets/pdfs/pdf22.pdf')" style="cursor:pointer">
+        <rect class="block flash-ynas" x="350" y="390" width="45" height="20" />
+        <text x="375" y="405" text-anchor="middle">YNAS</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf23.pdf')" style="cursor:pointer">
+        <rect class="block flash-ysdap" x="395" y="390" width="55" height="20" />
+        <text x="420" y="405" text-anchor="middle">YSDAP</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf24.pdf')" style="cursor:pointer">
+        <rect class="block flash-ypdcp" x="350" y="410" width="100" height="20" />
+        <text x="400" y="425" text-anchor="middle">YPDCP</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf25.pdf')" style="cursor:pointer">
+        <rect class="block flash-yrlc" x="350" y="430" width="100" height="20" />
+        <text x="400" y="445" text-anchor="middle">YRLC</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf26.pdf')" style="cursor:pointer">
+        <rect class="block flash-ymac" x="350" y="450" width="100" height="20" />
+        <text x="400" y="465" text-anchor="middle">YMAC</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf27.pdf')" style="cursor:pointer">
+        <rect class="block flash-yphy" x="350" y="470" width="100" height="20" />
+        <text x="400" y="485" text-anchor="middle">YPHY</text>
+      </g>
+    </g>
+
+    <g>
+    
+      <g onclick="openPDF('assets/pdfs/pdf28.pdf')" style="cursor:pointer">
+        <rect class="block fill-yap" x="120" y="357" width="60" height="20" />
+        <text x="150" y="372" text-anchor="middle">YAP</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf29.pdf')" style="cursor:pointer">
+        <rect class="block fill-yaif" x="120" y="377" width="60" height="20" />
+        <text x="150" y="392" text-anchor="middle">YAIF</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf30.pdf')" style="cursor:pointer">
+        <rect class="block fill-yss" x="120" y="397" width="60" height="20" />
+        <text x="150" y="412" text-anchor="middle">YSS</text>
+      </g>
+      <g onclick="openPDF('assets/pdfs/pdf31.pdf')" style="cursor:pointer">
+        <rect class="block highlight" style="animation-delay: 63s;" x="120" y="417" width="60" height="20" />
+        <text x="150" y="432" text-anchor="middle">YPHY</text>
+      </g>  
+    </g>
+
+    <!-- Connections -->
+    <line x1="300" y1="580" x2="300" y2="330" class="line" />  <!-- YBS  -> YUE  -->
+    <line x1="350" y1="315" x2="600" y2="315" class="line" />  <!-- YBS  -> YUPF --> 
+    <line x1="700" y1="315" x2="840" y2="315" class="line" />  <!-- YUPF -> DN   -->
+    <line x1="300" y1="300" x2="300" y2="125" class="line" />  <!-- YBS  -> YAMF -->  
+    <line x1="650" y1="300" x2="450" y2="125" class="line" />  <!-- YSMF -> YUPF --> 
+    <line x1="130" y1="300" x2="300" y2="125" class="line" />  <!-- YSM  -> YAMF -->
+    
+    <!-- Arrows for DL & UL -->
+    <defs>
+      <marker id="arrow" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto" markerUnits="strokeWidth">
+       <path d="M0,0 L0,3.5 L4,1.75 z" fill="context-stroke">
+       </path>
+     </marker>
+   </defs>
+
+  
+    <!-- Arrow Lines -->
+    <!-- Down Arrow 1 ybs-->
+    
+    <line x1="465" y1="390" x2="465" y2="490" class="dl_112" /><text x="470" y="403" class="dl_112_txt" transform="rotate(-270,470,403)">Down Link</text>
+    <line x1="465" y1="390" x2="465" y2="490" class="dl_127" /><text x="470" y="403" class="dl_127_txt" transform="rotate(-270,470,403)">Down Link</text>
+    <line x1="465" y1="390" x2="465" y2="490" class="dl_162" /><text x="470" y="403" class="dl_162_txt" transform="rotate(-270,470,403)">Down Link</text>
+    <line x1="465" y1="390" x2="465" y2="490" class="dl_177" /><text x="470" y="403" class="dl_177_txt" transform="rotate(-270,470,403)">Down Link</text>
+    <line x1="465" y1="390" x2="465" y2="490" class="dl_187" /><text x="470" y="403" class="dl_187_txt" transform="rotate(-270,470,403)">Down Link</text>
+    <line x1="465" y1="390" x2="465" y2="490" class="dl_217" /><text x="470" y="403" class="dl_217_txt" transform="rotate(-270,470,403)">Down Link</text>
+    <line x1="465" y1="390" x2="465" y2="490" class="dl_222" /><text x="470" y="403" class="dl_222_txt" transform="rotate(-270,470,403)">Down Link</text>
+    
+    <!-- Up Arrow 1 ybs -->
+    
+    <line x1="335" y1="490" x2="335" y2="390" class="ul_117" /><text x="330" y="458" class="UL_117_txt" transform="rotate(270,335,463)">Up Link</text>
+    <line x1="335" y1="490" x2="335" y2="390" class="ul_122" /><text x="330" y="458" class="UL_122_txt" transform="rotate(270,335,463)">Up Link</text>
+    <line x1="335" y1="490" x2="335" y2="390" class="ul_132" /><text x="330" y="458" class="UL_132_txt" transform="rotate(270,335,463)">Up Link</text>
+    <line x1="335" y1="490" x2="335" y2="390" class="ul_137" /><text x="330" y="458" class="UL_137_txt" transform="rotate(270,335,463)">Up Link</text>
+    <line x1="335" y1="490" x2="335" y2="390" class="ul_167" /><text x="330" y="458" class="UL_167_txt" transform="rotate(270,335,463)">Up Link</text>
+    <line x1="335" y1="490" x2="335" y2="390" class="ul_182" /><text x="330" y="458" class="UL_182_txt" transform="rotate(270,335,463)">Up Link</text>
+    <line x1="335" y1="490" x2="335" y2="390" class="ul_192" /><text x="330" y="458" class="UL_192_txt" transform="rotate(270,335,463)">Up Link</text>
+    
+    <!------ Down Arrow 2 yue Up Link-->
+    
+    <line x1="285" y1="660" x2="285" y2="760" class="ul_117" /><text x="280" y="735" class="UL_117_txt" transform="rotate(270,280,735)">Up Link</text>
+    <line x1="285" y1="660" x2="285" y2="760" class="ul_122" /><text x="280" y="735" class="UL_122_txt" transform="rotate(270,280,735)">Up Link</text>
+    <line x1="285" y1="660" x2="285" y2="760" class="ul_132" /><text x="280" y="735" class="UL_132_txt" transform="rotate(270,280,735)">Up Link</text>
+    <line x1="285" y1="660" x2="285" y2="760" class="ul_137" /><text x="280" y="735" class="UL_137_txt" transform="rotate(270,280,735)">Up Link</text>
+    <line x1="285" y1="660" x2="285" y2="760" class="ul_167" /><text x="280" y="735" class="UL_167_txt" transform="rotate(270,280,735)">Up Link</text>
+    <line x1="285" y1="660" x2="285" y2="760" class="ul_182" /><text x="280" y="735" class="UL_182_txt" transform="rotate(270,280,735)">Up Link</text>
+    <line x1="285" y1="660" x2="285" y2="760" class="ul_192" /><text x="280" y="735" class="UL_192_txt" transform="rotate(270,280,735)">Up Link</text>
+    
+    <!-------------- Up Arrow 2 yue Down Link-------------->
+    
+    <line x1="415" y1="760" x2="415" y2="660" class="dl_112" /><text x="420" y="675" class="dl_112_txt" transform="rotate(-270,420,675)">Down Link</text>
+    <line x1="415" y1="760" x2="415" y2="660" class="dl_127" /><text x="420" y="675" class="dl_127_txt" transform="rotate(-270,420,675)">Down Link</text>
+    <line x1="415" y1="760" x2="415" y2="660" class="dl_162" /><text x="420" y="675" class="dl_162_txt" transform="rotate(-270,420,675)">Down Link</text>
+    <line x1="415" y1="760" x2="415" y2="660" class="dl_177" /><text x="420" y="675" class="dl_177_txt" transform="rotate(-270,420,675)">Down Link</text>
+    <line x1="415" y1="760" x2="415" y2="660" class="dl_187" /><text x="420" y="675" class="dl_187_txt" transform="rotate(-270,420,675)">Down Link</text>
+    <line x1="415" y1="760" x2="415" y2="660" class="dl_217" /><text x="420" y="675" class="dl_217_txt" transform="rotate(-270,420,675)">Down Link</text>
+    <line x1="415" y1="760" x2="415" y2="660" class="dl_222" /><text x="420" y="675" class="dl_222_txt" transform="rotate(-270,420,675)">Down Link</text>
+    
+  </svg>
+<script type="module" src="/index.tsx"></script>
+<script>
+/* List ONLY the PDFs that actually exist */
+const availablePDFs = new Set([
+  "../YesDR_TS_02_009_YNRF.pdf",
+  "../YesDR_TS_02_001_YAMF.pdf",
+  "../YesDR_TS_02_007_YRMF.pdf",
+  "../YesDR_TS_02_008_YCRF.pdf",
+  "../YesDR_TS_02_005_YAUSF.pdf",
+  "../YesDR_TS_02_004_YUDM.pdf",
+  "../YesDR_TS_02_006_YPCF.pdf",
+  "../YesDR_TS_02_002_YSMF.pdf",
+  "../YesDR_TS_02_003_YUPF.pdf",
+  "../YesDR_TS_02_010_YSM.pdf",
+  "../YesDR_TS_02_020_YBS.pdf",
+  "../YesDR_TS_02_021_YUE.pdf",
+  "../YesDR_01_001.pdf"
+]);
+
+function openPDF(path) {
+  if (availablePDFs.has(path)) {
+    window.open(path, "_blank");
+  }
+  // else: do absolutely nothing
+}
+</script>
+
+
+
+</body>
+</html>

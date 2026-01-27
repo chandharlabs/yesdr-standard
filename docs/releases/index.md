@@ -1,0 +1,14 @@
+## YESDR v1.0.0 — Initial Release  
+**Release Date:** 2 January 2026  
+
+YESDR v1.0.0 is the first official release of the YESDR, defining a modular end-to-end cellular architecture from PHY to Core for SDR-based experimentation, education, and research.
+
+This foundational release establishes the core system architecture, key functional entities (YUE, YBS, YCore), and essential control protocols (YACP and YSMP).
+
+### Key Highlights
+- Modular PHY–RAN–Core architecture  
+- Core network functions including YAMF, YSMF, YUPF, YUDM, YPCF, YCRF, and others  
+- AI-enabled radio intelligence via YCRF  
+- Communication between YBS and YUE (UDP-based and BPSK-based)
+- Wireshark dissectors and sample PCAP files for validation and education  
+

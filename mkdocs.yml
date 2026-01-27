@@ -1,0 +1,97 @@
+site_name: YESDR Standard
+site_url: https://yesdr-standard.org
+site_description: Your Extensible Software Defined Radio – Modular Cellular Wireless Standard
+
+
+theme:
+  name: material
+  logo: images/YesDRLogo_S.png
+  favicon: images/YesDRLogo_Hex.png
+
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+  palette:
+    scheme: default
+    primary: teal
+    accent: indigo
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.integrate
+    - content.code.copy
+    - image-zooom
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+
+  - Specifications:
+      - Specifications: standards/specifications.md
+  #    - TS 00.001 – Overall Description: standards/ts-00-001-overall.md
+  #    - TS 00.004 – Architecture: standards/ts-00-004-architecture.md
+  #    - TS 23.501 Mapping: standards/ts-23-501-mapping.md
+  #    - TS 02.002 — YSMF: standards/YesDR_TS_02_002—YSMF.md
+  #    - TS 02.003 — YUPF: standards/YesDR_TS_02_003—YUPF.md
+  #    - TS 02.004 — YUDM: standards/YesDR_TS_02_004—YUDM.md
+  #    - TS 02.006 — YPCF: standards/YesDR_TS_02_006—YPCF.md
+  #    - TS 02.007 — YRMF: standards/YesDR_TS_02_007—YRMF.md
+  #    - TS 02.008 — YCRF: standards/YesDR_TS_02_008—YCRF.md
+  #    - TS 02.009 — YNRF: standards/YesDR_TS_02_009—YNRF.md
+  #    - TS 02.010 — YSM: standards/YesDR_TS_02_010—YSM.md
+  #    - TS 02.020 — YBS: standards/YesDR_TS_02_020—YBS.md
+  #    - TS 02.021 — YUE: standards/YesDR_TS_02_021—YUE.md
+  #    - TS 02.050 — YAUSF: standards/YesDR_TS_02_0050—YAUSF.md
+  #    - TS 04.001 — YACP: standards/YesDR_TS_04_001—YACP.md
+  #    - TS 04.002 — YSMP: standards/YesDR_TS_04_002—YSMP.md
+      
+  - Releases:
+      - Overview: releases/index.md
+  #    - Release 1.0.0: releases/release1.md
+
+  - Consortium: 
+      - Overview: consortium/overview.md
+      - Membership: consortium/membership.md
+      - Policies: consortium/policies.md
+
+  - Timeline: history/timeline.md
+  
+  - Implementations & Tools:
+      - Protocol Tools:
+          - Overview: implementations/index.md
+          - Installation: implementations/Installation.md
+          - Wireshark Analysis: implementations/protocol-tools.md
+
+  - Contact: contact.md
+
+extra_css:
+  - stylesheets/extra.css
+  
+plugins: []
+
+#extra_javascript:
+#  - javascripts/disable-right-click.js
+
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+
+  - admonition
+  - tables
+  - footnotes
+  - def_list
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+
+
+extra:
+  generator: false
