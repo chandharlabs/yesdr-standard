@@ -87,7 +87,24 @@
 
 ---
 
-## 7. Tools & Packaging – Status
+## 7. AI / ML / DL Capabilities – Status
+
+| Feature | Completed | To Be Done |
+|-------|-----------|------------|
+| Spectrum Sensing | Spectrum sensing from 600 MHz to 6 GHz | AI-asssted accuracy optimization and multi-band correlation |
+| Signal Energy Detection | Real-time energy-based sensing | Adaptive thresholding |
+| Modulation Classification | – | AI/ML-based modulation classification |
+| Channel Prediction | – | ML/DL-based channel quality prediction |
+| Channel ON/OFF Prediction | – | Traffic-aware channel ON–OFF duration prediction |
+| Model Deployment | – | Edge deployment (MEC / SDR embedded) |
+| Real-Time Inference | – | Low-latency inference optimization |
+| Visualization | Basic plots | AI-driven spectrum occupancy maps |
+
+
+
+---
+
+## 8. Tools & Packaging – Status
 
 | Tool / Feature | Completed | To Be Done |
 |---------------|-----------|------------|
