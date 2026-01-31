@@ -1,6 +1,6 @@
 # YESDR – Implementation Status
 
-## 1. YESDR Core Network – Status
+## 1. YESDR Core Network
 
 | Component / Function | Completed | To Be Done |
 |--------------------|-----------|------------|
@@ -23,7 +23,7 @@
 
 ---
 
-## 2. YESDR Protocol Stack – Status
+## 2. YESDR Protocol Stack
 
 | Protocol / Feature | Completed | To Be Done |
 |-------------------|-----------|------------|
@@ -38,7 +38,7 @@
 
 ---
 
-## 3. YESDR RAN Layers – Status
+## 3. YESDR RAN Layers
 
 | Layer | Completed | To Be Done |
 |------|-----------|------------|
@@ -54,7 +54,7 @@
 
 ---
 
-## 4. YBS (YESDR Base Station) – Status
+## 4. YBS (YESDR Base Station)
 
 | Feature | Completed | To Be Done |
 |-------|-----------|------------|
@@ -64,7 +64,7 @@
 
 ---
 
-## 5. YUE (YESDR User Equipment) – Status
+## 5. YUE (YESDR User Equipment)
 
 | Feature | Completed | To Be Done |
 |--------|-----------|------------|
@@ -76,7 +76,7 @@
 
 ---
 
-## 6. Advanced Network Features – Status
+## 6. Advanced Network Features
 
 | Feature | Completed | To Be Done |
 |-------|-----------|------------|
@@ -87,7 +87,7 @@
 
 ---
 
-## 7. AI / ML / DL Capabilities – Status
+## 7. AI / ML / DL Capabilities
 
 | Feature | Completed | To Be Done |
 |-------|-----------|------------|
@@ -104,7 +104,7 @@
 
 ---
 
-## 8. Tools & Packaging – Status
+## 8. Tools & Packaging
 
 | Tool / Feature | Completed | To Be Done |
 |---------------|-----------|------------|
