@@ -4,7 +4,7 @@
 
 | Component / Function | Completed | To Be Done |
 |--------------------|-----------|------------|
-| Core Network Functions (YNRF, YAMF, YCRF, YRMF, YSM, YAUSF, YUDM, YUDR, YPCF, YSMF, YUPF, YNSSF) | Implemented as independent modules | Optimization and full inter-function validation |
+| Core Network Functions (YNRF, YAMF, YCRF, YRMF, YAUSF, YUDM, YUDR, YPCF, YSMF, YUPF, YNSSF) | Implemented as independent modules | Optimization and full inter-function validation |
 | SBI Interface | FastAPI-based SBI implemented | Standard compliance refinement |
 | Inter-Module Communication | FastAPI-based communication | Error recovery and robustness |
 | YACP Interface | Implemented for YBS communication | Initial four protocol messages |
