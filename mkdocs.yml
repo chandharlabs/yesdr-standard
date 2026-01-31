@@ -5,7 +5,7 @@ site_description: Your Extensible Software Defined Radio – Modular Cellular Wi
 
 theme:
   name: material
-  logo: images/YesDRLogo_S.png
+  logo: images/YesDR_Logo_S.png
   favicon: images/YesDRLogo_Hex.png
 
   font:
