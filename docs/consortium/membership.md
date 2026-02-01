@@ -31,7 +31,7 @@ Members may:
 - Access draft specifications and reference materials
 
 Members must:
-- Comply with Consortium [policies](policies.md)
+- Comply with Consortium policies
 - Contribute in a professional and collaborative manner
 - Respect intellectual property and contribution rules
 
@@ -39,7 +39,7 @@ Members must:
 
 ## How to Apply
 
-1. Review Consortium policies
-2. Submit a membership application
+1. Review Consortium [policies](policies.md)
+2. Submit a membership application to info@yesdr-standard.org
 3. Upon approval, join relevant groups and mailing lists
 
