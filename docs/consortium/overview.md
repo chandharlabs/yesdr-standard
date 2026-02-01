@@ -8,9 +8,7 @@ and extensible framework for end-to-end cellular wireless systems.
 
 ---
 
-
 ## Organizational Structure
-
 
 ![YESDR Organizational Structure](../images/YESDR_Org_Structure.png)
 
@@ -43,7 +41,7 @@ The YESDR Consortium oversees activities related to:
 
 Organizations and individuals interested in contributing to the YESDR are encouraged to:
 
-1. Review the Consortium structure and policies  
-2. Apply for membership  
+1. Review the Consortium structure and [policies](policies.md)
+2. Apply for [membership](membership.md)
 3. Join relevant Study Groups or Working Groups  
 4. Participate in discussions, reviews, and technical contributions 
