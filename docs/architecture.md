@@ -1,4 +1,4 @@
-# YESDR System Architecture
+## <strong>YESDR System Architecture
 
 <div style="width:100%; margin:0; padding:0;">
   <img 
@@ -40,5 +40,13 @@
 | YACP    | YesDR Access Control Protocol          | Manages access control, authentication, and registration procedures. |
 | YSMP    | YesDR Spectrum Management Protocol     | Coordinates spectrum sensing, allocation, and dynamic spectrum management. |
 
+## <strong>YESDR Message Sequence
+
+<div style="width:100%; margin:0; padding:0;">
+  <img 
+    src="../images/Yesdr_sequence.png"
+    style="width:100%; height:85%; display:block; margin-bottom:0.5rem;"
+    loading="lazy">
+</div>
 
 

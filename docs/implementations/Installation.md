@@ -37,13 +37,12 @@ Note: It should be active.
 #### Add GPG Key
 
 ```
-curl -fsSL https://packages.yesdr.org/yesdr.gpg | sudo gpg --dearmor -o /usr/share/keyrings/yesdr-archive-keyring.gpg
 curl -fsSL https://package.yesdr-standard.org/yesdr.gpg | sudo gpg --dearmor -o /usr/share/keyrings/yesdr-archive-keyring.gpg
 ```
 
 ####Add APT Source
 ```
-echo "deb [signed-by=/usr/share/keyrings/yesdr-archive-keyring.gpg] https://packages.yesdr.org stable main" | sudo tee /etc/apt/sources.list.d/yesdr.list
+echo "deb [signed-by=/usr/share/keyrings/yesdr-archive-keyring.gpg] https://package.yesdr-standard.org stable main" | sudo tee /etc/apt/sources.list.d/yesdr.list
 sudo apt update
 ```
 
@@ -143,10 +142,20 @@ journalctl -u yesdr-web -f
 
 ## Register Subscriber Information
 
-Connect to http://127.0.0.1:5050 and login with admin account.
-
+Connect to [http://127.0.0.1:8051](http://127.0.0.1:8051) and login with admin account.
+```
 Username : admin  
 Password : admin
+```
+<!--
+## To Visualize Spectrum Information
+Connect to [http://127.0.0.1:8052](http://127.0.0.1:8052)
+## To Visualize Spectrum Information
+To send data and receive from UE
+Connect to [http://127.0.0.1:8053](http://127.0.0.1:8053)
+To Send Downlink data
+Connect to [http://127.0.0.1:8054](http://127.0.0.1:8054)
+-->
 
 ## UNINSTALL / CLEAN REMOVE
 
