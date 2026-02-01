@@ -31,7 +31,7 @@ Members may:
 - Access draft specifications and reference materials
 
 Members must:
-- Comply with Consortium policies
+- Comply with Consortium [policies](policies.md)
 - Contribute in a professional and collaborative manner
 - Respect intellectual property and contribution rules
 
