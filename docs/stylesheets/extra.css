@@ -1,66 +1,75 @@
+/* =========================================================
+   HEADER / LOGO / TITLE
+   ========================================================= */
+
+/* Logo size */
 .md-header__button.md-logo img {
-  height: 30px;   /* default ~24px */
+  height: 30px;
   width: auto;
-  opacity: 20;
+  opacity: 1;
 }
-/* Hide original title */
+
+/* Hide default site title text */
 .md-header__topic .md-ellipsis {
   font-size: 0 !important;
 }
 
-/* YESDR Standard */
+/* Main title: "Standard" */
 .md-header__topic .md-ellipsis::before {
   content: "Standard";
   font-size: 1.6rem;
   font-weight: 600;
-  margin-left: 4px;
-  display: inline-block;
   color: #ffffff;
+  margin-left: 4px;
 }
 
-/* framework (small, secondary) */
+/* Subtitle: "framework" */
 .md-header__topic .md-ellipsis::after {
   content: " framework";
-  font-size: 1.05rem;     /* smaller */
+  font-size: 1.05rem;
   font-weight: 400;
-  display: inline-block;
   color: rgba(255,255,255,0.7);
-  margin-left: 5px; 
+  margin-left: 5px;
 }
 
-
+/* Reduce logo ↔ title gap */
 .md-header__title {
-  margin-left: -10px !important;   /* Reduce space between logo and text */
-  font-size: 1.6rem;             /* Adjust if needed */
-  font-weight: 600;
+  margin-left: -10px !important;
 }
+
+/* Header & tabs background */
 .md-header,
 .md-tabs {
   background-color: #00357a !important;
 }
 
-/* Remove excessive spacing above tables */
+/* =========================================================
+   CONTENT SPACING
+   ========================================================= */
+
 .md-content h2,
 .md-content h3,
 .md-content h4 {
   margin-bottom: 0.5rem !important;
 }
 
-/* Reduce space before tables */
 .md-content table {
   margin-top: 0.5rem !important;
 }
-/* Reduce spacing after images / diagrams */
+
 .md-content img,
 .md-content figure {
   margin-bottom: 0.5rem !important;
 }
 
-/* Professional technical table style (standards look) */
+/* =========================================================
+   TABLES – PROFESSIONAL STANDARD STYLE
+   ========================================================= */
 
-table {
-  width: 100%;
+.md-typeset table {
+  width: 100% !important;
   border-collapse: collapse;
+  table-layout: fixed;
   margin: 1rem 0;
   font-size: 0.95rem;
   background-color: #ffffff;
@@ -68,233 +77,115 @@ table {
 }
 
 /* Header row */
-table thead th {
-  background-color: #0b4aa2;   /* Technical blue */
+.md-typeset table thead th {
+  background-color: #0b4aa2;
   color: #ffffff;
   font-weight: 600;
-  text-align: left;
   padding: 10px 12px;
   border: 1px solid #0b4aa2;
+  text-align: center;
 }
 
 /* Body cells */
-table tbody td {
+.md-typeset table tbody td {
   padding: 10px 12px;
   border: 1px solid #cfd8dc;
   vertical-align: top;
 }
 
-/* Light zebra striping */
-table tbody tr:nth-child(even) {
+/* Zebra striping */
+.md-typeset table tbody tr:nth-child(even) {
   background-color: #f5f8fc;
 }
 
-/* First column emphasis */
-table tbody td:first-child {
-  font-weight: 600;
-  color: #0b3c49;
-}
-
-/* Hover (subtle) */
-table tbody tr:hover {
+/* Hover */
+.md-typeset table tbody tr:hover {
   background-color: #eef4ff;
 }
-/* Force all tables to span the same width regardless of container */
-.md-content table,
-.md-content .md-typeset table,
-.md-content .md-typeset .md-typeset table {
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 100% !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  table-layout: fixed !important;
-  display: table !important;
-}
-/* Center first two columns */
-.md-content table th:nth-child(1),
-.md-content table td:nth-child(1),
-.md-content table th:nth-child(2),
-.md-content table td:nth-child(2) {
-  text-align: center !important;
+
+/* First column emphasis */
+.md-typeset table tbody td:first-child {
+  font-weight: 600;
+  color: #0b3c49;
+  text-align: center;
 }
 
-/* Keep description readable */
-.md-content table th:nth-child(3),
-.md-content table td:nth-child(3) {
-  text-align: left !important;
+/* Second column centered */
+.md-typeset table tbody td:nth-child(2) {
+  text-align: center;
 }
+
+/* Description column left aligned */
+.md-typeset table tbody td:nth-child(3) {
+  text-align: left;
+}
+
+/* =========================================================
+   TIMELINE / LARGE IMAGES
+   ========================================================= */
 
 .yesdr-timeline {
-    width: 100%;
-    max-width: 1800px;
-    display: block;
-    margin: auto;
-}
-/* Thumbnail */
-.zoom-img {
-  cursor: zoom-in;
-}
-
-/* Fullscreen overlay */
-.zoom-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  display: none;
-  z-index: 9999;
-  text-align: center;
-}
-
-/* Show when targeted */
-.zoom-overlay:target {
+  width: 100%;
+  max-width: 1800px;
   display: block;
-}
-
-/* Fullscreen image */
-.zoom-overlay img {
-  max-width: 95vw;
-  max-height: 95vh;
-  margin-top: 2vh;
-  cursor: zoom-out;
-}
-
-/* Optional close hint */
-.zoom-overlay::after {
-  content: "✕";
-  position: fixed;
-  top: 16px;
-  right: 24px;
-  font-size: 32px;
-  color: #fff;
-  font-weight: bold;
-}
-/* Make linked images clickable in MkDocs Material */
-.md-typeset a > img {
-  pointer-events: auto !important;
-  cursor: pointer;
-}
-
-/* Optional: remove any zoom / transform effects */
-.md-typeset img {
-  transform: none !important;
-  transition: none !important;
-}
-
-/* Clickable image (normal behavior) */
-.md-typeset a > img {
-  cursor: pointer;
-}
-
-/* Overlay container */
-.img-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  display: none;
-  z-index: 9999;
-  text-align: center;
-}
-
-/* Show overlay when targeted */
-.img-overlay:target {
-  display: block;
-}
-
-/* Opened image — REDUCED ZOOM */
-.img-overlay img {
-  max-width: 80vw;    /* ↓ reduced from 95vw */
-  max-height: 80vh;   /* ↓ reduced from 95vh */
-  margin-top: 10vh;
-  cursor: pointer;
+  margin: auto;
 }
 
 /* Make linked images clickable */
 .md-typeset a > img {
   cursor: pointer;
+  pointer-events: auto !important;
 }
 
-/* Overlay container */
-.img-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  display: none;
-  z-index: 9999;
-  text-align: center;
+/* Disable unwanted theme transforms */
+.md-typeset img {
+  transform: none !important;
+  transition: none !important;
 }
 
-/* Show overlay when targeted */
-.img-overlay:target {
-  display: block;
-}
+/* =========================================================
+   IMAGE OVERLAY (CSS‑ONLY, CLEAN, SINGLE SYSTEM)
+   ========================================================= */
 
-/* Fullscreen image (ZOOM ENABLED) */
-.img-overlay img {
-  max-width: 80vw;     /* controlled zoom */
-  max-height: 80vh;
-  margin-top: 10vh;
-
-  cursor: zoom-in;
-  pointer-events: auto;     /* ✅ allow interaction */
-}
-
-/* Close (X) button */
-.img-close {
-  position: fixed;
-  top: 16px;/* Overlay */
-.img-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  display: none;
-  z-index: 9999;
-
-  overflow: auto;              /* ✅ enables pan */
-}
-
-/* Show overlay */
-.img-overlay:target {
-  display: block;
-}
-
-/* Image — intentionally larger than viewport */
-.img-overlay img {
-  width: 140vw;                /* ✅ larger than screen */
-  max-width: none;
-  height: auto;
-
-  margin: 5vh auto;
-  display: block;
-
-  cursor: grab;                /* visual zoom hint */
-}
-
-/* Close (X) */
-.img-close {
-  position: fixed;
-  top: 16px;
-  right: 24px;
-  font-size: 32px;
-  font-weight: bold;
-  color: #fff;
-  text-decoration: none;
-  z-index: 10000;
-}
-
-  right: 24px;
-  font-size: 32px;
-  font-weight: bold;
-  color: #ffffff;
-  text-decoration: none;
+.yesdr-view {
+  max-width: 100%;
   cursor: pointer;
+}
+.yesdr-view:hover {
+  opacity: 1;
+}
+
+
+/* Overlay */
+.yesdr-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
   z-index: 10000;
 }
 
-/* Clicking background closes */
-.img-overlay::before {
-  content: "";
+.yesdr-overlay.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image */
+.yesdr-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: grab;
+  user-select: none;
+}
+
+/* Close */
+.yesdr-close {
   position: fixed;
-  inset: 0;
+  top: 18px;
+  right: 24px;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
 }
 

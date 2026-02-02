@@ -1,13 +1,16 @@
 ## <strong>YESDR System Architecture
-
+<!--
 <div style="width:100%; margin:0; padding:0;">
   <img 
     src="../images/yesdr_arch.png"
     style="width:80%; height:85%; display:block; margin-bottom:0.5rem;"
     loading="lazy">
 </div>
-
-
+-->
+<img src="../images/yesdr_arch.png"
+     class="yesdr-view"
+     alt="YesDR Sequence">
+     
 ## <strong>YESDR Components
 
 | Term  | Full Form                 | Description |
@@ -42,33 +45,36 @@
 
 ## <strong>YESDR Message Sequence
 
-<a href="#yesdr-seq">
-  ![YesDR Sequence](../images/Yesdr_sequence.png)
-</a>
-
-<div id="yesdr-seq" class="img-overlay">
-  <a href="#" class="img-close">×</a>
-  <img src="../images/Yesdr_sequence.png" alt="YesDR Sequence">
-</div>
+<img src="../images/Yesdr_sequence.png"
+     class="yesdr-view"
+     alt="YesDR Sequence">
 
 
 ## <strong>YACP Packet Structure
-
+<!--
 <div style="width:100%; margin:0; padding:0;">
   <img 
     src="../images/yacp_str.png"
     style="width:100%; height:85%; display:block; margin-bottom:0.5rem;"
     loading="lazy">
 </div>
+-->
+<img src="../images/yacp_str.png"
+     class="yesdr-view"
+     alt="YesDR Sequence">
 
 ## <strong>YSMP Packet Structure
-
+<!--
 <div style="width:100%; margin:0; padding:0;">
   <img 
     src="../images/ysmp_str.png"
     style="width:100%; height:85%; display:block; margin-bottom:0.5rem;"
     loading="lazy">
 </div>
+-->
+<img src="../images/ysmp_str.png"
+     class="yesdr-view"
+     alt="YesDR Sequence">
 
 ## <strong>YESDR Access Control Protocol
 
