@@ -2,9 +2,7 @@
 Release Date: 2 January 2026  
 [YESDR v1.0.0 Specifications](../standards/specifications.md)
 
-YESDR v1.0.0 is the first official release of the YESDR.
-
-This foundational release establishes the core system architecture, key functional entities (YUE, YBS, YCore), and essential control protocols (YACP and YSMP).
+YESDR v1.0.0 is the first official release of the YESDR. This foundational release establishes the core system architecture, key functional entities (YUE, YBS, YCore), and essential control protocols (YACP and YSMP).
 
 ### Key Highlights
 - Modular PHY–RAN–Core architecture  
