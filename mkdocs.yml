@@ -59,7 +59,7 @@ nav:
 
   - Timeline: history/timeline.md
   
-  - Implementations & Tools:
+  - Implementation Toolkit:
       - Protocol Tools:
           - Overview: implementations/index.md
           - Installation: implementations/Installation.md
