@@ -6,11 +6,11 @@ This page explains how you can actively contribute, building on the existing mem
 
 ## Before You Get Started
 
-Before contributing, we strongly recommend reviewing the following pages:
+Before contributing, we recommend reviewing the following pages:
 
-- [**Membership**](membership.md) – Details on membership categories, eligibility, and participation models  
-- [**Policies**](policies.md) – Governance, contribution rules, code of conduct, and IP guidelines  
-- [**Current Status**](current_status.md) – Ongoing work, completed milestones, and planned developments  
+- [**Membership**](consortium/membership.md) – Details on membership categories, eligibility, and participation models  
+- [**Policies**](consortium/policies.md) – Governance, contribution rules, code of conduct, and IP guidelines  
+- [**Current Status**](currentstatus/current_status.md) – Ongoing work, completed milestones, and planned developments  
 
 These documents define the scope, expectations, and rules under which YESDR evolves.
 
@@ -31,7 +31,7 @@ Members and contributors may participate in:
   - Channel ON–OFF duration prediction  
 - Proposing extensions aligned with the YESDR standard architecture  
 
-Active research areas are listed and updated in [Current Status](current_status.md).
+Active research areas are listed and updated in [Current Status](currentstatus/current_status.md).
 
 ---
 
@@ -76,25 +76,19 @@ Industry partners may:
 - Collaborate on applied research and pilots  
 - Sponsor features, testbeds, or student innovation  
 
-Industry participation is governed by the membership and policies framework.
 
 ---
 
 ## Contribution Workflow
 
-1. Review [Membership](membership.md), [Policies](policies.md), and [Current Status](current_status.md)  
-2. Identify an active or proposed contribution area  
-3. Follow the defined contribution guidelines  
-4. Submit your contribution for technical and policy review  
-5. Iterate collaboratively within the YESDR community  
+1. Review [Membership](consortium/membership.md), [Policies](consortium/policies.md), and [Current Status](currentstatus/current_status.md)
+2. Identify the working group
+3. Identify an active or proposed contribution area  
+4. Follow the defined contribution guidelines  
+5. Submit your contribution for technical and policy review  
 
 ---
 
-## Staying Updated
-
-For the latest progress, milestones, and roadmap updates, refer regularly to: [Current Status](current_status.md)
-
----
 
 ## Contact
 
