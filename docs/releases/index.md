@@ -1,7 +1,8 @@
 ## YESDR v1.0.0 — Initial Release  
-**Release Date:** 2 January 2026  
+Release Date: 2 January 2026  
+[YESDR v1.0.0 Specifications:](../standards/specifications.md)
 
-YESDR v1.0.0 is the first official release of the YESDR, defining a modular end-to-end cellular architecture from PHY to Core for SDR-based experimentation, education, and research.
+YESDR v1.0.0 is the first official release of the YESDR.
 
 This foundational release establishes the core system architecture, key functional entities (YUE, YBS, YCore), and essential control protocols (YACP and YSMP).
 
