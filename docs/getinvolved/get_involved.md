@@ -1,18 +1,15 @@
 # Get Involved with YESDR
 
-This page explains how you can actively contribute, building on the existing membership structure, policies, and current project status.
-
----
 
 ## Before You Get Started
 
 Before contributing, we recommend reviewing the following pages:
 
+- [**Consortium**](consortium/overview.md) - Details YESDR Consortium organizational structure
 - [**Membership**](consortium/membership.md) – Details on membership categories, eligibility, and participation models  
 - [**Policies**](consortium/policies.md) – Governance, contribution rules, code of conduct, and IP guidelines  
 - [**Current Status**](currentstatus/current_status.md) – Ongoing work, completed milestones, and planned developments  
 
-These documents define the scope, expectations, and rules under which YESDR evolves.
 
 ---
 
