@@ -131,4 +131,170 @@ table tbody tr:hover {
     display: block;
     margin: auto;
 }
+/* Thumbnail */
+.zoom-img {
+  cursor: zoom-in;
+}
+
+/* Fullscreen overlay */
+.zoom-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  z-index: 9999;
+  text-align: center;
+}
+
+/* Show when targeted */
+.zoom-overlay:target {
+  display: block;
+}
+
+/* Fullscreen image */
+.zoom-overlay img {
+  max-width: 95vw;
+  max-height: 95vh;
+  margin-top: 2vh;
+  cursor: zoom-out;
+}
+
+/* Optional close hint */
+.zoom-overlay::after {
+  content: "✕";
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  font-size: 32px;
+  color: #fff;
+  font-weight: bold;
+}
+/* Make linked images clickable in MkDocs Material */
+.md-typeset a > img {
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+/* Optional: remove any zoom / transform effects */
+.md-typeset img {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Clickable image (normal behavior) */
+.md-typeset a > img {
+  cursor: pointer;
+}
+
+/* Overlay container */
+.img-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  z-index: 9999;
+  text-align: center;
+}
+
+/* Show overlay when targeted */
+.img-overlay:target {
+  display: block;
+}
+
+/* Opened image — REDUCED ZOOM */
+.img-overlay img {
+  max-width: 80vw;    /* ↓ reduced from 95vw */
+  max-height: 80vh;   /* ↓ reduced from 95vh */
+  margin-top: 10vh;
+  cursor: pointer;
+}
+
+/* Make linked images clickable */
+.md-typeset a > img {
+  cursor: pointer;
+}
+
+/* Overlay container */
+.img-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  z-index: 9999;
+  text-align: center;
+}
+
+/* Show overlay when targeted */
+.img-overlay:target {
+  display: block;
+}
+
+/* Fullscreen image (ZOOM ENABLED) */
+.img-overlay img {
+  max-width: 80vw;     /* controlled zoom */
+  max-height: 80vh;
+  margin-top: 10vh;
+
+  cursor: zoom-in;
+  pointer-events: auto;     /* ✅ allow interaction */
+}
+
+/* Close (X) button */
+.img-close {
+  position: fixed;
+  top: 16px;/* Overlay */
+.img-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  z-index: 9999;
+
+  overflow: auto;              /* ✅ enables pan */
+}
+
+/* Show overlay */
+.img-overlay:target {
+  display: block;
+}
+
+/* Image — intentionally larger than viewport */
+.img-overlay img {
+  width: 140vw;                /* ✅ larger than screen */
+  max-width: none;
+  height: auto;
+
+  margin: 5vh auto;
+  display: block;
+
+  cursor: grab;                /* visual zoom hint */
+}
+
+/* Close (X) */
+.img-close {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  z-index: 10000;
+}
+
+  right: 24px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+/* Clicking background closes */
+.img-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+}
 

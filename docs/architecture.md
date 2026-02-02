@@ -42,13 +42,16 @@
 
 ## <strong>YESDR Message Sequence
 
-<div style="width:100%; margin:0; padding:0;">
-  <img 
-    src="../images/Yesdr_sequence.png"
-    style="width:100%; height:85%; display:block; margin-bottom:0.5rem;"
-    loading="lazy">
+<a href="#yesdr-seq">
+  ![YesDR Sequence](../images/Yesdr_sequence.png)
+</a>
+
+<div id="yesdr-seq" class="img-overlay">
+  <a href="#" class="img-close">×</a>
+  <img src="../images/Yesdr_sequence.png" alt="YesDR Sequence">
 </div>
-	
+
+
 ## <strong>YACP Packet Structure
 
 <div style="width:100%; margin:0; padding:0;">
