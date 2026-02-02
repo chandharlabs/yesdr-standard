@@ -1,6 +1,6 @@
 ## YESDR v1.0.0 — Initial Release  
 Release Date: 2 January 2026  
-[YESDR v1.0.0 Specifications:](../standards/specifications.md)
+[YESDR v1.0.0 Specifications](../standards/specifications.md)
 
 YESDR v1.0.0 is the first official release of the YESDR.
 
