@@ -58,12 +58,16 @@ nav:
       - Policies: consortium/policies.md
 
   - Timeline: history/timeline.md
+
+  - Current Status: currentstatus/current_status.md
   
   - Implementation Toolkit:
       - Protocol Tools:
           - Overview: implementations/index.md
           - Installation: implementations/Installation.md
           - Wireshark Analysis: implementations/protocol-tools.md
+  
+  - Get Involved: geinvolved/get_involved.md
 
   - Contact: contact.md
 
