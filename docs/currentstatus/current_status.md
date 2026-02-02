@@ -1,5 +1,7 @@
 # YESDR – Implementation Status
 
+
+
 ## 1. YESDR Core Network
 
 | Component / Function | Completed | To Be Done |
