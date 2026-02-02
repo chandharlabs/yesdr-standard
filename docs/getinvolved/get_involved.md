@@ -5,10 +5,10 @@
 
 Before contributing, we recommend reviewing the following pages:
 
-- [**Consortium**](consortium/overview.md) - Details YESDR Consortium organizational structure
-- [**Membership**](consortium/membership.md) – Details on membership categories, eligibility, and participation models  
-- [**Policies**](consortium/policies.md) – Governance, contribution rules, code of conduct, and IP guidelines  
-- [**Current Status**](currentstatus/current_status.md) – Ongoing work, completed milestones, and planned developments  
+- [**Consortium**](../consortium/overview.md) - Details YESDR Consortium organizational structure
+- [**Membership**](../consortium/membership.md) – Details on membership categories, eligibility, and participation models  
+- [**Policies**](../consortium/policies.md) – Governance, contribution rules, code of conduct, and IP guidelines  
+- [**Current Status**](../currentstatus/current_status.md) – Ongoing work, completed milestones, and planned developments  
 
 
 ---
@@ -28,7 +28,7 @@ Members and contributors may participate in:
   - Channel ON–OFF duration prediction  
 - Proposing extensions aligned with the YESDR standard architecture  
 
-Active research areas are listed and updated in [Current Status](currentstatus/current_status.md).
+Active research areas are listed and updated in [Current Status](../currentstatus/current_status.md).
 
 ---
 
@@ -78,7 +78,7 @@ Industry partners may:
 
 ## Contribution Workflow
 
-1. Review [Membership](consortium/membership.md), [Policies](consortium/policies.md), and [Current Status](currentstatus/current_status.md)
+1. Review [Membership](../consortium/membership.md), [Policies](../consortium/policies.md), and [Current Status](../currentstatus/current_status.md)
 2. Identify the working group
 3. Identify an active or proposed contribution area  
 4. Follow the defined contribution guidelines  
