@@ -34,14 +34,3 @@ The YESDR Consortium oversees activities related to:
 | **Study Groups (SGs)** | Exploratory and pre-standardization research | Investigate new technologies, concepts, and feasibility studies; provide recommendations to Working Groups and the TSC | No direct specification authority |
 | **Working Groups (WGs)** | Formal specification development | Develop, maintain, and update YESDR Technical Specifications; address approved Change Requests | Primary authors of specifications |
 | **Secretariat** | Administrative and operational support | Maintain official records, meeting minutes, and publications; manage consortium communications and mailing lists; coordinate membership applications and onboarding; support governance and compliance processes | Administrative authority only |
-
----
-
-## Getting Involved
-
-Organizations and individuals interested in contributing to the YESDR are encouraged to:
-
-1. Review the Consortium structure and [policies](policies.md)
-2. Apply for [membership](membership.md)
-3. Join relevant Study Groups or Working Groups  
-4. Participate in discussions, reviews, and technical contributions 
