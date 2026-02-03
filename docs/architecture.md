@@ -11,11 +11,6 @@
      class="yesdr-view"
      alt="YesDR Sequence">
 
-
-## <strong>YESDR End-to-End Network Flow
-
-[Click here to view YESDR end-to-end network flow](assets/architecture/index1.html)
-
 ## <strong>YESDR Components
 
 | Term  | Full Form                 | Description |
@@ -47,6 +42,12 @@
 |---------|----------------------------------------|-------------|
 | YACP    | YesDR Access Control Protocol          | Manages access control, authentication, and registration procedures. |
 | YSMP    | YesDR Spectrum Management Protocol     | Coordinates spectrum sensing, allocation, and dynamic spectrum management. |
+
+
+## <strong>YESDR End-to-End Network Flow
+
+[Click here to view YESDR end-to-end network flow](assets/architecture/index1.html)
+
 
 ## <strong>YESDR Message Sequence
 
