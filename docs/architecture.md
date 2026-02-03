@@ -14,7 +14,7 @@
 
 ## <strong>YESDR End-to-End Network Flow
 
-[Click here to View YESDR Call Flow](assets/architecture/index1.html)
+[Click here to view YESDR end-to-end network flow](assets/architecture/index1.html)
 
 ## <strong>YESDR Components
 
