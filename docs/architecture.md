@@ -76,7 +76,7 @@
      class="yesdr-view"
      alt="YesDR Sequence">
 
-## <strong>YESDR Access Control Protocol
+## <strong>YACP Messages
 
 | Msg Type | Message Name | IE Type | IE Name | Item Name | Size (bytes) |
 |---------:|--------------|--------:|---------|-----------|--------------|
@@ -120,16 +120,6 @@
 |  |  | 0x80 | TAIList | tai_list | Variable |
 |  |  | 0x82 | DRXParameters | drx_params | Variable |
 |  |  | 0x83 | RegistrationStatus | reg_status | 1 |
-| 0x28 | IdentityRequest | 0x0A | AMF-UE-NGAP-ID | amf_ue_ngap_id | 4 |
-|  |  | 0x55 | RAN-UE-NGAP-ID | ran_ue_ngap_id | 4 |
-|  |  | 0x26 | NAS-PDU | nas_identity_req | Variable |
-| 0x30 | IdentityResponse | 0x50 | UE Identity | value | Variable |
-|  |  | 0x51 | UE Security Capabilities | value | Variable |
-|  |  | 0x52 | Requested NSSAI | sst/sd | Variable |
-|  |  | 0x53 | PLMN ID | plmn | 3 |
-|  |  | 0x54 | Serving Network Name | network_name | Variable |
-|  |  | 0x0A | AMF-UE-NGAP-ID | amf_ue_ngap_id | 4 |
-|  |  | 0x55 | RAN-UE-NGAP-ID | gnb_ue_ngap_id | 4 |
 | 0x29 | DownlinkNASTransport (Auth Req) | 0x0A | AMF-UE-NGAP-ID | amf_ue_ngap_id | 4 |
 |  |  | 0x55 | RAN-UE-NGAP-ID | ran_ue_ngap_id | 4 |
 |  |  | 0x26 | NAS-PDU | nas_auth_req | Variable |
@@ -153,7 +143,7 @@
 |  |  |  |  | qos_flow_id | 1 |
 |  |  |  |  | ue_ip | 4 |
 
-## <strong>YESDR Spectrum Management Protocol
+## <strong>YSMP Messages
 
 | Msg Type | Message Name | IE Type | IE Name | Field Name | Size (bytes) |
 |---------:|--------------|--------:|---------|------------|--------------|
