@@ -10,7 +10,9 @@
 <img src="../images/yesdr_arch.png"
      class="yesdr-view"
      alt="YesDR Sequence">
-     
+
+[Click here to View YESDR Call Flow](assets/architecture/index1.html)
+
 ## <strong>YESDR Components
 
 | Term  | Full Form                 | Description |
