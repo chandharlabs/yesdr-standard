@@ -32,4 +32,4 @@ Designed for flexibility, teaching, and research, YESDR enables AI-driven wirele
 
 - *Community‑Driven Framework*: Open, extensible, and designed for collaborative development.
 
-- *Interoperability Ready*: Designed to integrate with **OpenAirInterface, Free5GC, Open5GS, UERANSIM**, and potential **ORAN‑based components** for with real‑world 5G/6G experimentation.  
+- *Interoperability Ready*: Designed to integrate with OpenAirInterface, Free5GC, Open5GS, UERANSIM, and potential ORAN‑based components for with real‑world 5G/6G experimentation.  
