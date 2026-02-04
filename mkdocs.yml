@@ -76,10 +76,8 @@ extra_css:
   
 plugins: []
 
-
 extra_javascript:
   - javascripts/disable-right-click.js
-
 
 markdown_extensions:
   - pymdownx.superfences:
