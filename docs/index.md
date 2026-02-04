@@ -4,7 +4,7 @@
 </div>
 
 # An Extensible Framework for AI-Native Cellular Networks
-**YESDR (pronounced “Yes Dee Are”)** is a modular standard-oriented framework for end-to-end cellular wireless experimentation from PHY to Core Network using Software-Defined Radios (SDRs).
+YESDR (*pronounced “Yes Dee Are”*) is a modular standard-oriented framework for end-to-end cellular wireless experimentation from PHY to Core Network using Software-Defined Radios (SDRs).
 
 Designed for flexibility, teaching, and research, YESDR enables AI-driven wireless innovation, including channel prediction, spectrum sensing, protocol optimization, dynamic spectrum access, traffic forecasting, and network automation. It provides a lightweight alternative to full 3GPP stacks, ideal for rapid prototyping and experimentation.
 
