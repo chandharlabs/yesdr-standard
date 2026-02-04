@@ -1,6 +1,6 @@
 # YESDR Installation and Service Management
 
-This describes how to install, use, manage, and remove **YESDR** using
+This describes how to install, use, manage, and remove YESDR using
 the official APT package repository. YESDR follows standard Debian/Ubuntu package
 and service management conventions.
 
