@@ -27,7 +27,7 @@ theme:
 
 nav:
   - Home: index.md
-  - Architecture and Signal Flow: architecture.md
+  - Architecture: architecture.md
 
   - Specifications:
       - Specifications: standards/specifications.md
