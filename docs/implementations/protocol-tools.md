@@ -1,16 +1,10 @@
 # Protocol Analysis with Wireshark
 
 This section explains how YESDR control-plane protocols can be viewed and analyzed
-using **Wireshark**. To support debugging, validation, and education, official
+using *Wireshark*. To support debugging, validation, and education, official
 Wireshark dissectors and example packet capture files are provided for selected
 YESDR protocols.
 
-!!! note
-    The tools described here are **reference implementations** and are
-    **non-normative** unless explicitly stated otherwise in the corresponding
-    Technical Specification.
-
----
 
 ## Supported Protocols
 
@@ -25,7 +19,7 @@ Additional protocol dissectors may be added in future releases.
 
 ## Wireshark Dissector Overview
 
-- Dissector language: **Lua**
+- Dissector language: *Lua*
 - Compatible with standard Wireshark builds with Lua enabled
 - Supports:
   - Offline packet capture (`.pcap`, `.pcapng`)
@@ -78,7 +72,7 @@ Additional protocol dissectors may be added in future releases.
 ### Using Example PCAP Files
 
 Example packet capture files are provided for learning and validation.   
-  **Sample PCAP File:** <a href="../../assets/dissectors/yesdr.pcapng" download>Download</a>
+  Sample PCAP File: <a href="../../assets/dissectors/yesdr.pcapng" download>Download</a>
 
 
   
