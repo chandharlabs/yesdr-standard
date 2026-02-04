@@ -1,4 +1,4 @@
-## <strong>YESDR System Architecture and Signal Flow
+## <strong>YESDR System Architecture
 <!--
 <div style="width:100%; margin:0; padding:0;">
   <img 
