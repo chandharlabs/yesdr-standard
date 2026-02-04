@@ -156,20 +156,20 @@
 | 0x10 | YSMSetupRequest | 0x01 | YSM ID | ysm_id | 4 |
 |  |  | 0x02 | Location | location | Variable |
 |  |  | 0x03 | Capabilities | capabilities | 1 |
-|  |  | 0x04 | Scan Bands | band_list | 2×N |
-|  |  | 0x05 | FFT Size | fft_size | 2 |
-|  |  | 0x06 | Max Power | max_power | 2 |
+|  |  | 0x04 | ScanBands | band_list | 2×N |
+|  |  | 0x05 | FFTSize | fft_size | 2 |
+|  |  | 0x06 | MaxPower | max_power | 2 |
 | 0x11 | YSMSetupResponse | 0x11 | Status Code | status | 1 |
-|  |  | 0x12 | Response Message | response_msg | Variable |
-|  |  | 0x13 | Assigned Frequency | assigned_freq | 2 |
-|  |  | 0x14 | Assigned Bandwidth | assigned_bw | 2 |
-|  |  | 0x15 | Allocated Power | allocated_power | 1 |
-|  |  | 0x20 | Radio Resource Info | resource_info | 4 |
+|  |  | 0x12 | ResponseMessage | response_msg | Variable |
+|  |  | 0x13 | AssignedFrequency | assigned_freq | 2 |
+|  |  | 0x14 | AssignedBandwidth | assigned_bw | 2 |
+|  |  | 0x15 | AllocatedPower | allocated_power | 1 |
+|  |  | 0x20 | RadioResourceInfo | resource_info | 4 |
 | 0x31 | YSMReport | 0x40 | Timestamp | timestamp | Variable |
-|  |  | 0x41 | Start Frequency | start_freq | 4 |
-|  |  | 0x42 | End Frequency | end_freq | 4 |
+|  |  | 0x41 | StartFrequency | start_freq | 4 |
+|  |  | 0x42 | EndFrequency | end_freq | 4 |
 |  |  | 0x43 | Occupancy | occupancy | 1 |
-|  |  | 0x44 | Number of Measurements | num_measurements | 2 |
+|  |  | 0x44 | NumberofMeasurements | num_measurements | 2 |
 |  |  | 0x45 | Decision | decision | Variable |
 
 
