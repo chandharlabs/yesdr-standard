@@ -1,58 +1,57 @@
-# YESDR – Current Implementation Status
+# YESDR – Current Implementation Status (Aligned)
 
+---
 
-
-## 1. YESDR Core Network
+## 1. YESDR Core Network (Y-Core SBA Layer)
 
 | Component / Function | Completed | To Be Done |
 |--------------------|-----------|------------|
-| Core Network Functions (YNRF, YAMF, YCRF, YRMF, YAUSF, YUDM, YUDR, YPCF, YSMF, YUPF, YNSSF) | Implemented as independent modules | Optimization and full inter-function validation |
-| SBI Interface | FastAPI-based SBI implemented | Standard compliance refinement |
-| Inter-Module Communication | FastAPI-based communication | Error recovery and robustness |
-| YACP Interface | Implemented for YBS communication | Initial four protocol messages |
-| YSMP Interface | Implemented for YSM communication | Full message coverage |
-| Spectrum Scanning | Spectrum scanning implemented | Advanced scanning strategies |
-| Resource Allocation | Allocation based on frequency occupancy | Policy-driven dynamic allocation |
-| Authentication | 5G-AKA implemented | NAS-level enhancements |
-| Key Management | User database with keys | Secure key lifecycle management |
-| Subscriber Data | Data retrieval from YUDR | Full synchronization with central DB |
-| Policy Control (YPCF) | Policy reporting and modification | Advanced policy enforcement |
-| User Plane Control | PFCP with YUPF implemented | Failure recovery handling |
-| Uplink / Downlink | TEID-based handling implemented | QoS-aware routing |
-| Database | PostgreSQL implemented | MongoDB as central database |
-| Heartbeat Monitoring | Basic heartbeat support | Failure-based cleanup |
-| IP Routing | – | To be implemented |
+| Core Network Functions (YNRF, YAMF, YCRF, YRMF, YAUSF, YUDM, YUDR, YPCF, YSMF, YUPF, YNSSF) | Implemented as independent SBA microservices | Optimization and full inter-function validation |
+| SBI Interface | FastAPI-based Service-Based Interface (HTTP/JSON) implemented | 3GPP-style service compliance refinement |
+| Service Discovery | YNRF registration and lookup working | Failure-aware service re-selection |
+| SBI Communication | API-based service invocation between modules | Retry logic and robustness improvements |
+| YACP Interface | Implemented for YBS communication | Initial four protocol messages finalization |
+| YSMP Interface | YSMP Setup, response, report supported | Full protocol message coverage |
+| Spectrum Scanning | Frequency occupancy-based scanning implemented | Advanced scanning strategies |
+| Resource Allocation | Allocation using spectrum occupancy logic | Policy-driven dynamic allocation via YPCF |
+| Authentication | 5G-AKA flow implemented | NAS-level security context handling |
+| Subscriber Data | Retrieval via YUDR | Full synchronization with central DB |
+| Policy Control (YPCF) | Policy reporting and modification supported | Real enforcement in YSMF/YAMF |
+| User Plane Control | PFCP association with YUPF implemented | Failure recovery and session restoration |
+| Uplink / Downlink | TEID-based session handling | QoS-aware routing decisions |
+| Database | PostgreSQL operational | Optional MongoDB for distributed data |
+| Heartbeat Monitoring | Basic heartbeat support | Timeout cleanup and node failure handling |
+| IP Routing | – | User-plane IP routing inside YUPF |
 
 ---
 
-## 2. YESDR Protocol Stack
+## 2. YESDR Protocol Stack (Control & User Plane)
 
 | Protocol / Feature | Completed | To Be Done |
 |-------------------|-----------|------------|
-| YACP | Core messages implemented | First four protocol messages |
-| YSMP | Setup, response, report | Full protocol coverage |
-| GTP | Uplink and downlink | Dynamic source IP handling |
-| PFCP | Heartbeat, association request/response | UPF failure detection |
-| Security | 5G-AKA implemented | Encryption & integrity protection |
-| Message Modification | Basic support | Improved modification handling |
-| Wireshark Dissector | Generated and functional | Complete message coverage |
-| NAS Signaling | – | Full NAS implementation |
+| YACP | Core signaling messages implemented | NAS Over YACP |
+| YSMP | Setup, response, report messages | Full protocol coverage |
+| GTP | Uplink and downlink tunneling | Dynamic source IP handling |
+| PFCP | Heartbeat and association procedures | UPF failure detection & recovery |
+| Authentication Security | 5G-AKA implemented | NAS integrity & ciphering |
+| Message Modification | Basic support | Improved modification and validation |
+| Wireshark Dissector | Functional dissector available | Extended message decoding |
+| NAS Signaling | – | Full NAS message layer |
 
 ---
 
-## 3. YESDR RAN Layers
+## 3. YESDR RAN Layers (Radio Stack)
 
 | Layer | Completed | To Be Done |
 |------|-----------|------------|
-| PHY | BPSK downlink (User Plane) | BPSK downlink control plane |
-| PHY | – | BPSK uplink (Control & User Plane) |
-| MAC | CRC, segmentation | Scheduling, MAC headers |
-| RLC | Basic framework | AM, TM, UM modes |
-| PDCP | Basic processing | NAS-based encryption (Kupenc) |
-| SDAP | – | QoS flow mapping |
-| RRC | – | Full RRC signaling |
-| FEC | Coding and decoding | Performance optimization |
-| Security | Hard-coded key (initial) | Dynamic key usage |
+| PHY | BPSK downlink (User Plane) | Control-plane PHY & uplink PHY |
+| MAC | CRC and segmentation | Scheduling logic and MAC headers |
+| RLC | Basic framework skeleton | AM, UM, TM operational modes |
+| PDCP | Basic processing pipeline | NAS-based encryption (Kupenc/Kint) |
+| SDAP | – | QoS flow mapping implementation |
+| RRC | – | Full RRC signaling procedures |
+| FEC | Coding and decoding implemented | Performance optimization |
+| Security | Hard-coded initial key | Dynamic security key usage |
 
 ---
 
@@ -60,9 +59,9 @@
 
 | Feature | Completed | To Be Done |
 |-------|-----------|------------|
-| Protocol Stack | Implemented | Validation with full core |
-| Control Messages | – | First four protocol messages |
-| Core Integration | Partial | Full end-to-end testing |
+| Protocol Stack | Partial Layer-2/3 stack implemented | Full validation with completed RAN layers |
+| Control Messages | – | First four YACP protocol messages |
+| Core Integration | Partial integration with Y-Core | End-to-end testing with full session flow |
 
 ---
 
@@ -70,46 +69,47 @@
 
 | Feature | Completed | To Be Done |
 |--------|-----------|------------|
-| UE Registration | GUI-based registration | NAS & RRC integration |
-| Uplink Data | Text transmission | Image and video support |
-| Downlink Data | Registration and reception | QoS-aware reception |
-| Security | Basic authentication | GUTI mapping |
-| GUI | Functional GUI | Feature-rich UI |
+| UE Registration | GUI-based registration | NAS and RRC integration |
+| Uplink Data | Text-based transmission | Image and video data support |
+| Downlink Data | Registration response handling | QoS-aware reception |
+| Security | Pre-NAS authentication prototype | GUTI mapping and NAS security |
+| GUI | Functional interface | Feature-rich unified UI |
 
 ---
 
-## 6. Advanced Network Features
+## 6. Advanced Network Features (Phase-3)
 
 | Feature | Completed | To Be Done |
 |-------|-----------|------------|
-| Handover | – | Intra- and inter-cell handover |
-| AMF–AMF Communication | – | Full support |
-| gNB–gNB Communication | – | Xn-like interface |
+| Handover | – | Intra-cell and inter-cell handover |
+| AMF–AMF Communication | – | Full inter-AMF procedures |
+| YBS–YBS Communication | – | Xn-like interface |
 | Mobility Management | – | End-to-end mobility handling |
 
 ---
 
-## 7. AI / ML / DL Capabilities
+## 7. AI / ML / DL Capabilities (YESDR Intelligence Layer)
 
 | Feature | Completed | To Be Done |
 |-------|-----------|------------|
-| Spectrum Sensing | Spectrum sensing from 600 MHz to 6 GHz | AI-asssted accuracy optimization and multi-band correlation |
-| Signal Energy Detection | Real-time energy-based sensing | Adaptive thresholding |
-| Modulation Classification | – | AI/ML-based modulation classification |
+| Spectrum Sensing | Wideband sensing (600 MHz–6 GHz) | AI-assisted accuracy optimization |
+| Signal Energy Detection | Real-time energy detection | Adaptive thresholding |
+| Modulation Classification | – | AI/ML-based classification models |
 | Channel Prediction | – | ML/DL-based channel quality prediction |
-| Channel ON/OFF Prediction | – | Traffic-aware channel ON–OFF duration prediction |
+| Channel ON/OFF Prediction | – | Traffic-aware prediction models |
 | Model Deployment | – | Edge deployment (MEC / SDR embedded) |
 | Real-Time Inference | – | Low-latency inference optimization |
 | Visualization | Basic plots | AI-driven spectrum occupancy maps |
 
-
-
 ---
 
-## 8. Tools & Packaging
+## 8. Tools & Packaging (Deployment Layer)
 
 | Tool / Feature | Completed | To Be Done |
 |---------------|-----------|------------|
-| Wireshark Visibility | Protocol dissectors | Extended coverage |
-| Packaging | `.deb` package | Installer automation |
-| GUI Tools | Basic visualization | Unified management GUI |
+| Wireshark Visibility | Custom protocol dissectors | Extended message coverage |
+| Packaging | `.deb` package structure created | Installer automation |
+| GUI Tools | Basic visualization tools | Unified management dashboard |
+
+---
+
