@@ -52,8 +52,8 @@ sudo apt install yesdr
 ```
 
 ## YESDR Configuration
-.. code-block:: yaml 
-  core_network:
+```yaml
+core_network:
     ysmf:
       ip: 192.168.1.105
       port: 29525 #SBI 
@@ -117,7 +117,7 @@ sudo apt install yesdr
   logging:
     level: DEBUG
     file: logs/core.log
-
+```
 ## Network Interface Configuration
 
 ####Open the IP Configuration File
