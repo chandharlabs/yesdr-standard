@@ -51,6 +51,73 @@ sudo apt update
 sudo apt install yesdr
 ```
 
+## YESDR Configuration
+.. code-block:: yaml 
+  core_network:
+    ysmf:
+      ip: 192.168.1.105
+      port: 29525 #SBI 
+      port1: 8805  #PFCP
+    ypcf:
+      ip: 192.168.1.125
+      port: 29525 #SBI 
+    yausf:
+      ip: 192.168.1.103
+      port: 29525 #SBI 
+    yupf:
+      ip: 192.168.1.119
+      port1: 29525 #SBI 
+      port2: 2152 #GTP
+      port3: 8805  #PFCP
+    ynrf:
+      ip: 192.168.1.107
+      port: 29525 #SBI 
+    yamf:
+      ip : 192.168.1.106
+      port: 9090   #YSM   adding port 2 for sbi
+      port1: 7070  #YACP(YBS)
+      port2: 29525 #SBI
+    yrmf:
+      ip : 192.168.1.108
+      port: 29525 #SBI 
+      mode: sdr   # sdr or nosdr
+    ycrf:
+      ip: 192.168.1.102
+      port: 29525 #SBI 
+    yudm:
+      ip: 192.168.1.104
+      port: 29525 #SBI 
+
+  yue:
+    ip: 192.168.1.111
+    port: 5005
+    port1: 2152
+
+  sbi:
+    port: 29525
+  
+  ybs:
+    ip: 192.168.1.118
+    port: 21521
+    port1: 2152
+    phyport: 2136
+    phyMode: UDPTx # UDPTx, OFDMTx, BPSKTx
+    modType: BPSK # BPSK, QPSK, 16-QAM, 64-QAM
+  
+  ycrfdb:
+    ip: 127.0.0.1
+    port: 5432
+    user: ysm_user
+    password: ysm_report
+    database: ysm_db
+
+  chSender:
+    dataType: Text #1. Text, 2 .Image
+  
+  logging:
+    level: DEBUG
+    file: logs/core.log
+
 ## Network Interface Configuration
 
 ####Open the IP Configuration File
