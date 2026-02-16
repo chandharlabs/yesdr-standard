@@ -52,6 +52,12 @@ sudo apt install yesdr
 ```
 
 ## YESDR Configuration
+####Open the YESDR Configuration File 
+```
+sudo nano /opt/yesdr/core/config.yaml
+```
+Edit the required fields
+
 ```yaml
 core_network:
     ysmf:
