@@ -37,12 +37,14 @@ Note: It should be active.
 #### Add GPG Key
 
 ```
-curl -fsSL https://package.yesdr-standard.org/yesdr.gpg | sudo gpg --dearmor -o /usr/share/keyrings/yesdr-archive-keyring.gpg
+curl -fsSL https://yesdrapt.chandhar-labs.com/yesdr.gpg | \
+gpg --dearmor | \
+sudo tee /usr/share/keyrings/yesdr-archive-keyring.gpg >/dev/null
 ```
 
 ####Add APT Source
 ```
-echo "deb [signed-by=/usr/share/keyrings/yesdr-archive-keyring.gpg] https://package.yesdr-standard.org stable main" | sudo tee /etc/apt/sources.list.d/yesdr.list
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/yesdr-archive-keyring.gpg] https://yesdrapt.chandhar-labs.com stable main" | sudo tee /etc/apt/sources.list.d/yesdr.list
 sudo apt update
 ```
 
@@ -52,7 +54,7 @@ sudo apt install yesdr
 ```
 
 ## YESDR Configuration
-####Open the YESDR Configuration File 
+####Open the YESDR Core Network Configuration File 
 ```
 sudo nano /opt/yesdr/core/config.yaml
 ```
@@ -80,7 +82,7 @@ core_network:
       port: 29525 #SBI 
     yamf:
       ip : 192.168.1.106
-      port: 9090   #YSM   adding port 2 for sbi
+      port: 9090   #YSM
       port1: 7070  #YACP(YBS)
       port2: 29525 #SBI
     yrmf:
@@ -94,21 +96,8 @@ core_network:
       ip: 192.168.1.104
       port: 29525 #SBI 
 
-  yue:
-    ip: 192.168.1.111
-    port: 5005
-    port1: 2152
-
   sbi:
     port: 29525
-  
-  ybs:
-    ip: 192.168.1.118
-    port: 21521
-    port1: 2152
-    phyport: 2136
-    phyMode: UDPTx # UDPTx, OFDMTx, BPSKTx
-    modType: BPSK # BPSK, QPSK, 16-QAM, 64-QAM
   
   ycrfdb:
     ip: 127.0.0.1
@@ -123,6 +112,120 @@ core_network:
   logging:
     level: DEBUG
     file: logs/core.log
+```
+####Open the YESDR YBS Configuration File 
+```
+sudo nano /opt/yesdr/core/ybs.yaml
+```
+Edit the required fields
+
+```yaml
+ybs:
+  ip: 192.168.1.118
+  port: 21521          
+  port1: 2152          
+  phyport: 2136        
+  phyMode: UDPTx #BPSKTx #UDPTx #      
+  modType: BPSK        
+
+core_network:
+  yamf:
+    ip: 192.168.1.106
+    port1: 7070        
+
+security:
+  gnb_k_nasenc: "7365637265746b657931323334353637" 
+  cp_key: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+
+user_plane:
+  gtp:
+    local_bind_port: 2152
+    max_payload: 65536
+
+stack:
+  rlc:
+    segment_size: 512
+
+  pdcp:
+    sn_start: 1
+    iv_length: 8
+
+  fec:
+    trellis:
+      constraint_length: 7
+      generators: [133, 171]
+    viterbi_depth: 35
+
+timers:
+  amf_timeout_sec: 5
+  max_retries: 3
+  pdu_session_expiry_sec: 3600
+
+logging:
+  enable: true
+  level: DEBUG
+  node_name: YBS
+  log_dir: logs
+  dashboard:
+    ip: 127.0.0.1
+    port: 5001
+
+
+debug:
+  print_pdcp: true
+  print_rlc: true
+  print_gtp: true
+  print_phy: false
+```
+####Open the YESDR YUE Configuration File 
+```
+sudo nano /opt/yesdr/core/yue.yaml
+```
+Edit the required fields
+
+```yaml
+ue:
+  IMEISV: '4901542032375186'
+  amf_ue: '8000'
+  guti: null
+  imsi: '405869477770001'
+  key_ue: 465b5ce8b199b49faa5f0a2ee238a6bc
+  op_ue: eccbc87e4b5ce2fe28308fd9f2a7baf3
+  phyMode: 2
+  sqn_ue: 0000000001f8
+ue_ip:
+  data_type: Text
+  ybs_ip: 192.168.1.118
+  ybs_port: 21521
+  yue_ip: 192.168.1.111
+  yue_port: 5005
+  yue_port1: 2152
+ue_security:
+  access_stratum:
+    ciphering:
+      128-NEA1:
+        description: UE supports AS ciphering using SNOW 3G only
+        id: 1
+        name: SNOW_3G
+    integrity:
+      128-NIA1:
+        description: UE supports AS integrity using SNOW 3G only
+        id: 1
+        name: SNOW_3G
+  nas:
+    ciphering:
+      128-EEA1:
+        description: UE supports NAS ciphering using SNOW 3G only
+        id: 1
+        name: SNOW_3G
+    integrity:
+      128-EIA1:
+        description: UE supports NAS integrity using SNOW 3G only
+        id: 1
+        name: SNOW_3G
+  pdcp:
+    CP_KEY: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    test_key: 7365637265746b657931323334353637
 ```
 ## Network Interface Configuration
 
@@ -159,7 +262,11 @@ sudo systemctl start yesdr-yupf
 sudo systemctl start yesdr-ybs
 sudo systemctl start yesdr-yue
 ```
-
+Note: Instead of starting the UE using systemctl, launch the YESDR UE Control Panel using ``` yesdr-uegui ```
+Click Register UE inside the control panel.  
+After successful authentication and session setup:  
+   - UE state changes from **Idle** to **Connected**.  
+   - The allocated **UE IP address** becomes visible.  
 #### Check Status of All Services
 ```
 systemctl status yesdr-ipconfig
@@ -220,15 +327,15 @@ Connect to [http://127.0.0.1:8051](http://127.0.0.1:8051) and login with admin a
 Username : admin  
 Password : admin
 ```
-<!--
+
 ## To Visualize Spectrum Information
 Connect to [http://127.0.0.1:8052](http://127.0.0.1:8052)
-## To Visualize Spectrum Information
-To send data and receive from UE
-Connect to [http://127.0.0.1:8053](http://127.0.0.1:8053)
-To Send Downlink data
+## Uplink and DownLink Data Transfer 
+To send data and receive from UE  
+Connect to [http://127.0.0.1:8053](http://127.0.0.1:8053)  
+To Send Downlink data  
 Connect to [http://127.0.0.1:8054](http://127.0.0.1:8054)
--->
+
 
 ## UNINSTALL / CLEAN REMOVE
 
