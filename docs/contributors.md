@@ -1,10 +1,5 @@
-# YesDR Contributors
+YWSDR Contributors
 
-The YesDR standard is developed through open collaboration among researchers,
-engineers, educators, and open‑source contributors working on SDR, AI‑native
-wireless systems, and next‑generation cellular experimentation.
-
----
 
 ## Core Contributors
 
