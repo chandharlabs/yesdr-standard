@@ -66,6 +66,8 @@ nav:
           - Implementation Toolkit: implementations/index.md
           - Installation: implementations/Installation.md
           - Wireshark Analysis: implementations/protocol-tools.md
+          
+  - Contributors: contributors.md
   
   - Get Involved: getinvolved/get_involved.md
 
