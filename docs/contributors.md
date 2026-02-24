@@ -1,4 +1,4 @@
-YWSDR Contributors
+YESDR Contributors
 
 
 ## Core Contributors
