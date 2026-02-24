@@ -5,8 +5,8 @@ YESDR Contributors
 
 | Name | Role | Area | Affiliation |
 |------|------|------|-------------|
-| **Prabhu Chandhar** | Founder & Chief Architect | System Architecture, SDR Framework Design, Standards Direction | Chandhar Research Labs, Mayiladuturai, Tamil Nadu |
-| **P Pattabiram** | Core Network Devlopment | Core Network Architecture, Service-Based Interfaces, Protocol Engineering | Chandhar Research Labs, Mayiladuturai, Tamil Nadu |
+| **Prabhu Chandhar** | Founder & Chief Architect | System Architecture, SDR Framework Design, Standards Direction | Chandhar Research Labs, Mayiladuthurai, Tamil Nadu |
+| **P Pattabiram** | Core Network Devlopment | Core Network Architecture, Service-Based Interfaces, Protocol Engineering | Chandhar Research Labs, Mayiladuthurai, Tamil Nadu |
 | **Atmanand Gauns** | Modulation Scheme Devlopment | BPSK Transciever | Goa College of Engineering, Goa |
 | **Malyala Shiva Kumar** | RAN Devlopment | RAN Architecture, PHY/MAC Integration | KL University, Vijayawada, Andhra Pradesh |
 
