@@ -1,5 +1,8 @@
 YESDR Contributors
 
+## Current Members
+
+- Mahindra University, Hyderabad, Telangana
 
 ## Core Contributors
 
