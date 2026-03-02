@@ -67,7 +67,7 @@ nav:
           - Installation: implementations/Installation.md
           - Wireshark Analysis: implementations/protocol-tools.md
           
-  - YESDR Contributors: contributors.md
+  - Contributors: contributors.md
   
   - Get Involved: getinvolved/get_involved.md
 
