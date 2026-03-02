@@ -2,14 +2,15 @@
 
 | Institue | Year of Joining |
 |------|------|
+|**Chandhar Research Labs Pvt. Ltd.**, Mayiladuthurai, Tamil Nadu | 2026 | 
 |**Mahindra University**, Hyderabad, Telangana | 2026 | 
 
 ## Core Contributors
 
 | Name | Role | Area | Affiliation |
 |------|------|------|-------------|
-| **Prabhu Chandhar** | Founder & Chief Architect | System Architecture, SDR Framework Design, Standards Direction | Chandhar Research Labs, Mayiladuthurai, Tamil Nadu |
-| **P Pattabiram** | Core Network Devlopment | Core Network Architecture, Service-Based Interfaces, Protocol Engineering | Chandhar Research Labs, Mayiladuthurai, Tamil Nadu & KL University, Vijayawada, Andhra Pradesh |
+| **Prabhu Chandhar** | Founder & Chief Architect | System Architecture, SDR Framework Design, Standards Direction | Chandhar Research Labs Pvt. Ltd., Mayiladuthurai, Tamil Nadu |
+| **P Pattabiram** | Core Network Development | Core Network Architecture, Service-Based Interfaces, Protocol Engineering | Chandhar Research Labs Pvt. Ltd., Mayiladuthurai, Tamil Nadu & KL University, Vijayawada, Andhra Pradesh |
 | **Atmanand Gauns** | Modulation Scheme Devlopment | BPSK Transceiver | Goa College of Engineering, Goa |
 | **Malyala Shiva Kumar** | RAN Devlopment | RAN Architecture, PHY/MAC Integration | KL University, Vijayawada, Andhra Pradesh |
 
