@@ -2,8 +2,8 @@
 
 | Institue | Year of Joining |
 |------|------|
-|**Chandhar Research Labs Pvt. Ltd.**, Mayiladuthurai, Tamil Nadu | 2026 | 
-|**Mahindra University**, Hyderabad, Telangana | 2026 | 
+|[**Chandhar Research Labs Pvt. Ltd.**](https://www.chandhar-labs.com), Mayiladuthurai, Tamil Nadu | 2026 | 
+|[**Mahindra University**](https://www.mu6glab.com/), Hyderabad, Telangana | 2026 | 
 
 ## Core Contributors
 
