@@ -1,7 +1,6 @@
 ## Institutional Members
 
-- 
-| Name | Year of Joining |
+| Institue | Year of Joining |
 |------|------|
 |**Mahindra University**, Hyderabad, Telangana | 2026 | 
 
