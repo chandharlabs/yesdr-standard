@@ -1,8 +1,9 @@
-YESDR Contributors
+## Institutional Members
 
-## Current Members
-
-- Mahindra University, Hyderabad, Telangana
+- 
+| Name | Year of Joining |
+|------|------|
+|**Mahindra University**, Hyderabad, Telangana | 2026 | 
 
 ## Core Contributors
 
