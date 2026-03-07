@@ -27,46 +27,6 @@ Additional protocol dissectors may be added in future releases.
 
 ---
 
-## Installing the Lua Dissectors
-
-### Prerequisites
-
-- Wireshark with Lua support (enabled by default in most installations)
-
-### Installation Steps
-
-1. Locate the Wireshark plugins directory:
-
-    **Linux**
-    ```bash
-    ~/.local/lib/wireshark/plugins/
-    ```
-
-    **Windows**
-    ```text
-    C:\Users\<username>\AppData\Roaming\Wireshark\plugins\
-    ```
-
-    **macOS**
-    ```bash
-    ~/.local/lib/wireshark/plugins/
-    ```
-
-2. Copy the following dissector files into the plugins directory:
-
-    
-    `yacp.lua` — <a href="../../assets/dissectors/yacp.lua" download>Download</a>  
-    `ysmp.lua` — <a href="../../assets/dissectors/ysmp.lua" download>Download</a>
-    
-
-3. Restart Wireshark
-
-4. Verify installation:
-   - Open **Analyze → Enabled Protocols**
-   - Confirm that **YACP** and **YSMP** are listed
-
----
-
 ## Viewing YESDR Protocol Messages
 
 ### Using Example PCAP Files
@@ -86,7 +46,7 @@ Example packet capture files are provided for learning and validation.
 3. Apply display filters:
    `GoTo Preferences -> Enabled Protocols -> HTTP --> Add Port "29525" in TCP Ports`  
    `yacp`  
-   `ysmp`
+   `ysmp`  
    `http`
 4. Expand protocol fields in the packet details pane to inspect:
    `Message types`  
