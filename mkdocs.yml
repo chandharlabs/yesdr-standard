@@ -62,10 +62,9 @@ nav:
   - Current Status: currentstatus/current_status.md
   
   - Implementation Toolkit:
-      - Protocol Tools:
-          - Implementation Toolkit: implementations/index.md
-          - Installation: implementations/Installation.md
-          - Wireshark Analysis: implementations/protocol-tools.md
+      - Implementation Toolkit: implementations/index.md
+      - Installation: implementations/Installation.md
+      - Wireshark Analysis: implementations/protocol-tools.md
           
   - Contributors: contributors.md
   
