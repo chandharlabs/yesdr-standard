@@ -65,6 +65,7 @@ nav:
       - Implementation Toolkit: implementations/index.md
       - Installation: implementations/Installation.md
       - Wireshark Analysis: implementations/protocol-tools.md
+      - Code Structure: implementations/codestructure.md
           
   - Contributors: contributors.md
   
