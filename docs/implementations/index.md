@@ -3,7 +3,7 @@
 
 To install, use, and manage YESDR using the official APT package repository: [Click here](Installation.md).
 
-## <strong>Protocol Analysis with Wireshark
+## Protocol Analysis with Wireshark
 
 To support debugging, validation, and education, official
 Wireshark dissectors and example packet capture files are provided for selected
