@@ -5,6 +5,8 @@
 <img src="../YAMF.png"
      class="yesdr-view"
      alt="YAMF">
+     
+---
 
 ## <strong>YSMF.py
 
@@ -12,11 +14,15 @@
      class="yesdr-view"
      alt="YSMF">
 
+---
+
 ## <strong>YAUSF.py
 
 <img src="../YAUSF.png"
      class="yesdr-view"
      alt="YAUSF">
+
+---
 
 ## <strong>YUDM.py
 
@@ -24,11 +30,15 @@
      class="yesdr-view"
      alt="YUDM">
 
+---
+
 ## <strong>YNRF.py
 
 <img src="../YNRF.png"
      class="yesdr-view"
      alt="YNRF">
+
+---
 
 ## <strong>YPCF.py
 
@@ -36,11 +46,15 @@
      class="yesdr-view"
      alt="YPCF">
 
+---
+
 ## <strong>YUPF.py
 
 <img src="../YUPF.png"
      class="yesdr-view"
      alt="YUPF">
+
+---
 
 ## <strong>YRMF.py
 
@@ -48,11 +62,15 @@
      class="yesdr-view"
      alt="YRMF">
 
+---
+
 ## <strong>YCRF.py
 
 <img src="../YCRF.png"
      class="yesdr-view"
      alt="YCRF">
+
+---
 
 ## <strong>YBS.py
 
@@ -60,11 +78,15 @@
      class="yesdr-view"
      alt="YBS">
 
+---
+
 ## <strong>YSM.py
 
 <img src="../YSM.png"
      class="yesdr-view"
      alt="YSM">
+
+---
 
 ## <strong>YUE.py
 
